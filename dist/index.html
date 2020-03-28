@@ -7,10 +7,36 @@
     <title>Drum Sequencer</title>
 </head>
 <body>
-    <button class="play-button">Play</button>
-    <button class="pause-button">Pause</button>
 
-    <div id="step-sequencer"></div>
+
+
+    <!-- Sequencer -->
+    <div id="sequencer-container">
+        <div id="grid-container">
+            <div id="instrument-labels">
+                <label>Kick</label>
+                <label>Snare</label>
+                <label>Hihat</label>
+            </div>
+            <div id="step-sequencer"></div>
+            <div id="volume-container">
+                <label>Vol</label>
+                <div id="master-volume"></div>
+            </div>
+        </div>
+        <div id="sequencer-controls">
+            <div id="bpm-controls">
+                <label>Bpm</label>
+                <div id="bpm-slider"></div>
+                <div id="bpm-number"></div>
+            </div>
+            <div id="start-stop-controls">
+                <div id="sequencer-play-button"></div>
+
+            </div>
+        </div>
+
+    </div>
 
     <script src="main.js"></script>
 </body>

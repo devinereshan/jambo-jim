@@ -5,6 +5,30 @@ import * as Nexus from './lib/NexusUI';
 
 window.addEventListener('load', () => {
 
+    const masterVolume = new Nexus.Slider('#master-volume', {
+        'size' : [25,100]
+    });
+
+    const bpmSlider = new Nexus.Slider('#bpm-slider', {
+        'size': [200, 25]
+    })
+
+    const sequencerPlayButton = new Nexus.TextButton('#sequencer-play-button', {
+        'size' : [96, 36],
+        'alternateText': 'Stop'
+    });
+
+    const bpmNumber = new Nexus.Number('#bpm-number');
+    bpmNumber.link(bpmSlider);
+
+    sequencerPlayButton.on('change', (play) => {
+        if (play) {
+            Tone.Transport.start();
+        } else {
+            Tone.Transport.stop();
+        }
+    });
+
     const sequencer = new Nexus.Sequencer('#step-sequencer', {
         'size': [768, 144],
         'rows': 3,
@@ -13,8 +37,6 @@ window.addEventListener('load', () => {
     sequencer.colorize('accent', "#f0f");
     sequencer.colorize('fill', "#000");
     sequencer.colorize('mediumLight', "#0ff");
-
-    console.log(sequencer.matrix);
 
     const kick = new Sound('kick');
     const snare = new Sound('snare');
@@ -28,16 +50,6 @@ window.addEventListener('load', () => {
     }
     const synthNames = ['kick', 'snare', 'hihat'];
 
-    const playButton = document.querySelector('.play-button');
-    const pauseButton = document.querySelector('.pause-button');
-
-    playButton.addEventListener('click', () => {
-        Tone.Transport.start();
-    });
-
-    pauseButton.addEventListener('click', () => {
-        Tone.Transport.stop();
-    });
 
     const loop = new Tone.Sequence(function(time, col) {
         const columnStates = sequencer.matrix.column(col);
