@@ -1,14 +1,15 @@
 {
-  "name": "tonejs_webpack_template",
+  "name": "jambo_jim",
   "version": "1.0.0",
-  "description": "",
+  "description": "A percusive step sequencer",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "webpack --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "Devin Ereshan",
   "license": "ISC",
   "devDependencies": {
     "webpack": "^4.42.1",
