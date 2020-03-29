@@ -65,11 +65,11 @@ function init() {
 
     // create settings sliders and other controls
     const kickControls = [
-        createNexusSlider('kick-attack'),
-        createNexusSlider('kick-decay'),
-        createNexusSlider('kick-sustain'),
-        createNexusSlider('kick-release'),
-        createNexusSlider('kick-velocity'),
+        createNexusSlider('kick-attack', 0.01, 1, 0.01, 0.01),
+        createNexusSlider('kick-decay', 0.01, 1, 0.01, 0.4),
+        createNexusSlider('kick-sustain', 0.01, 1, 0.01, 0.01),
+        createNexusSlider('kick-release', 0.1, 2, 0.1, 1.4),
+        createNexusSlider('kick-velocity', 0, 1, 0.1, 0.7),
         createNexusSelect('kick-pitch')
     ];
 
@@ -84,10 +84,10 @@ function init() {
 
 
     const snareControls = [
-        createNexusSlider('snare-attack'),
-        createNexusSlider('snare-decay'),
-        createNexusSlider('snare-sustain'),
-        createNexusSlider('snare-velocity'),
+        createNexusSlider('snare-attack', 0.01, 1, 0.01, 0.01),
+        createNexusSlider('snare-decay', 0.05, 1, 0.01, 0.1),
+        createNexusSlider('snare-sustain', 0, 1, 0.01, 0),
+        createNexusSlider('snare-velocity', 0, 1, 0.1, 0.7),
         createNexusSelect('snare-noise-type')
     ]
 
@@ -101,10 +101,10 @@ function init() {
 
 
     const hihatOneControls = [
-        createNexusSlider('hihat-one-attack'),
-        createNexusSlider('hihat-one-decay'),
-        createNexusSlider('hihat-one-release'),
-        createNexusSlider('hihat-one-velocity')
+        createNexusSlider('hihat-one-attack', 0.001, 0.5, 0.001, 0.001),
+        createNexusSlider('hihat-one-decay', 0.1, 1.5, 0.1, 0.7),
+        createNexusSlider('hihat-one-release', 0.1, 1.5, 0.1, 0.5),
+        createNexusSlider('hihat-one-velocity', 0, 1, 0.1, 0.7)
     ]
 
 
@@ -116,10 +116,10 @@ function init() {
     ]
 
     const hihatTwoControls = [
-        createNexusSlider('hihat-two-attack'),
-        createNexusSlider('hihat-two-decay'),
-        createNexusSlider('hihat-two-release'),
-        createNexusSlider('hihat-two-velocity')
+        createNexusSlider('hihat-two-attack', 0.001, 0.5, 0.001, 0.001),
+        createNexusSlider('hihat-two-decay', 0.1, 1.5, 0.1, 0.2),
+        createNexusSlider('hihat-two-release', 0.1, 1.5, 0.1, 0.1),
+        createNexusSlider('hihat-two-velocity', 0, 1, 0.1, 0.7)
     ]
 
 
@@ -220,9 +220,13 @@ function init() {
     connectSlidersToSynths(hihatOneControls, synths);
 }
 
-function createNexusSlider(id) {
+function createNexusSlider(id, min, max, step, value) {
     return new Nexus.Slider(id, {
-        'size': [25,100]
+        'size': [25,100],
+        'min': min,
+        'max': max,
+        'step': step,
+        'value': value
     });
 }
 

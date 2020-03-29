@@ -3,14 +3,14 @@ import { MembraneSynth, NoiseSynth, MetalSynth } from 'tone';
 const soundDefaults = {
     kick: {
         note: 'C1',
-        velocity: 1,
+        velocity: 0.7,
         defaults: {
             octaves : 5 ,
             oscillator : {
                 type : 'sine'
             } ,
             envelope : {
-                attack : 0.001 ,
+                attack : 0.01 ,
                 decay : 0.4 ,
                 sustain : 0.01 ,
                 release : 1.4 ,
@@ -25,7 +25,7 @@ const soundDefaults = {
                 type : 'pink'
             } ,
             envelope : {
-                attack : 0.005 ,
+                attack : 0.01 ,
                 decay : 0.1 ,
                 sustain : 0
             }
@@ -83,7 +83,6 @@ export class Sound {
     }
 
     updateSetting(settingType, value) {
-        console.log(`updating ${settingType} to ${value}`);
         switch(settingType) {
             case 'attack':
                 this.synth.envelope.attack = parseFloat(value);
