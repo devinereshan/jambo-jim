@@ -63,6 +63,7 @@ function init() {
 
 
 
+    const kickPitchOptions = ['C1', 'C#1', 'D1', 'D#1', 'E1', 'F1', 'F#1', 'G1', 'G#1', 'A1', 'A#1', 'B1', 'C2'];
     // create settings sliders and other controls
     const kickControls = [
         createNexusSlider('kick-attack', 0.01, 1, 0.01, 0.01),
@@ -70,7 +71,7 @@ function init() {
         createNexusSlider('kick-sustain', 0.01, 1, 0.01, 0.01),
         createNexusSlider('kick-release', 0.1, 2, 0.1, 1.4),
         createNexusSlider('kick-velocity', 0, 1, 0.1, 0.7),
-        createNexusSelect('kick-pitch')
+        createNexusSelect('kick-pitch', kickPitchOptions)
     ];
 
 
@@ -88,7 +89,7 @@ function init() {
         createNexusSlider('snare-decay', 0.05, 1, 0.01, 0.1),
         createNexusSlider('snare-sustain', 0, 1, 0.01, 0),
         createNexusSlider('snare-velocity', 0, 1, 0.1, 0.7),
-        createNexusSelect('snare-noise-type')
+        createNexusSelect('snare-noise-type', ['pink', 'brown', 'white'])
     ]
 
 
@@ -230,8 +231,8 @@ function createNexusSlider(id, min, max, step, value) {
     });
 }
 
-function createNexusSelect(id) {
-    return new Nexus.Select(id);
+function createNexusSelect(id, options) {
+    return new Nexus.Select(id, {'options': options});
 }
 
 function createSliderNumber(id) {
@@ -240,6 +241,7 @@ function createSliderNumber(id) {
 
 function connectSlidersToSynths(controls, synths) {
     controls.forEach((control) => {
+        // connect sliders
         if (control.parent.classList.contains('control-slider')){
             control.on('change', () => {
                 let value = control.value;
