@@ -7,6 +7,8 @@ window.addEventListener('load', () => {
 
     // Tone.Transport.bpm.value = 100;
 
+
+    // Create Sequencer controls
     const masterVolume = new Nexus.Slider('#master-volume', {
         'size': [25,100]
     });
@@ -27,6 +29,8 @@ window.addEventListener('load', () => {
         'alternateText': 'Stop'
     });
 
+
+    // Create pads
     const kickPad = new Nexus.TextButton('#kick-pad', {
         'size': [108,108],
         'text': 'Kick'
@@ -49,7 +53,7 @@ window.addEventListener('load', () => {
 
 
 
-    // const kickControls = new Nexus.Rack('#kick-controls');
+    // create settings sliders and other controls
     const kickControls = [
         createNexusSlider('kick-attack'),
         createNexusSlider('kick-decay'),
@@ -115,12 +119,14 @@ window.addEventListener('load', () => {
         createSliderNumber('hihat-two-velocity-number').link(hihatTwoControls[3]),
     ]
 
+    // Hide all pad settings initially
     const controlContainers = document.querySelectorAll('.control-container');
     controlContainers.forEach((container) => {
         container.style.display = 'none';
     });
 
 
+    // Tab toggle functionality
     const controlToggles = document.querySelectorAll('.pad-container label');
     controlToggles.forEach((toggle) => {
         toggle.addEventListener('click', () => {
@@ -136,15 +142,7 @@ window.addEventListener('load', () => {
     });
 
 
-
-    sequencerPlayButton.on('change', (play) => {
-        if (play) {
-            Tone.Transport.start();
-        } else {
-            Tone.Transport.stop();
-        }
-    });
-
+    // Create Sequencer
     const sequencer = new Nexus.Sequencer('#step-sequencer', {
         'size': [768, 144],
         'rows': 3,
@@ -153,6 +151,14 @@ window.addEventListener('load', () => {
     sequencer.colorize('accent', "#f0f");
     sequencer.colorize('fill', "#000");
     sequencer.colorize('mediumLight', "#0ff");
+
+    sequencerPlayButton.on('change', (play) => {
+        if (play) {
+            Tone.Transport.start();
+        } else {
+            Tone.Transport.stop();
+        }
+    });
 
     const kick = new Sound('kick');
     const snare = new Sound('snare');
@@ -178,12 +184,11 @@ window.addEventListener('load', () => {
         });
 
         Tone.Draw.schedule(function(){
-            sequencer.next();
+            sequencer.stepper.value = col;
+            sequencer.render();
         }, time);
     }, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], "16n").start(0);
 
-    // kickControlsContainer = document.getElementById('kick-controls');
-    // kickControlsContainer.style.display = 'none !important';
 });
 
 function createNexusSlider(id) {
