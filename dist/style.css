@@ -15,7 +15,6 @@ body {
     width: 876px;
     margin: auto;
     margin-bottom: 48px;
-    /* border-bottom: 2px solid #333; */
 }
 
 #pads {
@@ -43,18 +42,30 @@ body {
 
 .control-container {
     display: flex;
-    /* width: 100%; */
     background: lightblue;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
-/* #kick-controls { */
-    /* width: 100%; */
-    /* display: flex; */
-    /* border: 1px solid pink; */
-    /* flex-direction: row; */
-    /* justify-content: space-between; */
-/* } */
+
+.label-and-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.label-and-control label {
+    display: block;
+    margin-top: 20px;
+}
+
+.control-slider {
+    padding-top: 10px;
+}
+
+
 
 
 /* Sequencer */

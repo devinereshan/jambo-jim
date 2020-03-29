@@ -42,6 +42,8 @@ window.addEventListener('load', () => {
         'text': 'HH 2'
     });
 
+
+
     // const kickControls = new Nexus.Rack('#kick-controls');
     const kickControls = [
         createNexusSlider('kick-attack'),
@@ -50,6 +52,14 @@ window.addEventListener('load', () => {
         createNexusSlider('kick-release'),
         createNexusSlider('kick-velocity'),
         createNexusSelect('kick-pitch')
+    ]
+
+    const kickControlNumbers = [
+        createSliderNumber('kick-attack-number').link(kickControls[0]),
+        createSliderNumber('kick-decay-number').link(kickControls[1]),
+        createSliderNumber('kick-sustain-number').link(kickControls[2]),
+        createSliderNumber('kick-release-number').link(kickControls[3]),
+        createSliderNumber('kick-velocity-number').link(kickControls[4]),
     ]
 
     console.log(kickControls);
@@ -112,4 +122,8 @@ function createNexusSlider(id) {
 
 function createNexusSelect(id) {
     return new Nexus.Select(id);
+}
+
+function createSliderNumber(id) {
+    return new Nexus.Number(id);
 }
