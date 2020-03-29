@@ -126,19 +126,33 @@ window.addEventListener('load', () => {
     });
 
 
+    const padContainers = document.querySelectorAll('.pad-container');
+
     // Tab toggle functionality
     const controlToggles = document.querySelectorAll('.pad-container label');
     controlToggles.forEach((toggle) => {
         toggle.addEventListener('click', () => {
             let controlToToggle = toggle.attributes.controls.value;
+            let parentContainer = toggle.parentElement;
+
+            // open the corresponding container and close all others
             controlContainers.forEach((container) => {
                 if (container.id === controlToToggle) {
                     container.style.display = container.style.display === 'none' ? 'flex' : 'none';
                 } else {
                     container.style.display = 'none';
                 }
-            })
-        })
+            });
+
+            // highlight the selected pad container and remove highlight from all others
+            padContainers.forEach((container) => {
+                if (container === parentContainer) {
+                    container.style.background = container.style.background === 'lightblue' ? 'none' : 'lightblue';
+                } else {
+                    container.style.background = 'none';
+                }
+            });
+        });
     });
 
 
