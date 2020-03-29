@@ -1,13 +1,24 @@
 import * as Tone from 'tone';
 import { Sound } from './drumSounds';
 import * as Nexus from './lib/NexusUI';
+import StartAudioContext from 'startaudiocontext';
 
 
 window.addEventListener('load', () => {
 
-    // Tone.Transport.bpm.value = 100;
+    const splashScreen = document.getElementById('splash-screen');
 
+    splashScreen.addEventListener('click', () =>{
+        StartAudioContext(Tone.context).then(() => {
+            console.log("Audio context started");
+            init();
+            splashScreen.style.display = 'none';
+        });
+    });
 
+});
+
+function init() {
     // Create Sequencer controls
     const masterVolume = new Nexus.Slider('#master-volume', {
         'size': [25,100]
@@ -202,8 +213,7 @@ window.addEventListener('load', () => {
             sequencer.render();
         }, time);
     }, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], "16n").start(0);
-
-});
+}
 
 function createNexusSlider(id) {
     return new Nexus.Slider(id, {
