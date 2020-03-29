@@ -85,6 +85,35 @@ window.addEventListener('load', () => {
     ]
 
 
+    const hihatOneControls = [
+        createNexusSlider('hihat-one-attack'),
+        createNexusSlider('hihat-one-decay'),
+        createNexusSlider('hihat-one-release'),
+        createNexusSlider('hihat-one-velocity')
+    ]
+
+
+    const hihatOneControlNumbers = [
+        createSliderNumber('hihat-one-attack-number').link(hihatOneControls[0]),
+        createSliderNumber('hihat-one-decay-number').link(hihatOneControls[1]),
+        createSliderNumber('hihat-one-release-number').link(hihatOneControls[2]),
+        createSliderNumber('hihat-one-velocity-number').link(hihatOneControls[3]),
+    ]
+
+    const hihatTwoControls = [
+        createNexusSlider('hihat-two-attack'),
+        createNexusSlider('hihat-two-decay'),
+        createNexusSlider('hihat-two-release'),
+        createNexusSlider('hihat-two-velocity')
+    ]
+
+
+    const hihatTwoControlNumbers = [
+        createSliderNumber('hihat-two-attack-number').link(hihatTwoControls[0]),
+        createSliderNumber('hihat-two-decay-number').link(hihatTwoControls[1]),
+        createSliderNumber('hihat-two-release-number').link(hihatTwoControls[2]),
+        createSliderNumber('hihat-two-velocity-number').link(hihatTwoControls[3]),
+    ]
 
     const controlContainers = document.querySelectorAll('.control-container');
     controlContainers.forEach((container) => {
