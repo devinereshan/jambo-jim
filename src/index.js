@@ -19,8 +19,20 @@ window.addEventListener('load', () => {
 
 function init() {
     // Create Sequencer controls
+
+    Tone.Master.volume.value = -10;
+
     const masterVolume = new Nexus.Slider('#master-volume', {
-        'size': [25,100]
+        'size': [25,100],
+        'min': -40,
+        'max': 0,
+        'step': 0.1,
+        'value': -10
+    });
+
+    masterVolume.on('change', (v) => {
+        Tone.Master.volume.value = v;
+        // console.log(Tone.Master.volume.value);
     });
 
     const bpmSlider = new Nexus.Slider('#bpm-slider', {
@@ -33,6 +45,10 @@ function init() {
 
     const bpmNumber = new Nexus.Number('#bpm-number');
     bpmNumber.link(bpmSlider);
+
+    bpmSlider.on('change', (v) => {
+        Tone.Transport.bpm.value = v;
+    });
 
     const sequencerPlayButton = new Nexus.TextButton('#sequencer-play-button', {
         'size': [96, 36],
@@ -63,8 +79,9 @@ function init() {
 
 
 
-    const kickPitchOptions = ['C1', 'C#1', 'D1', 'D#1', 'E1', 'F1', 'F#1', 'G1', 'G#1', 'A1', 'A#1', 'B1', 'C2'];
     // create settings sliders and other controls
+    const kickPitchOptions = ['C1', 'C#1', 'D1', 'D#1', 'E1', 'F1', 'F#1', 'G1', 'G#1', 'A1', 'A#1', 'B1', 'C2'];
+
     const kickControls = [
         createNexusSlider('kick-attack', 0.01, 1, 0.01, 0.01),
         createNexusSlider('kick-decay', 0.01, 1, 0.01, 0.4),
