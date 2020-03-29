@@ -103,6 +103,12 @@ export class Sound {
             case 'velocity':
                 this.velocity = parseFloat(value);
                 break;
+            case 'noise-type':
+                this.synth.noise.type = value;
+                break;
+            case 'pitch':
+                this.note = value;
+                break;
         }
     }
 }

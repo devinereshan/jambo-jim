@@ -229,15 +229,12 @@ function createSliderNumber(id) {
 
 function connectControlsToSynths(controls, synths) {
     controls.forEach((control) => {
-        // connect sliders
-        if (control.parent.classList.contains('control-slider')){
-            control.on('change', () => {
-                let value = control.value;
-                let synth = control.parent.attributes.synth.value;
-                let settingType = control.parent.attributes.settingtype.value;
-                synths[synth].updateSetting(settingType, value);
-            });
-        }
+        control.on('change', () => {
+            let value = control.value;
+            let synth = control.parent.attributes.synth.value;
+            let settingType = control.parent.attributes.settingtype.value;
+            synths[synth].updateSetting(settingType, value);
+        });
     });
 }
 
