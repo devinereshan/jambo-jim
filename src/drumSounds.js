@@ -87,6 +87,19 @@ export class Sound {
         switch(settingType) {
             case 'attack':
                 this.synth.envelope.attack = parseFloat(value);
+                break;
+            case 'decay':
+                this.synth.envelope.decay = parseFloat(value);
+                break;
+            case 'sustain':
+                this.synth.envelope.sustain = parseFloat(value);
+                break;
+            case 'release':
+                this.synth.envelope.release = parseFloat(value);
+                break;
+            case 'velocity':
+                this.velocity = parseFloat(value);
+                break;
         }
     }
 }

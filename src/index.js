@@ -73,17 +73,6 @@ function init() {
         createNexusSelect('kick-pitch')
     ];
 
-    // kickControls[0].on('change', (v)=>{
-    //     console.log(kickControls[0].parent.attributes.synth.value);
-    // });
-
-    kickControls[0].parent.addEventListener('mouseup', (e)=> {
-        console.log(kickControls[0].value);
-        let value = kickControls[0].value;
-        let synth = kickControls[0].parent.attributes.synth.value;
-        let settingType = kickControls[0].parent.attributes.settingtype.value;
-        synths[synth].updateSetting(settingType, value);
-    });
 
     const kickControlNumbers = [
         createSliderNumber('kick-attack-number').link(kickControls[0]),
@@ -204,9 +193,9 @@ function init() {
     const synths = {
         'kick' : kick,
         'snare' : snare,
-        'hihat' : hihat
+        'hihatOne' : hihat
     }
-    const synthNames = ['kick', 'snare', 'hihat'];
+    const synthNames = ['kick', 'snare', 'hihatOne'];
 
 
     // Create and ready loop
@@ -225,6 +214,10 @@ function init() {
             sequencer.render();
         }, time);
     }, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], "16n").start(0);
+
+    connectSlidersToSynths(kickControls, synths);
+    connectSlidersToSynths(snareControls, synths);
+    connectSlidersToSynths(hihatOneControls, synths);
 }
 
 function createNexusSlider(id) {
@@ -239,4 +232,17 @@ function createNexusSelect(id) {
 
 function createSliderNumber(id) {
     return new Nexus.Number(id);
+}
+
+function connectSlidersToSynths(controls, synths) {
+    controls.forEach((control) => {
+        if (control.parent.classList.contains('control-slider')){
+            control.on('change', () => {
+                let value = control.value;
+                let synth = control.parent.attributes.synth.value;
+                let settingType = control.parent.attributes.settingtype.value;
+                synths[synth].updateSetting(settingType, value);
+            });
+        }
+    });
 }
