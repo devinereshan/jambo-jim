@@ -2,7 +2,7 @@ import { MembraneSynth, NoiseSynth, MetalSynth } from 'tone';
 
 const soundDefaults = {
     kick: {
-        note: 'C0',
+        note: 'C1',
         velocity: 0.7,
         defaults: {
             octaves : 5 ,
