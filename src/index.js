@@ -18,10 +18,51 @@ window.addEventListener('load', () => {
 });
 
 function init() {
-    // Create Sequencer controls
-
     Tone.Master.volume.value = -10;
 
+    const kick = new Sound('kick');
+    const snare = new Sound('snare');
+    const hihat = new Sound('hihat');
+
+    const synths = {
+        'kick' : kick,
+        'snare' : snare,
+        'hihatOne' : hihat
+    }
+
+    createPads();
+
+    createControlContainers();
+
+    const sequencer = createSequencer();
+
+    createSequencerControls();
+
+    const synthNames = ['kick', 'snare', 'hihatOne'];
+
+    const loop = createLoop(sequencer, synths, synthNames);
+
+    createAndConnectPadControls(synths);
+
+    loop.start();
+}
+
+
+function createSequencer() {
+    const sequencer = new Nexus.Sequencer('#step-sequencer', {
+        'size': [768, 144],
+        'rows': 3,
+        'columns': 16
+    });
+    sequencer.colorize('accent', "#f0f");
+    sequencer.colorize('fill', "#000");
+    sequencer.colorize('mediumLight', "#0ff");
+
+    return sequencer;
+}
+
+
+function createSequencerControls() {
     const masterVolume = new Nexus.Slider('#master-volume', {
         'size': [25,100],
         'min': -40,
@@ -54,22 +95,6 @@ function init() {
         'alternateText': 'Stop'
     });
 
-
-    createPads();
-
-    createControlContainers();
-
-
-    // Create Sequencer
-    const sequencer = new Nexus.Sequencer('#step-sequencer', {
-        'size': [768, 144],
-        'rows': 3,
-        'columns': 16
-    });
-    sequencer.colorize('accent', "#f0f");
-    sequencer.colorize('fill', "#000");
-    sequencer.colorize('mediumLight', "#0ff");
-
     sequencerPlayButton.on('change', (play) => {
         if (play) {
             Tone.Transport.start();
@@ -77,40 +102,8 @@ function init() {
             Tone.Transport.stop();
         }
     });
-
-    const kick = new Sound('kick');
-    const snare = new Sound('snare');
-    const hihat = new Sound('hihat');
-
-
-    const synths = {
-        'kick' : kick,
-        'snare' : snare,
-        'hihatOne' : hihat
-    }
-    const synthNames = ['kick', 'snare', 'hihatOne'];
-
-
-    // Create and ready loop
-    const loop = new Tone.Sequence(function(time, col) {
-        const columnStates = sequencer.matrix.column(col);
-
-        columnStates.forEach(function(isArmed, index){
-            if(isArmed) {
-                const synth = synthNames[index];
-                synths[synth].play();
-            }
-        });
-
-        Tone.Draw.schedule(function(){
-            sequencer.stepper.value = col;
-            sequencer.render();
-        }, time);
-    }, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], "16n").start(0);
-
-
-    createAndConnectPadControls(synths);
 }
+
 
 function createPads() {
     const kickPad = new Nexus.TextButton('#kick-pad', {
@@ -133,6 +126,7 @@ function createPads() {
         'text': 'HH 2'
     });
 }
+
 
 function createControlContainers() {
       // Hide all pad settings initially
@@ -172,6 +166,28 @@ function createControlContainers() {
       });
 }
 
+
+function createLoop(sequencer, synths, synthNames) {
+    const loop = new Tone.Sequence(function(time, col) {
+        const columnStates = sequencer.matrix.column(col);
+
+        columnStates.forEach(function(isArmed, index){
+            if(isArmed) {
+                const synth = synthNames[index];
+                synths[synth].play();
+            }
+        });
+
+        Tone.Draw.schedule(function(){
+            sequencer.stepper.value = col;
+            sequencer.render();
+        }, time);
+    }, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], "16n")
+
+    return loop;
+}
+
+
 function createNexusSlider(id, min, max, step, value) {
     return new Nexus.Slider(id, {
         'size': [25,100],
@@ -182,13 +198,16 @@ function createNexusSlider(id, min, max, step, value) {
     });
 }
 
+
 function createNexusSelect(id, options) {
     return new Nexus.Select(id, {'options': options});
 }
 
+
 function createSliderNumber(id) {
     return new Nexus.Number(id);
 }
+
 
 function connectControlsToSynths(controls, synths) {
     controls.forEach((control) => {
@@ -203,6 +222,7 @@ function connectControlsToSynths(controls, synths) {
         }
     });
 }
+
 
 function createAndConnectPadControls(synths) {
     const kickPitchOptions = ['C1', 'C#1', 'D1', 'D#1', 'E1', 'F1', 'F#1', 'G1', 'G#1', 'A1', 'A#1', 'B1', 'C2'];
