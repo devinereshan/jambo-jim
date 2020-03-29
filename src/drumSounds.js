@@ -37,7 +37,7 @@ const soundDefaults = {
         defaults: {
             frequency : 1500 ,
             envelope : {
-                attack : 0.001 ,
+                attack : 0 ,
                 decay : 0.7 ,
                 release : 0.5
             } ,
@@ -51,14 +51,18 @@ const soundDefaults = {
 }
 
 export class Sound {
-    constructor(type) {
+    constructor(type, initialSettings) {
         this.type = type;
 
         this.duration = '16n';
         this.time = '+0.001';
 
         this.velocity = soundDefaults[type].velocity;
-        this.defaults = soundDefaults[type].defaults;
+        if (initialSettings) {
+            this.defaults = initialSettings;
+        } else {
+            this.defaults = soundDefaults[type].defaults;
+        }
 
         if (type === 'kick') {
             this.note = soundDefaults.kick.note;

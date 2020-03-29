@@ -23,12 +23,32 @@ function init() {
     const kick = new Sound('kick');
     const snare = new Sound('snare');
     const hihat = new Sound('hihat');
+    const hihatTwo = new Sound('hihat',
+        {
+            velocity: 0.7,
+            defaults: {
+                frequency : 1500 ,
+                envelope : {
+                    attack : 0.001 ,
+                    decay : 0.2 ,
+                    release : 0.1
+                } ,
+                harmonicity : 3 ,
+                modulationIndex : 60 ,
+                resonance : 6000 ,
+                octaves : 1
+            }
+        }
+    );
 
     const synths = {
         'kick' : kick,
         'snare' : snare,
-        'hihatOne' : hihat
+        'hihatOne' : hihat,
+        'hihatTwo': hihatTwo
     }
+
+    const synthNames = ['kick', 'snare', 'hihatOne', 'hihatTwo'];
 
     createPads();
 
@@ -37,8 +57,6 @@ function init() {
     const sequencer = createSequencer();
 
     createSequencerControls();
-
-    const synthNames = ['kick', 'snare', 'hihatOne'];
 
     const loop = createLoop(sequencer, synths, synthNames);
 
