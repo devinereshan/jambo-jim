@@ -5,6 +5,8 @@ import * as Nexus from './lib/NexusUI';
 
 window.addEventListener('load', () => {
 
+    // Tone.Transport.bpm.value = 100;
+
     const masterVolume = new Nexus.Slider('#master-volume', {
         'size': [25,100]
     });
@@ -14,8 +16,11 @@ window.addEventListener('load', () => {
         'min': 50,
         'max': 180,
         'step': 1,
-        'value': 100
+        'value': 120
     });
+
+    const bpmNumber = new Nexus.Number('#bpm-number');
+    bpmNumber.link(bpmSlider);
 
     const sequencerPlayButton = new Nexus.TextButton('#sequencer-play-button', {
         'size': [96, 36],
@@ -32,12 +37,12 @@ window.addEventListener('load', () => {
         'text': 'Snare'
     });
 
-    const hihatClosedPad = new Nexus.TextButton('#hihat-closed-pad', {
+    const hihatClosedPad = new Nexus.TextButton('#hihat-one-pad', {
         'size': [108,108],
         'text': 'HH 1'
     });
 
-    const hihatOpenPad = new Nexus.TextButton('#hihat-open-pad', {
+    const hihatOpenPad = new Nexus.TextButton('#hihat-two-pad', {
         'size': [108,108],
         'text': 'HH 2'
     });
@@ -62,11 +67,46 @@ window.addEventListener('load', () => {
         createSliderNumber('kick-velocity-number').link(kickControls[4]),
     ]
 
-    console.log(kickControls);
+
+    const snareControls = [
+        createNexusSlider('snare-attack'),
+        createNexusSlider('snare-decay'),
+        createNexusSlider('snare-sustain'),
+        createNexusSlider('snare-velocity'),
+        createNexusSelect('snare-noise-type')
+    ]
 
 
-    const bpmNumber = new Nexus.Number('#bpm-number');
-    bpmNumber.link(bpmSlider);
+    const snareControlNumbers = [
+        createSliderNumber('snare-attack-number').link(snareControls[0]),
+        createSliderNumber('snare-decay-number').link(snareControls[1]),
+        createSliderNumber('snare-sustain-number').link(snareControls[2]),
+        createSliderNumber('snare-velocity-number').link(snareControls[3]),
+    ]
+
+
+
+    const controlContainers = document.querySelectorAll('.control-container');
+    controlContainers.forEach((container) => {
+        container.style.display = 'none';
+    });
+
+
+    const controlToggles = document.querySelectorAll('.pad-container label');
+    controlToggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            let controlToToggle = toggle.attributes.controls.value;
+            controlContainers.forEach((container) => {
+                if (container.id === controlToToggle) {
+                    container.style.display = container.style.display === 'none' ? 'flex' : 'none';
+                } else {
+                    container.style.display = 'none';
+                }
+            })
+        })
+    });
+
+
 
     sequencerPlayButton.on('change', (play) => {
         if (play) {
@@ -112,6 +152,9 @@ window.addEventListener('load', () => {
             sequencer.next();
         }, time);
     }, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], "16n").start(0);
+
+    // kickControlsContainer = document.getElementById('kick-controls');
+    // kickControlsContainer.style.display = 'none !important';
 });
 
 function createNexusSlider(id) {
