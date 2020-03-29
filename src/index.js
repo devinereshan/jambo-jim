@@ -5,7 +5,6 @@ import StartAudioContext from 'startaudiocontext';
 
 
 window.addEventListener('load', () => {
-
     const splashScreen = document.getElementById('splash-screen');
 
     splashScreen.addEventListener('click', () =>{
@@ -72,7 +71,19 @@ function init() {
         createNexusSlider('kick-release'),
         createNexusSlider('kick-velocity'),
         createNexusSelect('kick-pitch')
-    ]
+    ];
+
+    // kickControls[0].on('change', (v)=>{
+    //     console.log(kickControls[0].parent.attributes.synth.value);
+    // });
+
+    kickControls[0].parent.addEventListener('mouseup', (e)=> {
+        console.log(kickControls[0].value);
+        let value = kickControls[0].value;
+        let synth = kickControls[0].parent.attributes.synth.value;
+        let settingType = kickControls[0].parent.attributes.settingtype.value;
+        synths[synth].updateSetting(settingType, value);
+    });
 
     const kickControlNumbers = [
         createSliderNumber('kick-attack-number').link(kickControls[0]),
@@ -198,6 +209,7 @@ function init() {
     const synthNames = ['kick', 'snare', 'hihat'];
 
 
+    // Create and ready loop
     const loop = new Tone.Sequence(function(time, col) {
         const columnStates = sequencer.matrix.column(col);
 

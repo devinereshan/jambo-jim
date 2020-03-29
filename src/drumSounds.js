@@ -54,7 +54,7 @@ export class Sound {
     constructor(type) {
         this.type = type;
 
-        this.duration = '8n';
+        this.duration = '16n';
         this.time = '+0.001';
 
         this.velocity = soundDefaults[type].velocity;
@@ -75,6 +75,18 @@ export class Sound {
             this.synth.triggerAttackRelease(this.note, this.duration, this.time, this.velocity);
         } else {
             this.synth.triggerAttackRelease(this.duration, this.time, this.velocity);
+        }
+    }
+
+    setAttack(value) {
+        this.synth.envelope.attack = parseFloat(value);
+    }
+
+    updateSetting(settingType, value) {
+        console.log(`updating ${settingType} to ${value}`);
+        switch(settingType) {
+            case 'attack':
+                this.synth.envelope.attack = parseFloat(value);
         }
     }
 }
