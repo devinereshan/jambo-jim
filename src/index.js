@@ -6,17 +6,54 @@ import * as Nexus from './lib/NexusUI';
 window.addEventListener('load', () => {
 
     const masterVolume = new Nexus.Slider('#master-volume', {
-        'size' : [25,100]
+        'size': [25,100]
     });
 
     const bpmSlider = new Nexus.Slider('#bpm-slider', {
-        'size': [200, 25]
-    })
+        'size': [200, 25],
+        'min': 50,
+        'max': 180,
+        'step': 1,
+        'value': 100
+    });
 
     const sequencerPlayButton = new Nexus.TextButton('#sequencer-play-button', {
-        'size' : [96, 36],
+        'size': [96, 36],
         'alternateText': 'Stop'
     });
+
+    const kickPad = new Nexus.TextButton('#kick-pad', {
+        'size': [108,108],
+        'text': 'Kick'
+    });
+
+    const snarePad = new Nexus.TextButton('#snare-pad', {
+        'size': [108,108],
+        'text': 'Snare'
+    });
+
+    const hihatClosedPad = new Nexus.TextButton('#hihat-closed-pad', {
+        'size': [108,108],
+        'text': 'HH 1'
+    });
+
+    const hihatOpenPad = new Nexus.TextButton('#hihat-open-pad', {
+        'size': [108,108],
+        'text': 'HH 2'
+    });
+
+    // const kickControls = new Nexus.Rack('#kick-controls');
+    const kickControls = [
+        createNexusSlider('kick-attack'),
+        createNexusSlider('kick-decay'),
+        createNexusSlider('kick-sustain'),
+        createNexusSlider('kick-release'),
+        createNexusSlider('kick-velocity'),
+        createNexusSelect('kick-pitch')
+    ]
+
+    console.log(kickControls);
+
 
     const bpmNumber = new Nexus.Number('#bpm-number');
     bpmNumber.link(bpmSlider);
@@ -32,7 +69,7 @@ window.addEventListener('load', () => {
     const sequencer = new Nexus.Sequencer('#step-sequencer', {
         'size': [768, 144],
         'rows': 3,
-        'columns' : 16
+        'columns': 16
     });
     sequencer.colorize('accent', "#f0f");
     sequencer.colorize('fill', "#000");
@@ -67,3 +104,12 @@ window.addEventListener('load', () => {
     }, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], "16n").start(0);
 });
 
+function createNexusSlider(id) {
+    return new Nexus.Slider(id, {
+        'size': [25,100]
+    });
+}
+
+function createNexusSelect(id) {
+    return new Nexus.Select(id);
+}

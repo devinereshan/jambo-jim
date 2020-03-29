@@ -3,12 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Drum Sequencer</title>
 </head>
 <body>
 
 
+    <!-- Sound Controls -->
+
+    <div id="sound-controls-container">
+        <div id="pads">
+            <div class="pad-container">
+                <div id="kick-pad"></div>
+                <label>Settings</label>
+            </div>
+            <div class="pad-container">
+                <div id="snare-pad"></div>
+                <label>Settings</label>
+            </div>
+            <div class="pad-container">
+                <div id="hihat-closed-pad"></div>
+                <label>Settings</label>
+            </div>
+            <div class="pad-container">
+                <div id="hihat-open-pad"></div>
+                <label>Settings</label>
+            </div>
+        </div>
+        <div id="controls">
+            <div id="kick-controls" class="control-container">
+                <div class="label-and-slider">
+                    <div id="kick-attack"></div>
+                    <label>Attack</label>
+                </div>
+                <div class="label-and-slider">
+                    <div id="kick-decay"></div>
+                    <label>Decay</label>
+                </div>
+                <div class="label-and-slider">
+                    <div id="kick-sustain"></div>
+                    <label>Sustain</label>
+                </div>
+                <div class="label-and-slider">
+                    <div id="kick-release"></div>
+                    <label>Release</label>
+                </div>
+                <div class="label-and-slider">
+                    <div id="kick-velocity"></div>
+                    <label>Velocity</label>
+                </div>
+                <div class="label-and-slider">
+                    <div id="kick-pitch"></div>
+                    <label>Pitch</label>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Sequencer -->
     <div id="sequencer-container">
