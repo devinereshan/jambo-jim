@@ -55,11 +55,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-	
+
 	var NexusUI = _interopRequire(__webpack_require__(1));
-	
+
 	module.exports = NexusUI;
 
 /***/ }),
@@ -67,15 +67,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { "default": obj }; };
-	
+
 	var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	exports.colors = colors;
 	exports.context = context;
 	exports.clock = clock;
@@ -83,47 +83,47 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 	"use strict";
-	
+
 	var Interfaces = _interopRequire(__webpack_require__(2));
-	
+
 	var math = _interopRequire(__webpack_require__(5));
-	
+
 	var Rack = _interopRequire(__webpack_require__(38));
-	
+
 	var Tune = _interopRequire(__webpack_require__(40));
-	
+
 	var Transform = _interopRequireWildcard(__webpack_require__(39));
-	
+
 	var Counter = __webpack_require__(28);
 	var Radio = __webpack_require__(41);
 	var Drunk = __webpack_require__(27);
 	var Sequence = __webpack_require__(26);
 	var Matrix = __webpack_require__(25);
-	
+
 	var WAAClock = _interopRequire(__webpack_require__(42));
-	
+
 	var Interval = _interopRequire(__webpack_require__(29));
-	
+
 	/**
 	NexusUI => created as Nexus
 	*/
-	
+
 	var NexusUI = (function () {
 	  function NexusUI(context) {
 	    _classCallCheck(this, NexusUI);
-	
+
 	    for (var key in Interfaces) {
 	      this[key] = Interfaces[key];
 	    }
-	
+
 	    for (var key in math) {
 	      this[key] = math[key];
 	    }
-	
+
 	    var Core = {
 	      Rack: Rack
 	    };
-	
+
 	    var Models = {
 	      Counter: Counter,
 	      Radio: Radio,
@@ -131,25 +131,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	      Sequence: Sequence,
 	      Matrix: Matrix
 	    };
-	
+
 	    for (var key in Models) {
 	      this[key] = Models[key];
 	    }
-	
+
 	    for (var key in Core) {
 	      this[key] = Core[key];
 	    }
-	
+
 	    var DefaultContext = window.AudioContext || window.webkitAudioContext;
 	    this._context = context || new DefaultContext();
-	
+
 	    this.tune = new Tune();
 	    this.note = this.tune.note.bind(this.tune);
-	
+
 	    this.clock = new WAAClock(this._context);
 	    this.clock.start();
 	    this.Interval = Interval;
-	
+
 	    this.colors = {
 	      accent: "#2bb",
 	      fill: "#eee",
@@ -158,15 +158,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      mediumLight: "#ccc",
 	      mediumDark: "#666"
 	    };
-	
+
 	    this.transform = Transform;
 	    this.add = Transform.add;
-	
+
 	    this.Add = {};
 	    for (var key in Interfaces) {
 	      this.Add[key] = Transform.add.bind(this, key);
 	    }
-	
+
 	    /* create default component size */
 	    /* jshint ignore:start */
 	    var existingStylesheets = document.getElementsByTagName("style");
@@ -182,7 +182,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    /* jshint ignore:end */
 	  }
-	
+
 	  _createClass(NexusUI, {
 	    context: {
 	      get: function () {
@@ -196,24 +196,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return NexusUI;
 	})();
-	
+
 	var Nexus = new NexusUI();
-	
+
 	function colors() {
 	  return Nexus.colors;
 	}
-	
+
 	function context() {
 	  return Nexus.context;
 	}
-	
+
 	function clock() {
 	  return Nexus.clock;
 	}
-	
+
 	exports["default"] = Nexus;
 
 /***/ }),
@@ -221,7 +221,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	module.exports = {
 	  Position: __webpack_require__(3),
 	  Slider: __webpack_require__(14),
@@ -250,25 +250,25 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	
+
 	"use strict";
-	
+
 	var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { "default": obj }; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var Interface = __webpack_require__(6);
 	var Step = __webpack_require__(11);
-	
+
 	var Interaction = _interopRequireWildcard(__webpack_require__(12));
-	
+
 	/**
 	* Position
 	*
@@ -305,13 +305,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	*
 	*
 	*/
-	
+
 	var Position = (function (_Interface) {
 	  function Position() {
 	    _classCallCheck(this, Position);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [200, 200],
 	      mode: "absolute",
@@ -324,45 +324,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	      stepY: 0,
 	      y: 0.5
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Position.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this._x = new Step(this.settings.minX, this.settings.maxX, this.settings.stepX, this.settings.x);
 	    this._y = new Step(this.settings.minY, this.settings.maxY, this.settings.stepY, this.settings.y);
-	
+
 	    this.position = {
 	      x: new Interaction.Handle(this.settings.mode, "horizontal", [0, this.width], [this.height, 0]),
 	      y: new Interaction.Handle(this.settings.mode, "vertical", [0, this.width], [this.height, 0])
 	    };
 	    this.position.x.value = this._x.normalized;
 	    this.position.y.value = this._y.normalized;
-	
+
 	    this.init();
 	    this.render();
 	  }
-	
+
 	  _inherits(Position, _Interface);
-	
+
 	  _createClass(Position, {
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        this.knob = svg.create("circle");
 	        this.element.appendChild(this.knob);
 	      }
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        this.position.x.resize([0, this.width], [this.height, 0]);
 	        this.position.y.resize([0, this.width], [this.height, 0]);
-	
+
 	        this._minDimension = Math.min(this.width, this.height);
-	
+
 	        this.knobRadius = {
 	          off: ~ ~(this._minDimension / 100) * 5 + 5 };
 	        this.knobRadius.on = this.knobRadius.off * 2;
-	
+
 	        this.knob.setAttribute("cx", this.width / 2);
 	        this.knob.setAttribute("cy", this.height / 2);
 	        this.knob.setAttribute("r", this.knobRadius.off);
@@ -383,12 +383,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	          //  this.knobRadius = 15;
 	          this.knob.setAttribute("r", this.knobRadius.off);
 	        }
-	
+
 	        this.knobCoordinates = {
 	          x: this._x.normalized * this.width,
 	          y: this.height - this._y.normalized * this.height
 	        };
-	
+
 	        this.knob.setAttribute("cx", this.knobCoordinates.x);
 	        this.knob.setAttribute("cy", this.knobCoordinates.y);
 	      }
@@ -421,13 +421,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    x: {
-	
+
 	      /**
 	      * The interface's x value. When set, it will automatically adjust to fit min/max/step settings of the interface.
 	      * @type {object}
 	      * @example position.x = 0.5;
 	      */
-	
+
 	      get: function () {
 	        return this._x.value;
 	      },
@@ -441,13 +441,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    y: {
-	
+
 	      /**
 	      * The interface's y values. When set, it will automatically adjust to fit min/max/step settings of the interface.
 	      * @type {object}
 	      * @example position.x = 0.5;
 	      */
-	
+
 	      get: function () {
 	        return this._y.value;
 	      },
@@ -469,12 +469,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    minX: {
-	
+
 	      /**
 	      * The lower limit of value on the x axis
 	      * @type {object}
 	      */
-	
+
 	      get: function () {
 	        return this._x.min;
 	      },
@@ -484,12 +484,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    minY: {
-	
+
 	      /**
 	      * The lower limit of value on the y axis
 	      * @type {object}
 	      */
-	
+
 	      get: function () {
 	        return this._y.min;
 	      },
@@ -499,12 +499,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    maxX: {
-	
+
 	      /**
 	      * The upper limit of value on the x axis
 	      * @type {object}
 	      */
-	
+
 	      get: function () {
 	        return this._x.max;
 	      },
@@ -514,12 +514,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    maxY: {
-	
+
 	      /**
 	      * The upper limit of value on the y axis
 	      * @type {object}
 	      */
-	
+
 	      get: function () {
 	        return this._y.max;
 	      },
@@ -529,12 +529,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    stepX: {
-	
+
 	      /**
 	      * The incremental step of values on the x axis
 	      * @type {object}
 	      */
-	
+
 	      get: function () {
 	        return this._x.step;
 	      },
@@ -544,12 +544,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    stepY: {
-	
+
 	      /**
 	      * The incremental step of values on the y axis
 	      * @type {object}
 	      */
-	
+
 	      get: function () {
 	        return this._y.step;
 	      },
@@ -559,13 +559,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    mode: {
-	
+
 	      /**
 	      Absolute mode (position's value jumps to mouse click position) or relative mode (mouse drag changes value relative to its current position). Default: "absolute".
 	      @type {string}
 	      @example position.mode = "relative";
 	      */
-	
+
 	      get: function () {
 	        return this.position.x.mode;
 	      },
@@ -575,10 +575,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Position;
 	})(Interface);
-	
+
 	module.exports = Position;
 
 /***/ }),
@@ -586,40 +586,40 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var math = __webpack_require__(5);
-	
+
 	module.exports = {
-	
+
 	  create: function (type) {
 	    return document.createElementNS("http://www.w3.org/2000/svg", type);
 	  },
-	
+
 	  arc: function (x, y, radius, startAngle, endAngle) {
-	
+
 	    var start = math.toCartesian(radius, endAngle);
 	    var end = math.toCartesian(radius, startAngle);
-	
+
 	    var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-	
+
 	    var d = ["M", start.x + x, start.y + y, "A", radius, radius, 0, largeArcFlag, 0, end.x + x, end.y + y].join(" ");
-	
+
 	    return d;
 	  },
-	
+
 	  radialGradient: function (defs, numberOfStops) {
-	
+
 	    var id = "gradient" + math.ri(100000000000);
 	    var stops = [];
-	
+
 	    var gradient = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
 	    gradient.setAttribute("id", id);
 	    gradient.setAttribute("cx", "50%");
 	    gradient.setAttribute("cy", "50%");
 	    gradient.setAttribute("r", "50%");
-	
+
 	    defs.appendChild(gradient);
-	
+
 	    for (var i = 0; i < numberOfStops; i++) {
 	      var _stop = document.createElementNS("http://www.w3.org/2000/svg", "stop");
 	      _stop.setAttribute("id", "stop" + i);
@@ -628,14 +628,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      gradient.appendChild(_stop);
 	      stops.push(_stop);
 	    }
-	
+
 	    return {
 	      id: id,
 	      stops: stops,
 	      element: gradient
 	    };
 	  }
-	
+
 	};
 
 /***/ }),
@@ -643,7 +643,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports) {
 
 	"use strict";
-	
+
 	/**
 	 * Limit a number to within a minimum and maximum
 	 * @param  {number} value Input value
@@ -655,15 +655,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Nexus.clip(-1,0,10)   // returns 0
 	 * Nexus.clip(5,0,10)    // returns 5
 	 */
-	
+
 	exports.clip = function (value, min, max) {
 	  return Math.min(Math.max(value, min), max);
 	};
-	
+
 	exports.normalize = function (value, min, max) {
 	  return (value - min) / (max - min);
 	};
-	
+
 	/**
 	 * Scale a value from one range to another range.
 	 * @param  {number} inNum  Input value
@@ -682,17 +682,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  return (inNum - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 	};
-	
+
 	exports.toPolar = function (x, y) {
 	  var r = Math.sqrt(x * x + y * y);
-	
+
 	  var theta = Math.atan2(y, x);
 	  if (theta < 0) {
 	    theta = theta + 2 * Math.PI;
 	  }
 	  return { radius: r, angle: theta };
 	};
-	
+
 	exports.toCartesian = function (radius, angle) {
 	  var cos = Math.cos(angle);
 	  var sin = Math.sin(angle);
@@ -701,21 +701,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*
 	exports.polarToCartesian(centerX, centerY, radius, angleInDegrees) {
 	  var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
-	
+
 	  return {
 	    x: centerX + (radius * Math.cos(angleInRadians)),
 	    y: centerY + (radius * Math.sin(angleInRadians))
 	  };
 	}  */
-	
+
 	exports.prune = function (data, scale) {
 	  return parseFloat(data.toFixed(scale));
 	};
-	
+
 	exports.invert = function (inNum) {
 	  return exports.scale(inNum, 1, 0, 0, 1);
 	};
-	
+
 	/**
 	 * Convert a MIDi note number to a frequency value in equal temperament.
 	 * @param  {number} midi MIDI note value
@@ -726,7 +726,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.mtof = function (midi) {
 	  return Math.pow(2, (midi - 69) / 12) * 440;
 	};
-	
+
 	/**
 	 * Interpolate between two numbers
 	 * @param  {number} loc Interpolation index (0-1)
@@ -740,7 +740,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.interp = function (loc, min, max) {
 	  return loc * (max - min) + min;
 	};
-	
+
 	/**
 	 * Return a random choice from a list of arguments
 	 * @return {various} One random argument
@@ -751,7 +751,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.pick = function () {
 	  return arguments[~ ~(Math.random() * arguments.length)];
 	};
-	
+
 	/**
 	 * Returns an octave multiplier for frequency values
 	 * @param  {number} num Relative octave number (e.g. -1 for one octave down, 1 for one octave up)
@@ -765,7 +765,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.octave = function (num) {
 	  return Math.pow(2, num);
 	};
-	
+
 	/**
 	 * Random integer generator. If no second argument is given, will return random integer from 0 to bound1.
 	 * @param  {number} bound1 Minimum random value
@@ -784,7 +784,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var high = Math.max(bound1, bound2);
 	  return Math.floor(Math.random() * (high - low) + low);
 	};
-	
+
 	/**
 	 * Random float number generator. If no second argument is given, will return random float from 0 to bound1.
 	 * @param  {number} bound1 Minimum random value
@@ -803,7 +803,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var high = Math.max(bound1, bound2);
 	  return Math.random() * (high - low) + low;
 	};
-	
+
 	exports.cycle = function (input, min, max) {
 	  input++;
 	  if (input >= max) {
@@ -811,7 +811,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  return input;
 	};
-	
+
 	/**
 	 * Average an array of numbers
 	 * @param  {Array} data Array of numbers to average
@@ -826,7 +826,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  return total / data.length;
 	};
-	
+
 	/**
 	 * Get the distance from one (x,y) point to another (x,y) point
 	 * @param  {number} x1 x of first point
@@ -842,11 +842,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var b = y1 - y2;
 	  return Math.sqrt(a * a + b * b);
 	};
-	
+
 	exports.gainToDB = function (gain) {
 	  return 20 * Math.log10(gain);
 	};
-	
+
 	/**
 	 * Flip a coin, returning either 0 or 1 according to a probability
 	 * @param  {number} [odds=0.5] Likelihood of returning 1
@@ -856,7 +856,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	exports.coin = function () {
 	  var odds = arguments[0] === undefined ? 0.5 : arguments[0];
-	
+
 	  if (exports.rf(0, 1) < odds) {
 	    return 1;
 	  } else {
@@ -869,31 +869,31 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var dom = __webpack_require__(7);
 	var util = __webpack_require__(8);
 	var touch = __webpack_require__(9);
 	var EventEmitter = __webpack_require__(10);
-	
+
 	var colors = __webpack_require__(1).colors;
-	
+
 	/**
 	Interface
 	*/
-	
+
 	var Interface = (function (_EventEmitter) {
 	  function Interface(args, options, defaults) {
 	    _classCallCheck(this, Interface);
-	
+
 	    _get(Object.getPrototypeOf(Interface.prototype), "constructor", this).call(this);
 	    this.type = this.constructor.name;
 	    this.settings = this.parseSettings(args, options, defaults);
@@ -908,17 +908,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.colors.mediumLight = defaultColors.mediumLight;
 	    this.colors.mediumDark = defaultColors.mediumDark;
 	  }
-	
+
 	  _inherits(Interface, _EventEmitter);
-	
+
 	  _createClass(Interface, {
 	    parseSettings: {
 	      value: function parseSettings(args, options, defaults) {
-	
+
 	        options.unshift("target");
 	        defaults.defaultSize = defaults.size.splice(0, 2);
 	        defaults.size = false;
-	
+
 	        var settings = {
 	          target: document.body,
 	          colors: {}, // should inherit from a colors module,
@@ -926,11 +926,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	          event: function event() {},
 	          component: false
 	        };
-	
+
 	        for (var key in defaults) {
 	          settings[key] = defaults[key];
 	        }
-	
+
 	        for (var i = 0; i < args.length; i++) {
 	          // grabs the next argument
 	          var setting = args[i];
@@ -949,31 +949,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	            settings[key] = setting;
 	          }
 	        }
-	
+
 	        /*  handle common settings  */
-	
+
 	        // target
 	        this.parent = dom.parseElement(settings.target);
-	
+
 	        // nexus-ui attribute
 	        if (this.parent && this.parent instanceof HTMLElement && !settings.component) {
 	          if (!this.parent.hasAttribute("nexus-ui")) {
 	            this.parent.setAttribute("nexus-ui", "");
 	          }
 	        }
-	
+
 	        // size
-	
+
 	        if (settings.size && Array.isArray(settings.size) && settings.snapWithParent) {
 	          this.width = settings.size[0];
 	          this.height = settings.size[1];
 	          this.parent.style.width = this.width + "px";
 	          this.parent.style.height = this.height + "px";
 	        } else if (settings.snapWithParent && !settings.component) {
-	
+
 	          this.width = parseFloat(window.getComputedStyle(this.parent, null).getPropertyValue("width").replace("px", ""));
 	          this.height = parseFloat(window.getComputedStyle(this.parent, null).getPropertyValue("height").replace("px", ""));
-	
+
 	          if (this.width == 5000) {
 	            this.width = settings.defaultSize[0];
 	            this.parent.style.width = this.parent.width = this.width + "px";
@@ -987,14 +987,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.width = settings.size[0];
 	          this.height = settings.size[1];
 	        }
-	
+
 	        // event
 	        if (settings.event) {
 	          this.event = this.on("change", settings.event);
 	        } else {
 	          this.event = false;
 	        }
-	
+
 	        return settings;
 	      }
 	    },
@@ -1028,9 +1028,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    attachListeners: {
 	      value: function attachListeners() {
 	        var _this = this;
-	
+
 	        this.interactionTarget = this.interactionTarget || this.element;
-	
+
 	        // Setup interaction
 	        if (touch.exists) {
 	          this.interactionTarget.addEventListener("touchstart", function (evt) {
@@ -1082,7 +1082,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    preMove: {
 	      value: function preMove(e) {
 	        var _this = this;
-	
+
 	        if (!this.wait) {
 	          this.mouse = dom.locateMouse(e, this.offset);
 	          this.move();
@@ -1117,9 +1117,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      value: function release() {}
 	    },
 	    preTouch: {
-	
+
 	      /* touch */
-	
+
 	      value: function preTouch(e) {
 	        if (this.element instanceof HTMLElement) {
 	          this.width = window.getComputedStyle(this.element, null).getPropertyValue("width").replace("px", "");
@@ -1169,7 +1169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    resize: {
-	
+
 	      /**
 	      * Resize the interface
 	      * @param width {number} New width in pixels
@@ -1178,7 +1178,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      * @example
 	      * button.resize(100,100);
 	      */
-	
+
 	      value: function resize(width, height) {
 	        this.width = width;
 	        this.height = height;
@@ -1197,14 +1197,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    destroy: {
-	
+
 	      /**
 	      * Remove the interface from the page and cancel its event listener(s).
 	      *
 	      * @example
 	      * button.destroy();
 	      */
-	
+
 	      value: function destroy() {
 	        this.empty();
 	        this.parent.removeChild(this.element);
@@ -1225,10 +1225,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Interface;
 	})(EventEmitter);
-	
+
 	module.exports = Interface;
 
 /***/ }),
@@ -1236,47 +1236,47 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports) {
 
 	"use strict";
-	
+
 	exports.findPosition = function (el) {
 	  var viewportOffset = el.getBoundingClientRect();
 	  var top = viewportOffset.top + window.scrollY;
 	  var left = viewportOffset.left + window.scrollX;
 	  return { top: top, left: left };
 	};
-	
+
 	exports.parseElement = function (parent) {
 	  if (typeof parent === "string") {
 	    parent = document.getElementById(parent.replace("#", ""));
 	  }
-	
+
 	  if (parent instanceof HTMLElement || parent instanceof SVGElement) {
 	    return parent;
 	  } else {
 	    return "No valid parent argument";
 	  }
 	};
-	
+
 	exports.locateMouse = function (e, offset) {
 	  return {
 	    x: e.pageX - offset.left,
 	    y: e.pageY - offset.top
 	  };
 	};
-	
+
 	exports.locateTouch = function (e, offset) {
 	  return {
 	    x: e.targetTouches.length ? e.targetTouches[0].pageX - offset.left : false,
 	    y: e.targetTouches.length ? e.targetTouches[0].pageY - offset.top : false
 	  };
 	};
-	
+
 	exports.SmartCanvas = function (parent) {
 	  var _this = this;
-	
+
 	  this.element = document.createElement("canvas");
 	  this.context = this.element.getContext("2d");
 	  parent.appendChild(this.element);
-	
+
 	  this.resize = function (w, h) {
 	    _this.element.width = w * 2;
 	    _this.element.height = h * 2;
@@ -1290,7 +1290,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports) {
 
 	"use strict";
-	
+
 	exports.isObject = function (obj) {
 	  if (typeof obj === "object" && !Array.isArray(obj) && obj !== null && obj instanceof SVGElement === false && obj instanceof HTMLElement === false) {
 	    return true;
@@ -1298,7 +1298,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return false;
 	  }
 	};
-	
+
 	// Restricts input for the given textbox to the given inputFilter function
 	// cf https://stackoverflow.com/a/469362
 	exports.setInputFilter = function (textbox, inputFilter) {
@@ -1323,7 +1323,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports) {
 
 	"use strict";
-	
+
 	exports.exists = "ontouchstart" in document.documentElement;
 
 /***/ }),
@@ -1350,23 +1350,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 	// USE OR OTHER DEALINGS IN THE SOFTWARE.
-	
+
 	function EventEmitter() {
 	  this._events = this._events || {};
 	  this._maxListeners = this._maxListeners || undefined;
 	}
 	module.exports = EventEmitter;
-	
+
 	// Backwards-compat with node 0.10.x
 	EventEmitter.EventEmitter = EventEmitter;
-	
+
 	EventEmitter.prototype._events = undefined;
 	EventEmitter.prototype._maxListeners = undefined;
-	
+
 	// By default EventEmitters will print a warning if more than 10 listeners are
 	// added to it. This is a useful default which helps finding memory leaks.
 	EventEmitter.defaultMaxListeners = 10;
-	
+
 	// Obviously not all Emitters should be limited to 10. This function allows
 	// that to be increased. Set to zero for unlimited.
 	EventEmitter.prototype.setMaxListeners = function(n) {
@@ -1375,13 +1375,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this._maxListeners = n;
 	  return this;
 	};
-	
+
 	EventEmitter.prototype.emit = function(type) {
 	  var er, handler, len, args, i, listeners;
-	
+
 	  if (!this._events)
 	    this._events = {};
-	
+
 	  // If there is no 'error' event listener then throw.
 	  if (type === 'error') {
 	    if (!this._events.error ||
@@ -1397,12 +1397,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }
-	
+
 	  handler = this._events[type];
-	
+
 	  if (isUndefined(handler))
 	    return false;
-	
+
 	  if (isFunction(handler)) {
 	    switch (arguments.length) {
 	      // fast cases
@@ -1427,26 +1427,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    for (i = 0; i < len; i++)
 	      listeners[i].apply(this, args);
 	  }
-	
+
 	  return true;
 	};
-	
+
 	EventEmitter.prototype.addListener = function(type, listener) {
 	  var m;
-	
+
 	  if (!isFunction(listener))
 	    throw TypeError('listener must be a function');
-	
+
 	  if (!this._events)
 	    this._events = {};
-	
+
 	  // To avoid recursion in the case that type === "newListener"! Before
 	  // adding it to the listeners, first emit "newListener".
 	  if (this._events.newListener)
 	    this.emit('newListener', type,
 	              isFunction(listener.listener) ?
 	              listener.listener : listener);
-	
+
 	  if (!this._events[type])
 	    // Optimize the case of one listener. Don't need the extra array object.
 	    this._events[type] = listener;
@@ -1456,7 +1456,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  else
 	    // Adding the second element, need to change to array.
 	    this._events[type] = [this._events[type], listener];
-	
+
 	  // Check for listener leak
 	  if (isObject(this._events[type]) && !this._events[type].warned) {
 	    if (!isUndefined(this._maxListeners)) {
@@ -1464,7 +1464,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    } else {
 	      m = EventEmitter.defaultMaxListeners;
 	    }
-	
+
 	    if (m && m > 0 && this._events[type].length > m) {
 	      this._events[type].warned = true;
 	      console.error('(node) warning: possible EventEmitter memory ' +
@@ -1477,53 +1477,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }
-	
+
 	  return this;
 	};
-	
+
 	EventEmitter.prototype.on = EventEmitter.prototype.addListener;
-	
+
 	EventEmitter.prototype.once = function(type, listener) {
 	  if (!isFunction(listener))
 	    throw TypeError('listener must be a function');
-	
+
 	  var fired = false;
-	
+
 	  function g() {
 	    this.removeListener(type, g);
-	
+
 	    if (!fired) {
 	      fired = true;
 	      listener.apply(this, arguments);
 	    }
 	  }
-	
+
 	  g.listener = listener;
 	  this.on(type, g);
-	
+
 	  return this;
 	};
-	
+
 	// emits a 'removeListener' event iff the listener was removed
 	EventEmitter.prototype.removeListener = function(type, listener) {
 	  var list, position, length, i;
-	
+
 	  if (!isFunction(listener))
 	    throw TypeError('listener must be a function');
-	
+
 	  if (!this._events || !this._events[type])
 	    return this;
-	
+
 	  list = this._events[type];
 	  length = list.length;
 	  position = -1;
-	
+
 	  if (list === listener ||
 	      (isFunction(list.listener) && list.listener === listener)) {
 	    delete this._events[type];
 	    if (this._events.removeListener)
 	      this.emit('removeListener', type, listener);
-	
+
 	  } else if (isObject(list)) {
 	    for (i = length; i-- > 0;) {
 	      if (list[i] === listener ||
@@ -1532,30 +1532,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	        break;
 	      }
 	    }
-	
+
 	    if (position < 0)
 	      return this;
-	
+
 	    if (list.length === 1) {
 	      list.length = 0;
 	      delete this._events[type];
 	    } else {
 	      list.splice(position, 1);
 	    }
-	
+
 	    if (this._events.removeListener)
 	      this.emit('removeListener', type, listener);
 	  }
-	
+
 	  return this;
 	};
-	
+
 	EventEmitter.prototype.removeAllListeners = function(type) {
 	  var key, listeners;
-	
+
 	  if (!this._events)
 	    return this;
-	
+
 	  // not listening for removeListener, no need to emit
 	  if (!this._events.removeListener) {
 	    if (arguments.length === 0)
@@ -1564,7 +1564,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      delete this._events[type];
 	    return this;
 	  }
-	
+
 	  // emit removeListener for all listeners on all events
 	  if (arguments.length === 0) {
 	    for (key in this._events) {
@@ -1575,9 +1575,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this._events = {};
 	    return this;
 	  }
-	
+
 	  listeners = this._events[type];
-	
+
 	  if (isFunction(listeners)) {
 	    this.removeListener(type, listeners);
 	  } else if (listeners) {
@@ -1586,10 +1586,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.removeListener(type, listeners[listeners.length - 1]);
 	  }
 	  delete this._events[type];
-	
+
 	  return this;
 	};
-	
+
 	EventEmitter.prototype.listeners = function(type) {
 	  var ret;
 	  if (!this._events || !this._events[type])
@@ -1600,11 +1600,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ret = this._events[type].slice();
 	  return ret;
 	};
-	
+
 	EventEmitter.prototype.listenerCount = function(type) {
 	  if (this._events) {
 	    var evlistener = this._events[type];
-	
+
 	    if (isFunction(evlistener))
 	      return 1;
 	    else if (evlistener)
@@ -1612,23 +1612,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  return 0;
 	};
-	
+
 	EventEmitter.listenerCount = function(emitter, type) {
 	  return emitter.listenerCount(type);
 	};
-	
+
 	function isFunction(arg) {
 	  return typeof arg === 'function';
 	}
-	
+
 	function isNumber(arg) {
 	  return typeof arg === 'number';
 	}
-	
+
 	function isObject(arg) {
 	  return typeof arg === 'object' && arg !== null;
 	}
-	
+
 	function isUndefined(arg) {
 	  return arg === void 0;
 	}
@@ -1639,13 +1639,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var math = __webpack_require__(5);
-	
+
 	/**
 	  Creates a steppable value with minimum, maximum, and step size. This is used in many interfaces to constrict their values to certain ranges.
 	  @param {number} [min=0] minimum
@@ -1654,16 +1654,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  @param {number} [value=0] initial value
 	  @returns {Object} Step
 	*/
-	
+
 	var Step = (function () {
 	  function Step() {
 	    var min = arguments[0] === undefined ? 0 : arguments[0];
 	    var max = arguments[1] === undefined ? 1 : arguments[1];
 	    var step = arguments[2] === undefined ? 0 : arguments[2];
 	    var value = arguments[3] === undefined ? 0 : arguments[3];
-	
+
 	    _classCallCheck(this, Step);
-	
+
 	    //Object.assign(this,{min,max,step});
 	    //Cannot use Object.assign because not supported in Safari.
 	    //I would expect for Babel to take care of this but it is not.
@@ -1675,15 +1675,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.oldValue = false;
 	    this.update(this.value);
 	  }
-	
+
 	  _createClass(Step, {
 	    update: {
-	
+
 	      /**
 	        Update with a new value. The value will be auto-adjusted to fit the min/max/step.
 	        @param {number} value
 	      */
-	
+
 	      value: function update(value) {
 	        if (this.step) {
 	          // this.value = math.clip(Math.round(value / (this.step)) * this.step, this.min,this.max);
@@ -1701,32 +1701,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    updateNormal: {
-	
+
 	      /**
 	        Update with a normalized value 0-1.
 	        @param {number} value
 	      */
-	
+
 	      value: function updateNormal(value) {
 	        this.value = math.scale(value, 0, 1, this.min, this.max);
 	        return this.update(this.value);
 	      }
 	    },
 	    normalized: {
-	
+
 	      /**
 	        Get a normalized version of this.value . Not settable.
 	      */
-	
+
 	      get: function () {
 	        return math.normalize(this.value, this.min, this.max);
 	      }
 	    }
 	  });
-	
+
 	  return Step;
 	})();
-	
+
 	module.exports = Step;
 
 /***/ }),
@@ -1734,63 +1734,63 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	"use strict";
-	
+
 	var math = _interopRequire(__webpack_require__(5));
-	
+
 	var ToggleModel = _interopRequire(__webpack_require__(13));
-	
+
 	/*
 	how to use :
-	
+
 	dial.interaction = new Handle('radial','relative',this.width,this.height);
 	// dial.interaction.mode = 'relative'
 	// dial.interaction.direction = 'radial'
-	
+
 	on click:
 	dial.interaction.anchor = this.mouse;
-	
+
 	on move:
 	dial.interaction.update(this.mouse);
-	
+
 	console.log( dial.interaction.value ); should be a normalized value.
-	
+
 	*/
-	
+
 	/*
 	  absolute/relative are property: mode
 	  radial/vertical/horizontal/2d are property: direction
-	
+
 	  plan :
-	
+
 	  if relative --
 	  NO on click, get value offset between current value and click value.
 	  NO on move, use click value - offset
 	  INSTEAD
 	  use delta -- bc vertical motion on dial is impossible otherwise
 	  also allow to set sensitivity
-	
+
 	*/
-	
+
 	var Handle = exports.Handle = (function () {
 	  function Handle() {
 	    var mode = arguments[0] === undefined ? "absolute" : arguments[0];
 	    var direction = arguments[1] === undefined ? "vertical" : arguments[1];
 	    var xbound = arguments[2] === undefined ? [0, 100] : arguments[2];
 	    var ybound = arguments[3] === undefined ? [0, 100] : arguments[3];
-	
+
 	    _classCallCheck(this, Handle);
-	
+
 	    this.mode = mode;
 	    this.direction = direction;
 	    this.previous = 0;
@@ -1798,7 +1798,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.sensitivity = 1;
 	    this.resize(xbound, ybound);
 	  }
-	
+
 	  _createClass(Handle, {
 	    resize: {
 	      value: function resize(xbound, ybound) {
@@ -1857,21 +1857,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Handle;
 	})();
-	
+
 	var Button = exports.Button = (function () {
 	  function Button() {
 	    var mode = arguments[0] === undefined ? "button" : arguments[0];
-	
+
 	    _classCallCheck(this, Button);
-	
+
 	    this.mode = mode;
 	    this.state = new ToggleModel();
 	    this.paintbrush = false;
 	  }
-	
+
 	  _createClass(Button, {
 	    click: {
 	      value: function click() {
@@ -1943,7 +1943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Button;
 	})();
 
@@ -1952,18 +1952,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var Toggle = (function () {
 	  function Toggle(state) {
 	    _classCallCheck(this, Toggle);
-	
+
 	    this.state = state || false;
 	  }
-	
+
 	  _createClass(Toggle, {
 	    flip: {
 	      value: function flip(state) {
@@ -1985,10 +1985,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Toggle;
 	})();
-	
+
 	module.exports = Toggle;
 
 /***/ }),
@@ -1996,23 +1996,23 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { "default": obj }; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var Interface = __webpack_require__(6);
 	var Step = __webpack_require__(11);
-	
+
 	var Interaction = _interopRequireWildcard(__webpack_require__(12));
-	
+
 	/**
 	* Slider
 	*
@@ -2045,13 +2045,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	*
 	*
 	*/
-	
+
 	var Slider = (function (_Interface) {
 	  function Slider() {
 	    _classCallCheck(this, Slider);
-	
+
 	    var options = ["min", "max", "value"];
-	
+
 	    var defaults = {
 	      size: [120, 20],
 	      mode: "relative", // 'relative' or 'absolute'
@@ -2060,33 +2060,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	      step: 0,
 	      value: 0
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Slider.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.orientation = "vertical"; // This will change automatically to 'horizontal'if the interface is wider than it is tall.
-	
+
 	    this._value = new Step(this.settings.min, this.settings.max, this.settings.step, this.settings.value);
-	
+
 	    this.position = new Interaction.Handle(this.settings.mode, this.orientation, [0, this.width], [this.height, 0]);
 	    this.position.value = this._value.normalized;
-	
+
 	    this.init();
-	
+
 	    this.position.direction = this.orientation;
-	
+
 	    this.emit("change", this.value);
 	  }
-	
+
 	  _inherits(Slider, _Interface);
-	
+
 	  _createClass(Slider, {
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        this.bar = svg.create("rect");
 	        this.fillbar = svg.create("rect");
 	        this.knob = svg.create("circle");
-	
+
 	        this.element.appendChild(this.bar);
 	        this.element.appendChild(this.fillbar);
 	        this.element.appendChild(this.knob);
@@ -2094,7 +2094,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        if (this.width < this.height) {
 	          this.orientation = "vertical";
 	          this.position.direction = "vertical";
@@ -2102,11 +2102,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.orientation = "horizontal";
 	          this.position.direction = "horizontal";
 	        }
-	
+
 	        if (this.position) {
 	          this.position.resize([0, this.width], [this.height, 0]);
 	        }
-	
+
 	        var x = undefined,
 	            y = undefined,
 	            w = undefined,
@@ -2117,7 +2117,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          level: 0,
 	          r: 0
 	        };
-	
+
 	        if (this.orientation === "vertical") {
 	          this.thickness = this.width / 2;
 	          x = this.width / 2;
@@ -2139,7 +2139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          barOffset = "translate(0," + this.thickness * -1 / 2 + ")";
 	          cornerRadius = h / 2;
 	        }
-	
+
 	        this.bar.setAttribute("x", x);
 	        this.bar.setAttribute("y", y);
 	        this.bar.setAttribute("transform", barOffset);
@@ -2147,7 +2147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.bar.setAttribute("ry", cornerRadius);
 	        this.bar.setAttribute("width", w);
 	        this.bar.setAttribute("height", h);
-	
+
 	        if (this.orientation === "vertical") {
 	          this.fillbar.setAttribute("x", x);
 	          this.fillbar.setAttribute("y", this.knobData.level);
@@ -2162,7 +2162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.fillbar.setAttribute("transform", barOffset);
 	        this.fillbar.setAttribute("rx", cornerRadius);
 	        this.fillbar.setAttribute("ry", cornerRadius);
-	
+
 	        if (this.orientation === "vertical") {
 	          this.knob.setAttribute("cx", x);
 	          this.knob.setAttribute("cy", this.knobData.level);
@@ -2186,7 +2186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.75;
 	        }
 	        this.knob.setAttribute("r", this.knobData.r);
-	
+
 	        if (this.orientation === "vertical") {
 	          this.knobData.level = this.knobData.r + this._value.normalized * (this.height - this.knobData.r * 2);
 	          this.knob.setAttribute("cy", this.height - this.knobData.level);
@@ -2228,13 +2228,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    value: {
-	
+
 	      /**
 	      The slider's current value. If set manually, will update the interface and trigger the output event.
 	      @type {number}
 	      @example slider.value = 10;
 	      */
-	
+
 	      get: function () {
 	        return this._value.value;
 	      },
@@ -2246,13 +2246,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    min: {
-	
+
 	      /**
 	      Lower limit of the sliders's output range
 	      @type {number}
 	      @example slider.min = 1000;
 	      */
-	
+
 	      get: function () {
 	        return this._value.min;
 	      },
@@ -2261,13 +2261,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    max: {
-	
+
 	      /**
 	      Upper limit of the slider's output range
 	      @type {number}
 	      @example slider.max = 1000;
 	      */
-	
+
 	      get: function () {
 	        return this._value.max;
 	      },
@@ -2276,13 +2276,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    step: {
-	
+
 	      /**
 	      The increment that the slider's value changes by.
 	      @type {number}
 	      @example slider.step = 5;
 	      */
-	
+
 	      get: function () {
 	        return this._value.step;
 	      },
@@ -2291,13 +2291,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    mode: {
-	
+
 	      /**
 	      Absolute mode (slider's value jumps to mouse click position) or relative mode (mouse drag changes value relative to its current position). Default: "relative".
 	      @type {string}
 	      @example slider.mode = "relative";
 	      */
-	
+
 	      get: function () {
 	        return this.position.mode;
 	      },
@@ -2306,10 +2306,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Slider;
 	})(Interface);
-	
+
 	module.exports = Slider;
 
 /***/ }),
@@ -2317,19 +2317,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var ToggleModel = __webpack_require__(13);
 	var Interface = __webpack_require__(6);
-	
+
 	/**
 	* Toggle
 	*
@@ -2358,32 +2358,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	*
 	*
 	*/
-	
+
 	var Toggle = (function (_Interface) {
 	  function Toggle() {
 	    _classCallCheck(this, Toggle);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [40, 20],
 	      target: false,
 	      state: false
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Toggle.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this._state = new ToggleModel(this.settings.state);
-	
+
 	    this.init();
 	  }
-	
+
 	  _inherits(Toggle, _Interface);
-	
+
 	  _createClass(Toggle, {
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        this.bar = svg.create("rect");
 	        this.knob = svg.create("circle");
 	        this.element.appendChild(this.bar);
@@ -2392,20 +2392,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        if (this.height < this.width / 2) {
 	          this.knobSize = this.height / 2;
 	        } else {
 	          this.knobSize = this.width / 4;
 	        }
-	
+
 	        this.bar.setAttribute("x", this.width / 2 - this.knobSize * 1.5);
 	        this.bar.setAttribute("y", this.height / 2 - this.knobSize / 2);
 	        this.bar.setAttribute("rx", this.knobSize / 2);
 	        this.bar.setAttribute("ry", this.knobSize / 2);
 	        this.bar.setAttribute("width", this.knobSize * 3);
 	        this.bar.setAttribute("height", this.knobSize);
-	
+
 	        this.knob.setAttribute("cx", this.width / 2 - this.knobSize);
 	        this.knob.setAttribute("cy", this.height / 2);
 	        this.knob.setAttribute("r", this.knobSize);
@@ -2436,13 +2436,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    state: {
-	
+
 	      /**
 	      Whether the toggle is currently on or off. Setting this property will update the toggle interface and trigger the output event.
 	      @type {boolean}
 	      @example toggle.state = false;
 	      */
-	
+
 	      get: function () {
 	        return this._state.state;
 	      },
@@ -2453,23 +2453,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    flip: {
-	
+
 	      /**
 	      * Switch the toggle state to its opposite state
 	      * @example
 	      * toggle.flip();
 	      */
-	
+
 	      value: function flip() {
 	        this._state.flip();
 	        this.render();
 	      }
 	    }
 	  });
-	
+
 	  return Toggle;
 	})(Interface);
-	
+
 	module.exports = Toggle;
 
 /***/ }),
@@ -2477,18 +2477,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var ButtonTemplate = __webpack_require__(17);
-	
+
 	/**
 	* Button
 	*
@@ -2519,56 +2519,56 @@ return /******/ (function(modules) { // webpackBootstrap
 	* })
 	*
 	*/
-	
+
 	var Button = (function (_ButtonTemplate) {
 	  function Button() {
 	    _classCallCheck(this, Button);
-	
+
 	    var options = ["mode"];
-	
+
 	    var defaults = {
 	      size: [80, 80],
 	      mode: "aftertouch", // button, aftertouch, impulse, toggle
 	      state: false
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Button.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    /**
 	    * Interaction mode: supports "button", "aftertouch", "impulse", or "toggle"
 	    * @type {string}
 	    * @example button.mode = 'toggle';
 	    */
 	    this.mode = this.settings.mode;
-	
+
 	    this.init();
 	    this.render();
 	  }
-	
+
 	  _inherits(Button, _ButtonTemplate);
-	
+
 	  _createClass(Button, {
 	    buildInterface: {
 	      value: function buildInterface() {
 	        this.pad = svg.create("circle");
 	        this.element.appendChild(this.pad);
-	
+
 	        this.interactionTarget = this.pad;
-	
+
 	        // only used if in 'aftertouch' mode
 	        this.defs = svg.create("defs");
 	        this.element.appendChild(this.defs);
-	
+
 	        this.gradient = svg.radialGradient(this.defs, 2);
-	
+
 	        this.gradient.stops[0].setAttribute("offset", "30%");
-	
+
 	        this.gradient.stops[1].setAttribute("offset", "100%");
 	      }
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        this.pad.setAttribute("cx", this.width / 2);
 	        this.pad.setAttribute("cy", this.height / 2);
 	        this.pad.setAttribute("r", Math.min(this.width, this.height) / 2 - this.width / 40);
@@ -2577,21 +2577,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    colorInterface: {
 	      value: function colorInterface() {
-	
+
 	        this.gradient.stops[0].setAttribute("stop-color", this.colors.accent);
 	        this.gradient.stops[1].setAttribute("stop-color", this.colors.fill);
 	        this.render();
 	      }
 	    },
 	    render: {
-	
+
 	      /*
 	      * Update the visual interface using its current state
 	      *
 	      * @example
 	      * button.render();
 	      */
-	
+
 	      value: function render() {
 	        if (!this.state) {
 	          this.pad.setAttribute("fill", this.colors.fill);
@@ -2609,10 +2609,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Button;
 	})(ButtonTemplate);
-	
+
 	module.exports = Button;
 
 /***/ }),
@@ -2620,42 +2620,42 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var math = __webpack_require__(5);
 	var ToggleModel = __webpack_require__(13);
 	var Interface = __webpack_require__(6);
-	
+
 	/**
 	Button Template
 	*/
-	
+
 	var ButtonTemplate = (function (_Interface) {
 	  function ButtonTemplate(args, options, defaults) {
 	    _classCallCheck(this, ButtonTemplate);
-	
+
 	    _get(Object.getPrototypeOf(ButtonTemplate.prototype), "constructor", this).call(this, args, options, defaults);
-	
+
 	    this.mode = this.settings.mode || "button";
-	
+
 	    this.position = {
 	      x: 0,
 	      y: 0
 	    };
-	
+
 	    this._state = new ToggleModel(this.settings.state);
 	  }
-	
+
 	  _inherits(ButtonTemplate, _Interface);
-	
+
 	  _createClass(ButtonTemplate, {
 	    buildInterface: {
 	      value: function buildInterface() {
@@ -2663,11 +2663,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.pad.setAttribute("fill", "#d18");
 	        this.pad.setAttribute("stroke", "#d18");
 	        this.pad.setAttribute("stroke-width", 4);
-	
+
 	        this.element.appendChild(this.pad);
-	
+
 	        this.interactionTarget = this.pad;
-	
+
 	        this.sizeInterface();
 	      }
 	    },
@@ -2762,9 +2762,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    click: {
-	
+
 	      /* overwritable interaction handlers */
-	
+
 	      value: function click() {
 	        this.down();
 	      }
@@ -2780,13 +2780,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    state: {
-	
+
 	      /**
 	      Whether the button is on (pressed) or off (not pressed)
 	      @type {boolean}
 	      @example button.state = true;
 	      */
-	
+
 	      get: function () {
 	        return this._state.state;
 	      },
@@ -2804,13 +2804,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    flip: {
-	
+
 	      /**
 	      Change the button to its alternate state (off=>on, on=>off), or flip it to a specified state.
 	      @param value {boolean} (Optional) State to flip to.
 	      @example button.flip();
 	      */
-	
+
 	      value: function flip(value) {
 	        this._state.flip(value);
 	        if (this.mode === "aftertouch") {
@@ -2825,12 +2825,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    turnOn: {
-	
+
 	      /**
 	      Turn the button's state to true.
 	      @example button.turnOn();
 	      */
-	
+
 	      value: function turnOn(emitting) {
 	        this._state.on();
 	        if (emitting !== false) {
@@ -2847,12 +2847,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    turnOff: {
-	
+
 	      /**
 	      Turn the button's state to false.
 	      @example button.turnOff();
 	      */
-	
+
 	      value: function turnOff(emitting) {
 	        this._state.off();
 	        if (emitting !== false) {
@@ -2869,10 +2869,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return ButtonTemplate;
 	})(Interface);
-	
+
 	module.exports = ButtonTemplate;
 
 /***/ }),
@@ -2880,17 +2880,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var ButtonTemplate = __webpack_require__(17);
-	
+
 	/**
 	* TextButton
 	*
@@ -2920,23 +2920,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	* })
 	*
 	*/
-	
+
 	var TextButton = (function (_ButtonTemplate) {
 	  function TextButton() {
 	    _classCallCheck(this, TextButton);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [150, 50],
 	      state: false,
 	      text: "Play"
 	    };
-	
+
 	    _get(Object.getPrototypeOf(TextButton.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this._text = this.settings.text;
-	
+
 	    if (this.settings.alternate) {
 	      //TODO: Remove this conditional in a breaking-changes release
 	      this.settings.alternateText = this.settings.alternate;
@@ -2946,19 +2946,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.mode = this.settings.alternateText ? "toggle" : "button";
 	    this.init();
 	    this.render();
-	
+
 	    this.state = this.settings.state;
 	  }
-	
+
 	  _inherits(TextButton, _ButtonTemplate);
-	
+
 	  _createClass(TextButton, {
 	    buildFrame: {
 	      value: function buildFrame() {
-	
+
 	        this.element = document.createElement("div");
 	        this.parent.appendChild(this.element);
-	
+
 	        this.textElement = document.createElement("div");
 	        this.textElement.innerHTML = this._text;
 	        this.element.appendChild(this.textElement);
@@ -3013,12 +3013,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    alternateText: {
-	
+
 	      /**
 	      The text to display when the button is in its "on" state. If set, this puts the button in "toggle" mode.
 	      @type {String}
 	      */
-	
+
 	      get: function () {
 	        return this._alternateText;
 	      },
@@ -3033,12 +3033,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    text: {
-	
+
 	      /**
 	      The text to display. (If .alternateText exists, then this .text will only be displayed when the button is in its "off" state.)
 	      @type {String}
 	      */
-	
+
 	      get: function () {
 	        return this._text;
 	      },
@@ -3049,10 +3049,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return TextButton;
 	})(ButtonTemplate);
-	
+
 	module.exports = TextButton;
 
 /***/ }),
@@ -3060,19 +3060,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	//let svg = require('../util/svg');
 	var Interface = __webpack_require__(6);
 	var Button = __webpack_require__(16);
-	
+
 	/**
 	* RadioButton
 	*
@@ -3101,31 +3101,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	* })
 	*
 	*/
-	
+
 	var RadioButton = (function (_Interface) {
 	  function RadioButton() {
 	    _classCallCheck(this, RadioButton);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [120, 25],
 	      numberOfButtons: 4,
 	      active: -1
 	    };
-	
+
 	    _get(Object.getPrototypeOf(RadioButton.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.buttons = [];
 	    this._numberOfButtons = this.settings.numberOfButtons;
 	    this.active = this.settings.active;
-	
+
 	    this.init();
 	    this.render();
 	  }
-	
+
 	  _inherits(RadioButton, _Interface);
-	
+
 	  _createClass(RadioButton, {
 	    buildFrame: {
 	      value: function buildFrame() {
@@ -3135,14 +3135,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        for (var i = 0; i < this._numberOfButtons; i++) {
 	          var container = document.createElement("span");
-	
+
 	          var button = new Button(container, {
 	            mode: "toggle",
 	            component: true }, this.update.bind(this, i));
-	
+
 	          this.buttons.push(button);
 	          this.element.appendChild(container);
 	        }
@@ -3150,10 +3150,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        var buttonWidth = this.width / this._numberOfButtons;
 	        var buttonHeight = this.height;
-	
+
 	        for (var i = 0; i < this._numberOfButtons; i++) {
 	          this.buttons[i].resize(buttonWidth, buttonHeight);
 	        }
@@ -3189,12 +3189,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    select: {
-	
+
 	      /**
 	      Select one button and deselect all other buttons.
 	      @param index {number} The index of the button to select
 	      */
-	
+
 	      value: function select(index) {
 	        if (index >= 0 && index < this.buttons.length) {
 	          this.active = index;
@@ -3204,11 +3204,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    deselect: {
-	
+
 	      /**
 	      Deselect all buttons.
 	      */
-	
+
 	      value: function deselect() {
 	        this.active = -1;
 	        this.emit("change", this.active);
@@ -3219,7 +3219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      get: function () {
 	        return this._numberOfButtons;
 	      },
-	
+
 	      /**
 	       * Update how many buttons are in the interface
 	       * @param  {number} buttons How many buttons are in the interface
@@ -3238,10 +3238,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return RadioButton;
 	})(Interface);
-	
+
 	module.exports = RadioButton;
 
 /***/ }),
@@ -3249,20 +3249,20 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var Interface = __webpack_require__(6);
 	var Step = __webpack_require__(11);
 	var math = __webpack_require__(5);
 	var util = __webpack_require__(8);
-	
+
 	/**
 	* Number
 	*
@@ -3294,13 +3294,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	*
 	*
 	*/
-	
+
 	var Number = (function (_Interface) {
 	  function Number() {
 	    _classCallCheck(this, Number);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [60, 30],
 	      value: 0,
@@ -3308,11 +3308,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      max: 20000,
 	      step: 1
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Number.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this._value = new Step(this.settings.min, this.settings.max, this.settings.step, this.settings.value);
-	
+
 	    /*
 	    Default: 2. How many decimal places to clip the number's visual rendering to. This does not affect number's actual value output -- for that, set the step property to .01, .1, or 1.
 	    @type {number}
@@ -3320,25 +3320,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	    */
 	    this.decimalPlaces = 2;
 	    this.actual = 0;
-	
+
 	    this.max = this._value.max;
-	
+
 	    this.min = this._value.min;
-	
+
 	    this.step = this._value.step;
-	
+
 	    this.init();
 	    this.render();
 	  }
-	
+
 	  _inherits(Number, _Interface);
-	
+
 	  _createClass(Number, {
 	    buildFrame: {
 	      value: function buildFrame() {
 	        this.element = document.createElement("input");
 	        this.element.type = "text";
-	
+
 	        this.element.addEventListener("blur", (function () {
 	          this.element.style.backgroundColor = this.colors.fill;
 	          this.element.style.color = this.colors.dark;
@@ -3347,11 +3347,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.render();
 	          }
 	        }).bind(this));
-	
+
 	        util.setInputFilter(this.element, function (value) {
 	          return /^\d*\.?\d*$/.test(value);
 	        });
-	
+
 	        this.element.addEventListener("keydown", (function (e) {
 	          if (e.which === 13) {
 	            this.element.blur();
@@ -3360,15 +3360,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.render();
 	          }
 	        }).bind(this), true);
-	
+
 	        this.parent.appendChild(this.element);
 	      }
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        this._minDimension = Math.min(this.width, this.height);
-	
+
 	        var styles = "width: " + this.width + "px;";
 	        styles += "height: " + this.height + "px;";
 	        styles += "background-color: #e7e7e7;";
@@ -3385,10 +3385,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        styles += "mozUserSelect: text;";
 	        styles += "webkitUserSelect: text;";
 	        this.element.style.cssText += styles;
-	
+
 	        // to add eventually
 	        // var css = '#'+this.elementID+'::selection{ background-color: transparent }';
-	
+
 	        this.element.value = this.value;
 	      }
 	    },
@@ -3400,7 +3400,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    render: {
 	      value: function render() {
-	
+
 	        this.element.value = math.prune(this.value, this.decimalPlaces);
 	      }
 	    },
@@ -3417,10 +3417,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      value: function move() {
 	        this.hasMoved = true;
 	        if (this.clicked) {
-	
+
 	          var newvalue = this.actual - (this.mouse.y - this.initial.y) * (math.clip(this.max - this.min, 0, 1000) / 200) * Math.pow(this.changeFactor, 2);
 	          this.value = newvalue;
-	
+
 	          this.render();
 	          if (this._value.changed) {
 	            this.emit("change", this.value);
@@ -3442,16 +3442,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    link: {
-	
+
 	      /**
 	      Connect this number interface to a dial or slider
 	      @param {Interface} element Element to connect to.
 	      @example number.link(slider)
 	      */
-	
+
 	      value: function link(destination) {
 	        var _this = this;
-	
+
 	        this.min = destination.min;
 	        this.max = destination.max;
 	        this.step = destination.step;
@@ -3479,13 +3479,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    value: {
-	
+
 	      /**
 	      The interface's current value. If set manually, will update the interface and trigger the output event.
 	      @type {number}
 	      @example number.value = 10;
 	      */
-	
+
 	      get: function () {
 	        return this._value.value;
 	      },
@@ -3496,13 +3496,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    min: {
-	
+
 	      /**
 	      Lower limit of the number's output range
 	      @type {number}
 	      @example number.min = 1000;
 	      */
-	
+
 	      get: function () {
 	        return this._value.min;
 	      },
@@ -3511,13 +3511,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    max: {
-	
+
 	      /**
 	      Upper limit of the number's output range
 	      @type {number}
 	      @example number.max = 1000;
 	      */
-	
+
 	      get: function () {
 	        return this._value.max;
 	      },
@@ -3526,13 +3526,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    step: {
-	
+
 	      /**
 	      The increment that the number's value changes by.
 	      @type {number}
 	      @example number.step = 5;
 	      */
-	
+
 	      get: function () {
 	        return this._value.step;
 	      },
@@ -3541,10 +3541,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Number;
 	})(Interface);
-	
+
 	module.exports = Number;
 
 /***/ }),
@@ -3552,17 +3552,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var Interface = __webpack_require__(6);
-	
+
 	/**
 	* Select
 	*
@@ -3591,31 +3591,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	*
 	*
 	*/
-	
+
 	var Select = (function (_Interface) {
 	  function Select() {
 	    _classCallCheck(this, Select);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [100, 30],
 	      options: ["default", "options"]
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Select.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this._selectedIndex = -1;
 	    this._value = false;
-	
+
 	    this._options = this.settings.options;
-	
+
 	    this.init();
 	    this.render();
 	  }
-	
+
 	  _inherits(Select, _Interface);
-	
+
 	  _createClass(Select, {
 	    buildFrame: {
 	      value: function buildFrame() {
@@ -3625,11 +3625,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.element.style.highlight = "none";
 	        this.element.style.width = this.width + "px";
 	        this.element.style.height = this.height + "px";
-	
+
 	        this.boundRender = this.render.bind(this);
-	
+
 	        this.element.addEventListener("change", this.boundRender);
-	
+
 	        this.parent.appendChild(this.element);
 	      }
 	    },
@@ -3638,7 +3638,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        this.defineOptions();
 	      }
 	    },
@@ -3651,7 +3651,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    render: {
 	      value: function render() {
-	
+
 	        this._value = this.element.options[this.element.selectedIndex].text;
 	        this._selectedIndex = this.element.selectedIndex;
 	        this.emit("change", {
@@ -3670,14 +3670,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      value: function release() {}
 	    },
 	    defineOptions: {
-	
+
 	      /**
 	       * Update the list of options. This removes all existing options and creates a new list of options.
 	       * @param  {array} options New array of options
 	       */
-	
+
 	      value: function defineOptions(options) {
-	
+
 	        /*  function removeOptions(selectbox)
 	          {
 	              var i;
@@ -3688,28 +3688,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 	          //using the function:
 	          removeOptions(document.getElementById("mySelectObject")); */
-	
+
 	        if (options) {
 	          this._options = options;
 	        }
-	
+
 	        for (var i = this.element.options.length - 1; i >= 0; i--) {
 	          this.element.remove(i);
 	        }
-	
+
 	        for (var i = 0; i < this._options.length; i++) {
 	          this.element.options.add(new Option(this._options[i], i));
 	        }
 	      }
 	    },
 	    value: {
-	
+
 	      /**
 	      The text of the option that is currently selected. If set, will update the interface and trigger the output event.
 	      @type {String}
 	      @example select.value = "sawtooth";
 	      */
-	
+
 	      get: function () {
 	        return this._value;
 	      },
@@ -3724,13 +3724,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    selectedIndex: {
-	
+
 	      /**
 	      The numeric index of the option that is currently selected. If set, will update the interface and trigger the output event.
 	      @type {number}
 	      @example select.selectedIndex = 2;
 	      */
-	
+
 	      get: function () {
 	        return this._selectedIndex;
 	      },
@@ -3746,10 +3746,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Select;
 	})(Interface);
-	
+
 	module.exports = Select;
 
 /***/ }),
@@ -3757,24 +3757,24 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { "default": obj }; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var math = __webpack_require__(5);
 	var Interface = __webpack_require__(6);
 	var Step = __webpack_require__(11);
-	
+
 	var Interaction = _interopRequireWildcard(__webpack_require__(12));
-	
+
 	/**
 	* Dial
 	*
@@ -3812,13 +3812,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	* ygGMxq
 	*
 	*/
-	
+
 	var Dial = (function (_Interface) {
 	  function Dial() {
 	    _classCallCheck(this, Dial);
-	
+
 	    var options = ["min", "max", "value"];
-	
+
 	    var defaults = {
 	      size: [75, 75],
 	      interaction: "radial", // radial, vertical, horizontal
@@ -3828,32 +3828,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	      step: 0,
 	      value: 0
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Dial.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.interaction = this.settings.interaction;
-	
+
 	    this._value = new Step(this.settings.min, this.settings.max, this.settings.step, this.settings.value);
-	
+
 	    this.position = new Interaction.Handle(this.settings.mode, this.interaction, [0, this.width], [this.height, 0]);
-	
+
 	    this.init();
-	
+
 	    this.value = this._value.value;
-	
+
 	    this.position.value = this._value.normalized;
-	
+
 	    this.previousAngle = false;
-	
+
 	    this.emit("change", this.value);
 	  }
-	
+
 	  _inherits(Dial, _Interface);
-	
+
 	  _createClass(Dial, {
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        this.background = svg.create("circle");
 	        this.screw = svg.create("circle");
 	        this.handle = svg.create("path");
@@ -3861,7 +3861,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.handleFill = svg.create("path");
 	        this.handle2Fill = svg.create("path");
 	        this.handleLine = svg.create("path");
-	
+
 	        this.element.appendChild(this.background);
 	        this.element.appendChild(this.handle);
 	        this.element.appendChild(this.handle2);
@@ -3873,26 +3873,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        this.position.resize([0, this.width], [this.height, 0]);
-	
+
 	        var center = {
 	          x: this.width / 2,
 	          y: this.height / 2
 	        };
-	
+
 	        var diameter = Math.min(this.width, this.height);
-	
+
 	        this.background.setAttribute("cx", center.x);
 	        this.background.setAttribute("cy", center.y);
 	        this.background.setAttribute("r", diameter / 2 - diameter / 40);
-	
+
 	        this.screw.setAttribute("cx", center.x);
 	        this.screw.setAttribute("cy", center.y);
 	        this.screw.setAttribute("r", diameter / 12);
-	
+
 	        var value = this.value;
-	
+
 	        var handlePoints = {
 	          start: Math.PI * 1.5,
 	          end: math.clip(math.scale(value, 0, 0.5, Math.PI * 1.5, Math.PI * 0.5), Math.PI * 0.5, Math.PI * 1.5)
@@ -3901,38 +3901,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	          start: Math.PI * 2.5,
 	          end: math.clip(math.scale(value, 0.5, 1, Math.PI * 2.5, Math.PI * 1.5), Math.PI * 1.5, Math.PI * 2.5)
 	        };
-	
+
 	        var handlePath = svg.arc(center.x, center.y, diameter / 2 - diameter / 40, handlePoints.start, handlePoints.end);
 	        var handle2Path = svg.arc(center.x, center.y, diameter / 2 - diameter / 40, handle2Points.start, handle2Points.end);
-	
+
 	        this.handle.setAttribute("d", handlePath);
 	        this.handle.setAttribute("stroke-width", diameter / 20);
 	        this.handle.setAttribute("fill", "none");
-	
+
 	        this.handle2.setAttribute("d", handle2Path);
 	        this.handle2.setAttribute("stroke-width", diameter / 20);
 	        this.handle2.setAttribute("fill", "none");
-	
+
 	        handlePath += " L " + center.x + " " + center.y;
-	
+
 	        this.handleFill.setAttribute("d", handlePath);
 	        this.handleFill.setAttribute("fill-opacity", "0.3");
-	
+
 	        handle2Path += " L " + center.x + " " + center.y;
-	
+
 	        this.handle2Fill.setAttribute("d", handle2Path);
 	        this.handle2Fill.setAttribute("fill-opacity", "0.3");
-	
+
 	        var arcEndingA = undefined;
 	        if (value < 0.5) {
 	          arcEndingA = handlePoints.end;
 	        } else {
 	          arcEndingA = handle2Points.end;
 	        }
-	
+
 	        var arcEndingX = center.x + Math.cos(arcEndingA) * (diameter / 2);
 	        var arcEndingY = center.y + Math.sin(arcEndingA) * (diameter / 2) * -1;
-	
+
 	        this.handleLine.setAttribute("d", "M " + center.x + " " + center.y + " L " + arcEndingX + " " + arcEndingY);
 	        this.handleLine.setAttribute("stroke-width", diameter / 20);
 	      }
@@ -3951,14 +3951,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    render: {
 	      value: function render() {
 	        var value = this._value.normalized;
-	
+
 	        var center = {
 	          x: this.width / 2,
 	          y: this.height / 2
 	        };
-	
+
 	        var diameter = Math.min(this.width, this.height);
-	
+
 	        var handlePoints = {
 	          start: Math.PI * 1.5,
 	          end: math.clip(math.scale(value, 0, 0.5, Math.PI * 1.5, Math.PI * 0.5), Math.PI * 0.5, Math.PI * 1.5)
@@ -3967,31 +3967,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	          start: Math.PI * 2.5,
 	          end: math.clip(math.scale(value, 0.5, 1, Math.PI * 2.5, Math.PI * 1.5), Math.PI * 1.5, Math.PI * 2.5)
 	        };
-	
+
 	        var handlePath = svg.arc(center.x, center.y, diameter / 2 - diameter / 40, handlePoints.start, handlePoints.end);
 	        var handle2Path = svg.arc(center.x, center.y, diameter / 2 - diameter / 40, handle2Points.start, handle2Points.end);
-	
+
 	        this.handle.setAttribute("d", handlePath);
 	        this.handle2.setAttribute("d", handle2Path);
-	
+
 	        handlePath += " L " + center.x + " " + center.y;
-	
+
 	        this.handleFill.setAttribute("d", handlePath);
-	
+
 	        handle2Path += " L " + center.x + " " + center.y;
-	
+
 	        this.handle2Fill.setAttribute("d", handle2Path);
-	
+
 	        var arcEndingA = undefined;
 	        if (value <= 0.5) {
 	          arcEndingA = handlePoints.end;
 	        } else {
 	          arcEndingA = handle2Points.end;
 	        }
-	
+
 	        var arcEndingX = center.x + Math.cos(arcEndingA) * (diameter / 2);
 	        var arcEndingY = center.y + Math.sin(arcEndingA) * (diameter / 2) * -1;
-	
+
 	        this.handleLine.setAttribute("d", "M " + center.x + " " + center.y + " L " + arcEndingX + " " + arcEndingY);
 	      }
 	    },
@@ -4008,15 +4008,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    move: {
 	      value: function move() {
 	        if (this.clicked) {
-	
+
 	          this.position.update(this.mouse);
-	
+
 	          var angle = this.position.value * Math.PI * 2;
-	
+
 	          if (angle < 0) {
 	            angle += Math.PI * 2;
 	          }
-	
+
 	          if (this.mode === "relative") {
 	            if (this.previousAngle !== false && Math.abs(this.previousAngle - angle) > 2) {
 	              if (this.previousAngle > 3) {
@@ -4035,17 +4035,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            } */
 	          this.previousAngle = angle;
-	
+
 	          var realValue = angle / (Math.PI * 2);
-	
+
 	          this.value = this._value.updateNormal(realValue);
-	
+
 	          if (this.mode === "relative") {
 	            this.position.value = realValue;
 	          }
-	
+
 	          this.emit("change", this._value.value);
-	
+
 	          this.render();
 	        }
 	      }
@@ -4054,7 +4054,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      value: function release() {}
 	    },
 	    value: {
-	
+
 	      /*
 	      Dial's value. When set, it will automatically be adjust to fit min/max/step settings of the interface.
 	      @type {number}
@@ -4068,13 +4068,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.render();
 	      }
 	      */
-	
+
 	      /**
 	      Dial's value. When set, it will automatically be adjust to fit min/max/step settings of the interface.
 	      @type {number}
 	      @example dial.value = 10;
 	      */
-	
+
 	      get: function () {
 	        return this._value.value;
 	      },
@@ -4086,13 +4086,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    min: {
-	
+
 	      /**
 	      Lower limit of the dial's output range
 	      @type {number}
 	      @example dial.min = 1000;
 	      */
-	
+
 	      get: function () {
 	        return this._value.min;
 	      },
@@ -4101,13 +4101,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    max: {
-	
+
 	      /**
 	      Upper limit of the dial's output range
 	      @type {number}
 	      @example dial.max = 1000;
 	      */
-	
+
 	      get: function () {
 	        return this._value.max;
 	      },
@@ -4116,13 +4116,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    step: {
-	
+
 	      /**
 	      The increment that the dial's value changes by.
 	      @type {number}
 	      @example dial.step = 5;
 	      */
-	
+
 	      get: function () {
 	        return this._value.step;
 	      },
@@ -4131,13 +4131,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    mode: {
-	
+
 	      /**
 	      Absolute mode (dial's value jumps to mouse click position) or relative mode (mouse drag changes value relative to its current position). Default: "relative".
 	      @type {string}
 	      @example dial.mode = "relative";
 	      */
-	
+
 	      get: function () {
 	        return this.position.mode;
 	      },
@@ -4146,13 +4146,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    normalized: {
-	
+
 	      /**
 	      Normalized value of the dial.
 	      @type {number}
 	      @example dial.normalized = 0.5;
 	      */
-	
+
 	      get: function () {
 	        return this._value.normalized;
 	      },
@@ -4162,10 +4162,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Dial;
 	})(Interface);
-	
+
 	module.exports = Dial;
 
 /***/ }),
@@ -4173,48 +4173,48 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var Interface = __webpack_require__(6);
 	var ButtonTemplate = __webpack_require__(17);
 	var touch = __webpack_require__(9);
-	
+
 	var PianoKey = (function (_ButtonTemplate) {
 	  function PianoKey() {
 	    _classCallCheck(this, PianoKey);
-	
+
 	    var options = ["value", "note", "color"];
-	
+
 	    var defaults = {
 	      size: [80, 80],
 	      target: false,
 	      mode: "button",
 	      value: 0
 	    };
-	
+
 	    _get(Object.getPrototypeOf(PianoKey.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.note = this.settings.note;
 	    this.color = this.settings.color;
-	
+
 	    this.colors = {
 	      w: "#fff",
 	      b: "#666" };
-	
+
 	    this.init();
 	    this.render();
 	  }
-	
+
 	  _inherits(PianoKey, _ButtonTemplate);
-	
+
 	  _createClass(PianoKey, {
 	    buildFrame: {
 	      value: function buildFrame() {
@@ -4227,38 +4227,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	    buildInterface: {
 	      value: function buildInterface() {
 	        var _this = this;
-	
+
 	        this.pad = svg.create("rect");
-	
+
 	        this.element.appendChild(this.pad);
-	
+
 	        this.interactionTarget = this.pad;
-	
+
 	        /* events */
-	
+
 	        if (!touch.exists) {
-	
+
 	          this.click = function () {
 	            //  console.log('click');
 	            _this.piano.interacting = true;
 	            _this.piano.paintbrush = !_this.state;
 	            _this.down(_this.piano.paintbrush);
 	          };
-	
+
 	          this.pad.addEventListener("mouseover", function () {
 	            if (_this.piano.interacting) {
 	              //    console.log('mouseover');
 	              _this.down(_this.piano.paintbrush);
 	            }
 	          });
-	
+
 	          this.move = function () {
 	            if (_this.piano.interacting) {
 	              //  console.log('move');
 	              _this.bend();
 	            }
 	          };
-	
+
 	          this.release = function () {
 	            _this.piano.interacting = false;
 	            //  console.log('release');
@@ -4281,10 +4281,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        //let radius = Math.min(this.width,this.height) / 5;
 	        var radius = 0;
-	
+
 	        this.pad.setAttribute("x", 0.5);
 	        this.pad.setAttribute("y", 0.5);
 	        if (this.width > 2) {
@@ -4311,10 +4311,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return PianoKey;
 	})(ButtonTemplate);
-	
+
 	/**
 	* Piano
 	*
@@ -4344,45 +4344,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	* })
 	*
 	*/
-	
+
 	var Piano = (function (_Interface) {
 	  function Piano() {
 	    _classCallCheck(this, Piano);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [500, 125],
 	      lowNote: 24,
 	      highNote: 60,
 	      mode: "button"
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Piano.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.keyPattern = ["w", "b", "w", "b", "w", "w", "b", "w", "b", "w", "b", "w"];
-	
+
 	    this.paintbrush = false;
-	
+
 	    this.mode = this.settings.mode;
-	
+
 	    this.range = {
 	      low: this.settings.lowNote,
 	      high: this.settings.highNote
 	    };
-	
+
 	    this.range.size = this.range.high - this.range.low + 1;
-	
+
 	    this.keys = [];
-	
+
 	    this.toggleTo = false;
-	
+
 	    this.init();
 	    this.render();
 	  }
-	
+
 	  _inherits(Piano, _Interface);
-	
+
 	  _createClass(Piano, {
 	    buildFrame: {
 	      value: function buildFrame() {
@@ -4397,23 +4397,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        this.keys = [];
-	
+
 	        for (var i = 0; i < this.range.size; i++) {
-	
+
 	          var container = document.createElement("span");
 	          var scaleIndex = (i + this.range.low) % this.keyPattern.length;
-	
+
 	          var key = new PianoKey(container, {
 	            component: true,
 	            note: i + this.range.low,
 	            color: this.keyPattern[scaleIndex],
 	            mode: this.mode
 	          }, this.keyChange.bind(this, i + this.range.low));
-	
+
 	          key.piano = this;
-	
+
 	          if (touch.exists) {
 	            key.pad.index = i;
 	            key.preClick = key.preMove = key.preRelease = function () {};
@@ -4421,7 +4421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            key.preTouch = key.preTouchMove = key.preTouchRelease = function () {};
 	            key.touch = key.touchMove = key.touchRelease = function () {};
 	          }
-	
+
 	          this.keys.push(key);
 	          this.element.appendChild(container);
 	        }
@@ -4432,15 +4432,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        var keyX = 0;
-	
+
 	        var keyPositions = [];
-	
+
 	        for (var i = 0; i < this.range.size; i++) {
-	
+
 	          keyPositions.push(keyX);
-	
+
 	          var scaleIndex = (i + this.range.low) % this.keyPattern.length;
 	          var nextScaleIndex = (i + 1 + this.range.low) % this.keyPattern.length;
 	          if (i + 1 + this.range.low >= this.range.high) {
@@ -4452,14 +4452,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 	        }
 	        var keysWide = keyX;
-	
+
 	        //  let padding = this.width / 120;
 	        var padding = 1;
 	        var buttonWidth = (this.width - padding * 2) / keysWide;
 	        var buttonHeight = (this.height - padding * 2) / 2;
-	
+
 	        for (var i = 0; i < this.keys.length; i++) {
-	
+
 	          var container = this.keys[i].parent;
 	          container.style.position = "absolute";
 	          container.style.left = keyPositions[i] * buttonWidth + padding + "px";
@@ -4476,11 +4476,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    colorInterface: {
 	      value: function colorInterface() {
-	
+
 	        // Piano keys don't actually have a stroke border
 	        // They have space between them, which shows the Piano bg color
 	        this.element.style.backgroundColor = this.colors.mediumLight;
-	
+
 	        for (var i = 0; i < this.keys.length; i++) {
 	          this.keys[i].colors = {
 	            w: this.colors.light,
@@ -4513,27 +4513,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    render: {
-	
+
 	      /* drag(note,on) {
 	        this.emit('change',{
 	          note: note,
 	          state: on
 	        });
 	      } */
-	
+
 	      value: function render() {}
 	    },
 	    addTouchListeners: {
 	      value: function addTouchListeners() {
 	        var _this = this;
-	
+
 	        this.preClick = this.preMove = this.preRelease = function () {};
 	        this.click = this.move = this.release = function () {};
 	        this.preTouch = this.preTouchMove = this.preTouchRelease = function () {};
 	        this.touch = this.touchMove = this.touchRelease = function () {};
-	
+
 	        this.currentElement = false;
-	
+
 	        this.element.addEventListener("touchstart", function (e) {
 	          console.log("touchstart");
 	          var element = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
@@ -4544,7 +4544,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          e.preventDefault();
 	          e.stopPropagation();
 	        });
-	
+
 	        this.element.addEventListener("touchmove", function (e) {
 	          var element = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
 	          var key = _this.keys[element.index];
@@ -4561,7 +4561,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          e.preventDefault();
 	          e.stopPropagation();
 	        });
-	
+
 	        this.element.addEventListener("touchend", function (e) {
 	          // no touches to calculate because none remaining
 	          var key = _this.keys[_this.currentElement];
@@ -4574,13 +4574,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    setRange: {
-	
+
 	      /**
 	      Define the pitch range (lowest and highest note) of the piano keyboard.
 	      @param low {number} MIDI note value of the lowest note on the keyboard
 	      @param high {number} MIDI note value of the highest note on the keyboard
 	      */
-	
+
 	      value: function setRange(low, high) {
 	        this.range.low = low;
 	        this.range.high = high;
@@ -4589,36 +4589,36 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    toggleKey: {
-	
+
 	      /**
 	      Turn a key on or off using its MIDI note value;
 	      @param note {number} MIDI note value of the key to change
 	      @param on {boolean} Whether the note should turn on or off
 	      */
-	
+
 	      value: function toggleKey(note, on) {
 	        this.keys[note - this.range.low].flip(on);
 	      }
 	    },
 	    toggleIndex: {
-	
+
 	      /**
 	      Turn a key on or off using its key index on the piano interface.
 	      @param index {number} Index of the key to change
 	      @param on {boolean} Whether the note should turn on or off
 	      */
-	
+
 	      value: function toggleIndex(index, on) {
 	        this.keys[index].flip(on);
 	      }
 	    }
 	  });
-	
+
 	  return Piano;
 	})(Interface);
-	
+
 	module.exports = Piano;
-	
+
 	// loop through and render the keys?
 
 /***/ }),
@@ -4626,15 +4626,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var dom = __webpack_require__(7);
 	var Interface = __webpack_require__(6);
@@ -4643,37 +4643,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	var CounterModel = __webpack_require__(28);
 	var Interval = __webpack_require__(29);
 	var touch = __webpack_require__(9);
-	
+
 	var MatrixCell = (function (_ButtonTemplate) {
 	  function MatrixCell() {
 	    _classCallCheck(this, MatrixCell);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [80, 80],
 	      target: false,
 	      mode: "toggle",
 	      value: 0
 	    };
-	
+
 	    _get(Object.getPrototypeOf(MatrixCell.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.index = this.settings.index;
 	    this.row = this.settings.row;
 	    this.column = this.settings.column;
-	
+
 	    this.matrix = this.settings.matrix;
-	
+
 	    this.interacting = false;
 	    this.paintbrush = false;
-	
+
 	    this.init();
 	    this.render();
 	  }
-	
+
 	  _inherits(MatrixCell, _ButtonTemplate);
-	
+
 	  _createClass(MatrixCell, {
 	    buildFrame: {
 	      value: function buildFrame() {
@@ -4689,16 +4689,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    buildInterface: {
 	      value: function buildInterface() {
 	        var _this = this;
-	
+
 	        this.pad = svg.create("rect");
 	        this.element.appendChild(this.pad);
-	
+
 	        this.interactionTarget = this.pad;
-	
+
 	        /* events */
-	
+
 	        if (!touch.exists) {
-	
+
 	          this.click = function () {
 	            _this.matrix.interacting = true;
 	            _this.matrix.paintbrush = !_this.state;
@@ -4709,7 +4709,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              _this.down(_this.matrix.paintbrush);
 	            }
 	          });
-	
+
 	          this.move = function () {};
 	          this.pad.addEventListener("mousemove", function (e) {
 	            if (_this.matrix.interacting) {
@@ -4720,7 +4720,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              _this.bend();
 	            }
 	          });
-	
+
 	          this.release = function () {
 	            _this.matrix.interacting = false;
 	          };
@@ -4739,16 +4739,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        this.pad.setAttribute("x", 1);
-	        this.pad.setAttribute("y", 1);
-	        if (this.width > 2) {
-	          this.pad.setAttribute("width", this.width - 2);
+			this.pad.setAttribute("y", 1);
+			this.pad.setAttribute("rx", 10);
+	        if (this.width > 4) {
+	          this.pad.setAttribute("width", this.width - 4);
 	        } else {
 	          this.pad.setAttribute("width", this.width);
 	        }
-	        if (this.height > 2) {
-	          this.pad.setAttribute("height", this.height - 2);
+	        if (this.height > 4) {
+	          this.pad.setAttribute("height", this.height - 4);
 	        } else {
 	          this.pad.setAttribute("height", this.height);
 	        }
@@ -4766,10 +4767,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return MatrixCell;
 	})(ButtonTemplate);
-	
+
 	/**
 	* Sequencer
 	*
@@ -4808,55 +4809,55 @@ return /******/ (function(modules) { // webpackBootstrap
 	*   console.log(v);
 	* })
 	*/
-	
+
 	var Sequencer = (function (_Interface) {
 	  function Sequencer() {
 	    _classCallCheck(this, Sequencer);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [400, 200],
 	      mode: "toggle",
 	      rows: 5,
 	      columns: 10
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Sequencer.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.active = -1;
-	
+
 	    /**
 	    * Button interaction mode: see Button
 	    * @type {string}
 	    * @example button.mode = 'toggle';
 	    */
 	    this.mode = this.settings.mode;
-	
+
 	    /**
 	    * The interval object which controls timing and sequence scheduling.
 	    * @type {interval}
 	    */
 	    this.interval = new Interval(200, function () {}, false); // jshint ignore:line
-	
+
 	    /**
 	    * A Matrix model containing methods for manipulating the sequencer's array of values. To learn how to manipulate the matrix, read about the matrix model.
 	    * @type {matrix}
 	    */
 	    this.matrix = new MatrixModel(this.settings.rows, this.settings.columns);
 	    this.matrix.ui = this;
-	
+
 	    /**
 	    * A Counter model which the sequencer steps through. For example, you could use this model to step through the sequencer in reverse, randomly, or in a drunk walk.
 	    * @type {counter}
 	    */
 	    this.stepper = new CounterModel(0, this.columns);
-	
+
 	    this.init();
 	  }
-	
+
 	  _inherits(Sequencer, _Interface);
-	
+
 	  _createClass(Sequencer, {
 	    buildFrame: {
 	      value: function buildFrame() {
@@ -4873,16 +4874,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        this.cells = [];
 	        for (var i = 0; i < this.matrix.length; i++) {
-	
+
 	          var _location = this.matrix.locate(i);
 	          // returns {row,col}
-	
+
 	          var container = document.createElement("span");
 	          container.style.position = "absolute";
-	
+
 	          var cell = new MatrixCell(container, {
 	            component: true,
 	            index: i,
@@ -4891,7 +4892,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            mode: this.mode,
 	            matrix: this
 	          }, this.keyChange.bind(this, i));
-	
+
 	          //  cell.matrix = this;
 	          if (touch.exists) {
 	            cell.pad.index = i;
@@ -4900,7 +4901,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            cell.preTouch = cell.preTouchMove = cell.preTouchRelease = function () {};
 	            cell.touch = cell.touchMove = cell.touchRelease = function () {};
 	          }
-	
+
 	          this.cells.push(cell);
 	          this.element.appendChild(container);
 	        }
@@ -4909,10 +4910,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        var cellWidth = this.width / this.columns;
 	        var cellHeight = this.height / this.rows;
-	
+
 	        for (var i = 0; i < this.cells.length; i++) {
 	          var container = this.cells[i].parent;
 	          container.style.left = this.cells[i].column * cellWidth + "px";
@@ -4931,7 +4932,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    update: {
 	      value: function update() {
 	        var _this = this;
-	
+
 	        //  console.log("updating...")
 	        //on = on || false;
 	        this.matrix.iterate(function (r, c, i) {
@@ -4947,14 +4948,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    keyChange: {
-	
+
 	      // update => cell.turnOn => cell.emit => keyChange (seq.emit) => matrix.set.cell => update
 	      //
 	      // interaction => keyChange => matrix.set.cell => update => cell.turnOn
 	      //                                             => emit
 	      //
 	      // set.cell => update => needs to emit.
-	
+
 	      value: function keyChange(note, on) {
 	        // emit data for any key turning on/off
 	        // i is the note index
@@ -4973,13 +4974,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    render: {
 	      value: function render() {
 	        var _this = this;
-	
+
 	        if (this.stepper.value >= 0) {
 	          this.matrix.iterate(function (r, c, i) {
 	            if (c === _this.stepper.value) {
 	              _this.cells[i].pad.setAttribute("stroke", _this.colors.mediumLight);
-	              _this.cells[i].pad.setAttribute("stroke-width", "1");
-	              _this.cells[i].pad.setAttribute("stroke-opacity", "1");
+	              _this.cells[i].pad.setAttribute("stroke-width", "2");
+	              _this.cells[i].pad.setAttribute("stroke-opacity", "2");
 	            } else {
 	              _this.cells[i].pad.setAttribute("stroke", "none");
 	            }
@@ -4988,12 +4989,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    start: {
-	
+
 	      /**
 	       * Start sequencing
 	       * @param  {number} ms Beat tempo in milliseconds
 	       */
-	
+
 	      value: function start(ms) {
 	        this.interval.event = this.next.bind(this);
 	        if (ms) {
@@ -5003,21 +5004,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    stop: {
-	
+
 	      /**
 	      Stop sequencing
 	      */
-	
+
 	      value: function stop() {
 	        this.interval.stop();
 	      }
 	    },
 	    next: {
-	
+
 	      /**
 	      Manually jump to the next column and trigger the 'change' event. The "next" column is determined by your mode of sequencing.
 	      */
-	
+
 	      value: function next() {
 	        this.stepper.next();
 	        this.emit("step", this.matrix.column(this.stepper.value).reverse());
@@ -5027,14 +5028,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    addTouchListeners: {
 	      value: function addTouchListeners() {
 	        var _this = this;
-	
+
 	        this.preClick = this.preMove = this.preRelease = function () {};
 	        this.click = this.move = this.release = function () {};
 	        this.preTouch = this.preTouchMove = this.preTouchRelease = function () {};
 	        this.touch = this.touchMove = this.touchRelease = function () {};
-	
+
 	        this.currentElement = false;
-	
+
 	        this.element.addEventListener("touchstart", function (e) {
 	          var element = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
 	          var cell = _this.cells[element.index];
@@ -5044,7 +5045,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          e.preventDefault();
 	          e.stopPropagation();
 	        });
-	
+
 	        this.element.addEventListener("touchmove", function (e) {
 	          var element = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
 	          var cell = _this.cells[element.index];
@@ -5061,7 +5062,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          e.preventDefault();
 	          e.stopPropagation();
 	        });
-	
+
 	        this.element.addEventListener("touchend", function (e) {
 	          // no touches to calculate because none remaining
 	          var cell = _this.cells[_this.currentElement];
@@ -5074,12 +5075,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    rows: {
-	
+
 	      /**
 	      Number of rows in the sequencer
 	      @type {number}
 	      */
-	
+
 	      get: function () {
 	        return this.matrix.rows;
 	      },
@@ -5091,12 +5092,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    columns: {
-	
+
 	      /**
 	      Number of columns in the sequencer
 	      @type {number}
 	      */
-	
+
 	      get: function () {
 	        return this.matrix.columns;
 	      },
@@ -5109,10 +5110,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Sequencer;
 	})(Interface);
-	
+
 	module.exports = Sequencer;
 
 /***/ }),
@@ -5120,47 +5121,47 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var math = _interopRequire(__webpack_require__(5));
-	
+
 	var Sequence = _interopRequire(__webpack_require__(26));
-	
+
 	// For the tutorial, looking at
-	
+
 	//Pattern section:
 	// .create(), .rows, .columns,
 	// .pattern, .length, .formatAsText(), .log(),
 	// .locate(i), .indexOf(c,r)
 	// row(), column() (returns contents of row or colum)
-	
+
 	//Control section:
 	// toggle x3
 	// set x4
 	// rotate x3
 	// populate x3
 	// erase x3
-	
+
 	// should some version of this have a float value for each cell?
 	// could be like a mirror .pattern that has values. by default, everything is 1, but could be set...
 	// not a good way to do that on interface, but as a model it would be nice...
 	// for .formatAsText(), could multiply by 100 and floor, so each cell is an int from 0 to 9
-	
+
 	var Matrix = (function () {
 	  function Matrix(rows, columns) {
 	    var _this = this;
-	
+
 	    _classCallCheck(this, Matrix);
-	
+
 	    // should also have ability to create using an existing matrix (2d array)
 	    this.pattern = [];
 	    this.create(rows, columns);
-	
+
 	    this.toggle = {
 	      cell: function (column, row) {
 	        _this.pattern[row][column] = !_this.pattern[row][column]; // math.invert(this.pattern[row][column]);
@@ -5194,7 +5195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      }
 	    };
-	
+
 	    this.set = {
 	      cell: function (column, row, value) {
 	        _this.pattern[row][column] = value;
@@ -5227,7 +5228,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      }
 	    };
-	
+
 	    this.rotate = {
 	      //should eventually do (amountX, amountY) here
 	      // could just use a loop and this.rotate.row(i,amountX);
@@ -5283,7 +5284,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      }
 	    };
-	
+
 	    // the idea behind populate is to be able to set a whole row or column to 0 or 1
 	    // IF the value is a float, such as 0.7, then it would become a probability
 	    // so populate(0.7) would give each cell a 70% chance of being 1
@@ -5304,7 +5305,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      row: function () {
 	        var row = arguments[0] === undefined ? 0 : arguments[0];
 	        var odds = arguments[1] === undefined ? 1 : arguments[1];
-	
+
 	        var oddsSequence = new Sequence(odds);
 	        _this.pattern[row].forEach(function (cell, i) {
 	          _this.pattern[row][i] = math.coin(oddsSequence.next());
@@ -5316,7 +5317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      column: function () {
 	        var column = arguments[0] === undefined ? 0 : arguments[0];
 	        var odds = arguments[1] === undefined ? 1 : arguments[1];
-	
+
 	        var oddsSequence = new Sequence(odds);
 	        _this.pattern.forEach(function (row, i) {
 	          _this.pattern[i][column] = math.coin(oddsSequence.next());
@@ -5326,7 +5327,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      }
 	    };
-	
+
 	    // essentiall populate(0) so i'm not sure if this is necessary but is nice
 	    this.erase = {
 	      all: function () {
@@ -5339,15 +5340,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this.set.column(column, 0);
 	      }
 	    };
-	
+
 	    // end constructor
 	  }
-	
+
 	  _createClass(Matrix, {
 	    create: {
 	      value: function create(rows, columns) {
 	        var _this = this;
-	
+
 	        this.pattern = [];
 	        for (var row = 0; row < rows; row++) {
 	          var arr = new Array(columns);
@@ -5375,7 +5376,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    formatAsText: {
 	      value: function formatAsText() {
 	        var _this = this;
-	
+
 	        var patternString = "";
 	        this.iterate(function (r, c) {
 	          patternString += (_this.pattern[r][c] ? 1 : 0) + " ";
@@ -5420,11 +5421,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _rowWrapper = function row(_x) {
 	          return _row.apply(this, arguments);
 	        };
-	
+
 	        _rowWrapper.toString = function () {
 	          return _row.toString();
 	        };
-	
+
 	        return _rowWrapper;
 	      })(function (row) {
 	        var data = [];
@@ -5439,11 +5440,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _columnWrapper = function column(_x2) {
 	          return _column.apply(this, arguments);
 	        };
-	
+
 	        _columnWrapper.toString = function () {
 	          return _column.toString();
 	        };
-	
+
 	        return _columnWrapper;
 	      })(function (column) {
 	        var data = [];
@@ -5459,7 +5460,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      },
 	      set: function (v) {
 	        var _this = this;
-	
+
 	        var previous = this.pattern.slice(0);
 	        this.create(v, this.columns);
 	        this.iterate(function (r, c) {
@@ -5475,7 +5476,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      },
 	      set: function (v) {
 	        var _this = this;
-	
+
 	        var previous = this.pattern.slice(0);
 	        this.create(this.rows, v);
 	        this.iterate(function (r, c) {
@@ -5486,10 +5487,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Matrix;
 	})();
-	
+
 	module.exports = Matrix;
 
 /***/ }),
@@ -5497,48 +5498,48 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var math = _interopRequire(__webpack_require__(5));
-	
+
 	var Drunk = _interopRequire(__webpack_require__(27));
-	
+
 	var Sequence = (function () {
 	  function Sequence() {
 	    var sequence = arguments[0] === undefined ? [0, 10, 20, 30] : arguments[0];
 	    var mode = arguments[1] === undefined ? "up" : arguments[1];
 	    var position = arguments[2] === undefined ? false : arguments[2];
-	
+
 	    _classCallCheck(this, Sequence);
-	
+
 	    this.values = sequence;
 	    if (!Array.isArray(this.values)) {
 	      this.values = [this.values];
 	    }
 	    this._mode = mode;
 	    this.position = position;
-	
+
 	    this.drunkWalk = new Drunk(0, this.values.length - 1);
-	
+
 	    this.startValues = {
 	      up: 0,
 	      down: this.values.length - 1,
 	      drunk: ~ ~(this.values.length / 2),
 	      random: math.ri(this.values.length)
 	    };
-	
+
 	    if (this.position !== false) {
 	      this.next = this[this._mode];
 	    } else {
 	      this.next = this.first;
 	    }
 	  }
-	
+
 	  _createClass(Sequence, {
 	    mode: {
 	      get: function () {
@@ -5603,19 +5604,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.position = this.drunkWalk.next();
 	        return this.value;
 	      }
-	
+
 	      /* future methods
 	      .group(start,stop) -- outputs a group of n items from the list, with wrapping
 	      .loop(start,stop) -- confines sequencing to a subset of the values
 	          (could even have a distinction between .originalValues and the array of values being used)
 	      */
-	
+
 	    }
 	  });
-	
+
 	  return Sequence;
 	})();
-	
+
 	module.exports = Sequence;
 
 /***/ }),
@@ -5623,15 +5624,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var math = _interopRequire(__webpack_require__(5));
-	
+
 	var Drunk = (function () {
 	    function Drunk() {
 	        var min = arguments[0] === undefined ? 0 : arguments[0];
@@ -5639,16 +5640,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var value = arguments[2] === undefined ? 0 : arguments[2];
 	        var increment = arguments[3] === undefined ? 1 : arguments[3];
 	        var loop = arguments[4] === undefined ? false : arguments[4];
-	
+
 	        _classCallCheck(this, Drunk);
-	
+
 	        this.min = min;
 	        this.max = max;
 	        this.value = value;
 	        this.increment = increment;
 	        this.loop = loop;
 	    }
-	
+
 	    _createClass(Drunk, {
 	        next: {
 	            value: function next() {
@@ -5660,7 +5661,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this.value = this.max - this.increment;
 	                    }
 	                }
-	
+
 	                if (this.value < this.min) {
 	                    if (this.loop) {
 	                        this.value = this.max;
@@ -5672,10 +5673,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	    });
-	
+
 	    return Drunk;
 	})();
-	
+
 	module.exports = Drunk;
 
 /***/ }),
@@ -5683,26 +5684,26 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var math = _interopRequire(__webpack_require__(5));
-	
+
 	var Drunk = _interopRequire(__webpack_require__(27));
-	
+
 	var Counter = (function () {
 	    function Counter() {
 	        var min = arguments[0] === undefined ? 0 : arguments[0];
 	        var max = arguments[1] === undefined ? 10 : arguments[1];
 	        var mode = arguments[2] === undefined ? "up" : arguments[2];
 	        var value = arguments[3] === undefined ? false : arguments[3];
-	
+
 	        _classCallCheck(this, Counter);
-	
+
 	        this.min = min;
 	        this.max = max;
 	        this.value = value;
@@ -5714,7 +5715,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.next = this.first;
 	        }
 	    }
-	
+
 	    _createClass(Counter, {
 	        mode: {
 	            set: function (mode) {
@@ -5782,10 +5783,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	    });
-	
+
 	    return Counter;
 	})();
-	
+
 	module.exports = Counter;
 
 /***/ }),
@@ -5793,31 +5794,31 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var clock = __webpack_require__(1).clock;
-	
+
 	var Interval = (function () {
 	  function Interval(rate, func, on) {
 	    _classCallCheck(this, Interval);
-	
+
 	    this.rate = rate;
 	    this.on = on;
 	    this.clock = clock(); // jshint ignore:line
-	
+
 	    this.pattern = [1];
 	    this.index = 0;
-	
+
 	    this.event = func ? func : function () {};
-	
+
 	    if (this.on) {
 	      this.start();
 	    }
 	  }
-	
+
 	  _createClass(Interval, {
 	    _event: {
 	      value: function _event(e) {
@@ -5851,10 +5852,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Interval;
 	})();
-	
+
 	module.exports = Interval;
 
 /***/ }),
@@ -5862,24 +5863,24 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { "default": obj }; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var math = __webpack_require__(5);
 	var Interface = __webpack_require__(6);
 	var Step = __webpack_require__(11);
-	
+
 	var Interaction = _interopRequireWildcard(__webpack_require__(12));
-	
+
 	/**
 	* Pan2D
 	*
@@ -5918,95 +5919,95 @@ return /******/ (function(modules) { // webpackBootstrap
 	* })
 	*
 	*/
-	
+
 	var Pan2D = (function (_Interface) {
 	  function Pan2D() {
 	    _classCallCheck(this, Pan2D);
-	
+
 	    var options = ["range"];
-	
+
 	    var defaults = {
 	      size: [200, 200],
 	      range: 0.5,
 	      mode: "absolute",
 	      speakers: [[0.5, 0.2], [0.75, 0.25], [0.8, 0.5], [0.75, 0.75], [0.5, 0.8], [0.25, 0.75], [0.2, 0.5], [0.25, 0.25]]
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Pan2D.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.value = {
 	      x: new Step(0, 1, 0, 0.5),
 	      y: new Step(0, 1, 0, 0.5)
 	    };
-	
+
 	    /**
 	    Absolute or relative mouse interaction. In "absolute" mode, the source node will jump to your mouse position on mouse click. In "relative" mode, it does not.
 	    */
 	    this.mode = this.settings.mode;
-	
+
 	    this.position = {
 	      x: new Interaction.Handle(this.mode, "horizontal", [0, this.width], [this.height, 0]),
 	      y: new Interaction.Handle(this.mode, "vertical", [0, this.width], [this.height, 0])
 	    };
 	    this.position.x.value = this.value.x.normalized;
 	    this.position.y.value = this.value.y.normalized;
-	
+
 	    /**
 	    An array of speaker locations. Update this with .moveSpeaker() or .moveAllSpeakers()
 	    */
 	    this.speakers = this.settings.speakers;
-	
+
 	    /**
 	    Rewrite: The maximum distance from a speaker that the source node can be for it to be heard from that speaker. A low range (0.1) will result in speakers only playing when the sound is very close it. Default is 0.5 (half of the interface).
 	    */
 	    this.range = this.settings.range;
-	
+
 	    /**
 	    The current levels for each speaker. This is calculated when a source node or speaker node is moved through interaction or programatically.
 	    */
 	    this.levels = [];
-	
+
 	    this.init();
-	
+
 	    this.calculateLevels();
 	    this.render();
 	  }
-	
+
 	  _inherits(Pan2D, _Interface);
-	
+
 	  _createClass(Pan2D, {
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        this.knob = svg.create("circle");
-	
+
 	        this.element.appendChild(this.knob);
-	
+
 	        // add speakers
 	        this.speakerElements = [];
-	
+
 	        for (var i = 0; i < this.speakers.length; i++) {
 	          var speakerElement = svg.create("circle");
-	
+
 	          this.element.appendChild(speakerElement);
-	
+
 	          this.speakerElements.push(speakerElement);
 	        }
 	      }
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        this._minDimension = Math.min(this.width, this.height);
-	
+
 	        this.knobRadius = {
 	          off: ~ ~(this._minDimension / 100) * 3 + 5 };
 	        this.knobRadius.on = this.knobRadius.off * 2;
-	
+
 	        this.knob.setAttribute("cx", this.width / 2);
 	        this.knob.setAttribute("cy", this.height / 2);
 	        this.knob.setAttribute("r", this.knobRadius.off);
-	
+
 	        for (var i = 0; i < this.speakers.length; i++) {
 	          var speakerElement = this.speakerElements[i];
 	          var speaker = this.speakers[i];
@@ -6015,10 +6016,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	          speakerElement.setAttribute("r", this._minDimension / 20 + 5);
 	          speakerElement.setAttribute("fill-opacity", "0");
 	        }
-	
+
 	        this.position.x.resize([0, this.width], [this.height, 0]);
 	        this.position.y.resize([0, this.width], [this.height, 0]);
-	
+
 	        // next, need to
 	        // resize positions
 	        // calculate speaker distances
@@ -6028,10 +6029,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    colorInterface: {
 	      value: function colorInterface() {
-	
+
 	        this.element.style.backgroundColor = this.colors.fill;
 	        this.knob.setAttribute("fill", this.colors.mediumLight);
-	
+
 	        for (var i = 0; i < this.speakers.length; i++) {
 	          var speakerElement = this.speakerElements[i];
 	          speakerElement.setAttribute("fill", this.colors.accent);
@@ -6045,7 +6046,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          x: this.value.x.normalized * this.width,
 	          y: this.height - this.value.y.normalized * this.height
 	        };
-	
+
 	        this.knob.setAttribute("cx", this.knobCoordinates.x);
 	        this.knob.setAttribute("cy", this.knobCoordinates.y);
 	      }
@@ -6088,7 +6089,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    calculateLevels: {
 	      value: function calculateLevels() {
 	        var _this = this;
-	
+
 	        this.value.x.updateNormal(this.position.x.value);
 	        this.value.y.updateNormal(this.position.y.value);
 	        this.levels = [];
@@ -6101,13 +6102,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    moveSource: {
-	
+
 	      /**
 	      Move the audio source node and trigger the output event.
 	      @param x {number} New x location, normalized 0-1
 	      @param y {number} New y location, normalized 0-1
 	      */
-	
+
 	      value: function moveSource(x, y) {
 	        var location = {
 	          x: x * this.width,
@@ -6121,16 +6122,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    moveSpeaker: {
-	
+
 	      /**
 	      Move a speaker node and trigger the output event.
 	      @param index {number} Index of the speaker to move
 	      @param x {number} New x location, normalized 0-1
 	      @param y {number} New y location, normalized 0-1
 	      */
-	
+
 	      value: function moveSpeaker(index, x, y) {
-	
+
 	        this.speakers[index] = [x, y];
 	        this.speakerElements[index].setAttribute("cx", x * this.width);
 	        this.speakerElements[index].setAttribute("cy", y * this.height);
@@ -6138,20 +6139,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.emit("change", this.levels);
 	        this.render();
 	      }
-	
+
 	      /**
 	      Set all speaker locations
 	      @param locations {Array} Array of speaker locations. Each item in the array should be an array of normalized x and y coordinates.
 	       setSpeakers(locations) {
 	       }
 	      */
-	
+
 	    }
 	  });
-	
+
 	  return Pan2D;
 	})(Interface);
-	
+
 	module.exports = Pan2D;
 
 /***/ }),
@@ -6159,19 +6160,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var math = __webpack_require__(5);
 	var svg = __webpack_require__(4);
 	var Interface = __webpack_require__(6);
-	
+
 	/**
 	* Tilt
 	*
@@ -6194,99 +6195,99 @@ return /******/ (function(modules) { // webpackBootstrap
 	*
 	*
 	*/
-	
+
 	var Tilt = (function (_Interface) {
 	  function Tilt() {
 	    _classCallCheck(this, Tilt);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [80, 80]
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Tilt.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this._active = true;
-	
+
 	    this.init();
-	
+
 	    // add event listener for device orientation
-	
+
 	    this.boundUpdate = this.update.bind(this);
 	    //	this.boundMozTilt = this.mozTilt.bind(this)
-	
+
 	    if (window.DeviceOrientationEvent) {
 	      this.orientationListener = window.addEventListener("deviceorientation", this.boundUpdate, false);
 	    } else {
 	      this._active = false;
 	      this.colorInterface();
 	    }
-	
+
 	    /*else if (window.OrientationEvent) {
 	    //	  	window.addEventListener('MozOrientation', this.boundMozTilt, false);
 	    } else {
 	    console.log('Not supported on your device or browser.');
 	    } */
 	  }
-	
+
 	  _inherits(Tilt, _Interface);
-	
+
 	  _createClass(Tilt, {
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        this.title = svg.create("text");
 	        this.circleX = svg.create("circle");
 	        this.circleY = svg.create("circle");
 	        this.circleZ = svg.create("circle");
-	
+
 	        this.barX = svg.create("path");
 	        this.barY = svg.create("path");
 	        this.barZ = svg.create("path");
-	
+
 	        this.barX2 = svg.create("path");
 	        this.barY2 = svg.create("path");
 	        this.barZ2 = svg.create("path");
-	
+
 	        this.barX.setAttribute("opacity", "0.8");
 	        this.barY.setAttribute("opacity", "0.8");
 	        this.barZ.setAttribute("opacity", "0.8");
 	        this.barX2.setAttribute("opacity", "0.8");
 	        this.barY2.setAttribute("opacity", "0.8");
 	        this.barZ2.setAttribute("opacity", "0.8");
-	
+
 	        this.circleX.setAttribute("cx", this.width * 3 / 12);
 	        this.circleX.setAttribute("cy", this.height * 3 / 4);
 	        this.circleX.setAttribute("r", this.height / 10);
 	        this.circleX.setAttribute("opacity", "0.4");
-	
+
 	        this.circleY.setAttribute("cx", this.width * 6 / 12);
 	        this.circleY.setAttribute("cy", this.height * 3 / 4);
 	        this.circleY.setAttribute("r", this.height / 10);
 	        this.circleY.setAttribute("opacity", "0.4");
-	
+
 	        this.circleZ.setAttribute("cx", this.width * 9 / 12);
 	        this.circleZ.setAttribute("cy", this.height * 3 / 4);
 	        this.circleZ.setAttribute("r", this.height / 10);
 	        this.circleZ.setAttribute("opacity", "0.4");
-	
+
 	        this.barX.setAttribute("stroke-width", Math.round(this.height / 30));
 	        this.barY.setAttribute("stroke-width", Math.round(this.height / 30));
 	        this.barZ.setAttribute("stroke-width", Math.round(this.height / 30));
-	
+
 	        this.barX.setAttribute("fill", "none");
 	        this.barY.setAttribute("fill", "none");
 	        this.barZ.setAttribute("fill", "none");
-	
+
 	        this.barX2.setAttribute("stroke-width", Math.round(this.height / 30));
 	        this.barY2.setAttribute("stroke-width", Math.round(this.height / 30));
 	        this.barZ2.setAttribute("stroke-width", Math.round(this.height / 30));
-	
+
 	        this.barX2.setAttribute("fill", "none");
 	        this.barY2.setAttribute("fill", "none");
 	        this.barZ2.setAttribute("fill", "none");
-	
+
 	        this.title.setAttribute("x", this.width / 2);
 	        this.title.setAttribute("y", this.height / 3 + 7);
 	        this.title.setAttribute("font-size", "15px");
@@ -6295,25 +6296,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.title.setAttribute("opacity", "0.7");
 	        this.title.setAttribute("text-anchor", "middle");
 	        this.title.textContent = "TILT";
-	
+
 	        this.element.appendChild(this.circleX);
 	        this.element.appendChild(this.circleY);
 	        this.element.appendChild(this.circleZ);
-	
+
 	        this.element.appendChild(this.barX);
 	        this.element.appendChild(this.barY);
 	        this.element.appendChild(this.barZ);
-	
+
 	        this.element.appendChild(this.barX2);
 	        this.element.appendChild(this.barY2);
 	        this.element.appendChild(this.barZ2);
-	
+
 	        this.element.appendChild(this.title);
 	      }
 	    },
 	    colorInterface: {
 	      value: function colorInterface() {
-	
+
 	        if (this._active) {
 	          this.element.style.backgroundColor = this.colors.accent;
 	          this.circleX.setAttribute("fill", this.colors.light);
@@ -6350,16 +6351,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    update: {
 	      value: function update(v) {
 	        if (this._active) {
-	
+
 	          var y = v.beta;
 	          var x = v.gamma;
 	          var z = v.alpha;
-	
+
 	          // take the original -90 to 90 scale and normalize it 0-1
 	          x = math.scale(x, -90, 90, 0, 1);
 	          y = math.scale(y, -90, 90, 0, 1);
 	          z = math.scale(z, 0, 360, 0, 1);
-	
+
 	          var handlePoints = {
 	            start: Math.PI * 1.5,
 	            end: math.clip(math.scale(x, 0, 0.5, Math.PI * 1.5, Math.PI * 0.5), Math.PI * 0.5, Math.PI * 1.5)
@@ -6368,13 +6369,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            start: Math.PI * 2.5,
 	            end: math.clip(math.scale(x, 0.5, 1, Math.PI * 2.5, Math.PI * 1.5), Math.PI * 1.5, Math.PI * 2.5)
 	          };
-	
+
 	          var handlePath = svg.arc(this.circleX.cx.baseVal.value, this.circleX.cy.baseVal.value, this.circleX.r.baseVal.value, handlePoints.start, handlePoints.end);
 	          var handle2Path = svg.arc(this.circleX.cx.baseVal.value, this.circleX.cy.baseVal.value, this.circleX.r.baseVal.value, handle2Points.start, handle2Points.end);
-	
+
 	          this.barX.setAttribute("d", handlePath);
 	          this.barX2.setAttribute("d", handle2Path);
-	
+
 	          handlePoints = {
 	            start: Math.PI * 1.5,
 	            end: math.clip(math.scale(y, 0, 0.5, Math.PI * 1.5, Math.PI * 0.5), Math.PI * 0.5, Math.PI * 1.5)
@@ -6383,13 +6384,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            start: Math.PI * 2.5,
 	            end: math.clip(math.scale(y, 0.5, 1, Math.PI * 2.5, Math.PI * 1.5), Math.PI * 1.5, Math.PI * 2.5)
 	          };
-	
+
 	          handlePath = svg.arc(this.circleY.cx.baseVal.value, this.circleY.cy.baseVal.value, this.circleY.r.baseVal.value, handlePoints.start, handlePoints.end);
 	          handle2Path = svg.arc(this.circleY.cx.baseVal.value, this.circleY.cy.baseVal.value, this.circleY.r.baseVal.value, handle2Points.start, handle2Points.end);
-	
+
 	          this.barY.setAttribute("d", handlePath);
 	          this.barY2.setAttribute("d", handle2Path);
-	
+
 	          handlePoints = {
 	            start: Math.PI * 1.5,
 	            end: math.clip(math.scale(z, 0, 0.5, Math.PI * 1.5, Math.PI * 0.5), Math.PI * 0.5, Math.PI * 1.5)
@@ -6398,13 +6399,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            start: Math.PI * 2.5,
 	            end: math.clip(math.scale(z, 0.5, 1, Math.PI * 2.5, Math.PI * 1.5), Math.PI * 1.5, Math.PI * 2.5)
 	          };
-	
+
 	          handlePath = svg.arc(this.circleZ.cx.baseVal.value, this.circleZ.cy.baseVal.value, this.circleZ.r.baseVal.value, handlePoints.start, handlePoints.end);
 	          handle2Path = svg.arc(this.circleZ.cx.baseVal.value, this.circleZ.cy.baseVal.value, this.circleZ.r.baseVal.value, handle2Points.start, handle2Points.end);
-	
+
 	          this.barZ.setAttribute("d", handlePath);
 	          this.barZ2.setAttribute("d", handle2Path);
-	
+
 	          /*
 	           let pointsX = {
 	            start: 0,
@@ -6413,14 +6414,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	          //  console.log(this.circleX.cx.baseVal.value);
 	           let pathX = svg.arc(this.circleX.cx.baseVal.value, this.circleX.cy.baseVal.value, this.circleX.r.baseVal.value*2, pointsX.start, pointsX.end);
 	           this.barX.setAttribute('d',pathX); */
-	
+
 	          //this.textH.textContent = math.prune(x,2);
 	          //this.textV.textContent = math.prune(y,2);
 	          //
 	          //  this.circleX.setAttribute('opacity',x);
 	          //  this.circleY.setAttribute('opacity',y);
 	          //  this.circleZ.setAttribute('opacity',z);
-	
+
 	          this.emit("change", {
 	            x: x,
 	            y: y,
@@ -6437,12 +6438,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    active: {
-	
+
 	      /**
 	      Whether the interface is on (emitting values) or off (paused & not emitting values). Setting this property will update it.
 	      @type {boolean}
 	      */
-	
+
 	      get: function () {
 	        return this._active;
 	      },
@@ -6457,10 +6458,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Tilt;
 	})(Interface);
-	
+
 	module.exports = Tilt;
 
 /***/ }),
@@ -6468,19 +6469,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var math = __webpack_require__(5);
 	var svg = __webpack_require__(4);
 	var Interface = __webpack_require__(6);
-	
+
 	/**
 	* Multislider
 	*
@@ -6515,13 +6516,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	* })
 	*
 	*/
-	
+
 	var Multislider = (function (_Interface) {
 	  function Multislider() {
 	    _classCallCheck(this, Multislider);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [200, 100],
 	      numberOfSliders: 5,
@@ -6533,95 +6534,95 @@ return /******/ (function(modules) { // webpackBootstrap
 	      smoothing: 0,
 	      mode: "bar" // 'bar', 'line'
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Multislider.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this._numberOfSliders = this.settings.numberOfSliders;
 	    this._min = this.settings.min;
 	    this._max = this.settings.max;
 	    this._step = this.settings.step;
-	
+
 	    this._mode = this.settings.mode;
-	
+
 	    /**
 	    The current values of the slider. NOTE: Use this only to get the current values. Setting this array will not update the multislider. To set the multislider's values, use setSlider() or setAllSliders()
 	    @type {Array}
 	    */
 	    this.values = this.settings.values;
-	
+
 	    this.candycane = this.settings.candycane;
-	
+
 	    this.sliderWidth = this.width / this.values.length;
-	
+
 	    /**
 	    Applies a simple low-pass filter to the multislider as it is interacted with. A smoothing of 0 will be no smoothing. A smoothing of 1 will smooth 1 slider on each side of the interaction. A smoothing of 2 will smooth 2 sliders on each side, and so on.
 	    @type {Number}
 	    */
 	    this.smoothing = this.settings.smoothing;
-	
+
 	    this.init();
 	    this.render();
 	  }
-	
+
 	  _inherits(Multislider, _Interface);
-	
+
 	  _createClass(Multislider, {
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        if (this._mode == "line") {
-	
+
 	          this.line = svg.create("polyline");
 	          this.line.setAttribute("stroke-width", 2);
 	          this.line.setAttribute("fill", "none");
-	
+
 	          this.element.appendChild(this.line);
-	
+
 	          this.fill = svg.create("polyline");
 	          this.fill.setAttribute("fill-opacity", "0.2");
-	
+
 	          this.element.appendChild(this.fill);
-	
+
 	          this.nodes = [];
-	
+
 	          this.values.forEach((function (value, index) {
-	
+
 	            var node = svg.create("circle");
-	
+
 	            node.setAttribute("cx", this.getX(index));
 	            node.setAttribute("cy", this.getY(value));
-	
+
 	            this.element.appendChild(node);
 	            this.nodes.push(node);
 	          }).bind(this));
 	        } else {
-	
+
 	          this.bars = [];
 	          this.caps = [];
-	
+
 	          this.values.forEach((function (value, index) {
-	
+
 	            var bar = svg.create("rect");
-	
+
 	            var x = this.getBarX(index);
 	            var y = this.getY(value);
-	
+
 	            bar.setAttribute("x", x - 0.1);
 	            bar.setAttribute("y", y);
 	            bar.setAttribute("width", this.sliderWidth + 0.2);
 	            bar.setAttribute("height", this.height);
 	            bar.setAttribute("opacity", 1 - (index % this.candycane + 1) / (this.candycane + 1));
-	
+
 	            this.element.appendChild(bar);
 	            this.bars.push(bar);
-	
+
 	            var cap = svg.create("rect");
-	
+
 	            cap.setAttribute("x", x - 0.1);
 	            cap.setAttribute("y", y);
 	            cap.setAttribute("width", this.sliderWidth + 0.2);
 	            cap.setAttribute("height", 5);
-	
+
 	            this.element.appendChild(cap);
 	            this.caps.push(cap);
 	          }).bind(this));
@@ -6687,9 +6688,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    colorInterface: {
 	      value: function colorInterface() {
 	        var _this = this;
-	
+
 	        this.element.style.backgroundColor = this.colors.fill;
-	
+
 	        if (this._mode == "line") {
 	          this.line.setAttribute("stroke", this.colors.accent);
 	          this.fill.setAttribute("fill", this.colors.accent);
@@ -6708,9 +6709,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        this.sliderWidth = this.width / this.values.length;
-	
+
 	        if (this._mode == "line") {
 	          this.nodes.forEach((function (node) {
 	            var r = ~ ~(Math.min(this.width, this.height) / 50) + 2;
@@ -6718,19 +6719,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	            node.setAttribute("r", r);
 	          }).bind(this));
 	        }
-	
+
 	        this.render();
 	      }
 	    },
 	    render: {
 	      value: function render() {
 	        var _this = this;
-	
+
 	        if (this._mode == "line") {
 	          (function () {
-	
+
 	            var data = "0 " + _this.getY(_this.values[0]) + ", ";
-	
+
 	            _this.values.forEach(function (value, index) {
 	              var x = _this.getX(index);
 	              var y = _this.getY(value);
@@ -6738,21 +6739,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	              _this.nodes[index].setAttribute("cx", _this.getX(index));
 	              _this.nodes[index].setAttribute("cy", _this.getY(value));
 	            });
-	
+
 	            data += _this.width + " " + _this.getY(_this.values[_this.values.length - 1]);
-	
+
 	            _this.line.setAttribute("points", data);
-	
+
 	            // fill data
 	            // add bottom corners
-	
+
 	            data += ", " + _this.width + " " + _this.height + ", ";
 	            data += "0 " + _this.height;
-	
+
 	            _this.fill.setAttribute("points", data);
 	          })();
 	        } else {
-	
+
 	          this.values.forEach(function (value, index) {
 	            _this.bars[index].setAttribute("y", _this.getY(value));
 	            _this.caps[index].setAttribute("y", _this.getY(value));
@@ -6773,13 +6774,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.mouse.x = math.clip(this.mouse.x, 0, this.width);
 	          this.mouse.y = math.clip(this.mouse.y, 0, this.height);
 	          this.hasMoved = true;
-	
+
 	          this.selectedSlider = this.getIndexFromX(this.mouse.x);
-	
+
 	          this.values[this.selectedSlider] = this.getValueFromY(this.mouse.y);
-	
+
 	          /* handle interpolation for in-between sliders */
-	
+
 	          if (this.previousSlider !== false) {
 	            var distance = Math.abs(this.previousSlider - this.selectedSlider);
 	            if (distance > 1) {
@@ -6793,20 +6794,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	              }
 	            }
 	          }
-	
+
 	          if (this.smoothing > 0) {
-	
+
 	            for (var i = 1; i <= this.smoothing; i++) {
 	              var downCenter = this.selectedSlider - i;
 	              var upCenter = this.selectedSlider + i;
-	
+
 	              if (downCenter >= 1) {
 	                var downLowerNeighbor = downCenter - 1 >= 0 ? downCenter - 1 : 0;
 	                var downUpperNeighbor = downCenter + 1;
 	                this.values[downCenter] = (this.values[downLowerNeighbor] + this.values[downUpperNeighbor]) / 2;
 	                this.values[downCenter] = this.adjustValueToStep(this.values[downCenter]);
 	              }
-	
+
 	              if (upCenter < this.values.length - 1) {
 	                var upLowerNeighbor = upCenter - 1;
 	                var upUpperNeighbor = upCenter + 1 < this.values.length ? upCenter + 1 : this.values.length - 1;
@@ -6815,18 +6816,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	              }
 	            }
 	          }
-	
+
 	          this.previousSlider = this.selectedSlider;
-	
+
 	          this.emit("change", this.values);
 	          this.render();
 	        }
 	      }
 	    },
 	    scan: {
-	
+
 	      // would be a cool API call to have for later...
-	
+
 	      value: function scan() {}
 	    },
 	    update: {
@@ -6839,24 +6840,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    numberOfSliders: {
-	
+
 	      /**
 	      Get the number of sliders
 	      @type {Number}
 	      */
-	
+
 	      get: function () {
 	        return this.values.length;
 	      }
 	    },
 	    min: {
-	
+
 	      /**
 	      Lower limit of the multislider's output range
 	      @type {number}
 	      @example multislider.min = 1000;
 	      */
-	
+
 	      get: function () {
 	        return this._min;
 	      },
@@ -6867,13 +6868,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    max: {
-	
+
 	      /**
 	      Upper limit of the multislider's output range
 	      @type {number}
 	      @example multislider.max = 1000;
 	      */
-	
+
 	      get: function () {
 	        return this._max;
 	      },
@@ -6884,13 +6885,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    step: {
-	
+
 	      /**
 	      The increment that the multislider's value changes by.
 	      @type {number}
 	      @example multislider.step = 5;
 	      */
-	
+
 	      get: function () {
 	        return this._step;
 	      },
@@ -6901,7 +6902,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    setSlider: {
-	
+
 	      /**
 	      Set the value of an individual slider
 	      @param index {number} Slider index
@@ -6910,7 +6911,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      // Set the first slider to value 0.5
 	      multislider.setSlider(0,0.5)
 	      */
-	
+
 	      value: function setSlider(index, value) {
 	        this.values[index] = this.adjustValueToStep(value);
 	        this.values[index] = math.clip(this.values[index], this._min, this._max);
@@ -6921,14 +6922,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    setAllSliders: {
-	
+
 	      /**
 	      Set the value of all sliders at once. If the size of the input array does not match the current number of sliders, the value array will repeat until all sliders have been set. I.e. an input array of length 1 will set all sliders to that value.
 	      @param values {Array} All slider values
 	      @example
 	      multislider.setAllSliders([0.2,0.3,0.4,0.5,0.6])
 	      */
-	
+
 	      value: function setAllSliders(values) {
 	        var previousLength = this.values.length;
 	        var newLength = values.length;
@@ -6943,10 +6944,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Multislider;
 	})(Interface);
-	
+
 	module.exports = Multislider;
 
 /***/ }),
@@ -6954,24 +6955,24 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { "default": obj }; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var svg = __webpack_require__(4);
 	var math = __webpack_require__(5);
 	var Interface = __webpack_require__(6);
 	var Step = __webpack_require__(11);
-	
+
 	var Interaction = _interopRequireWildcard(__webpack_require__(12));
-	
+
 	/**
 	* Pan
 	*
@@ -6994,13 +6995,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	*
 	*
 	*/
-	
+
 	var Pan = (function (_Interface) {
 	  function Pan() {
 	    _classCallCheck(this, Pan);
-	
+
 	    var options = ["scale", "value"];
-	
+
 	    var defaults = {
 	      size: [120, 20],
 	      orientation: "horizontal",
@@ -7010,57 +7011,57 @@ return /******/ (function(modules) { // webpackBootstrap
 	      value: 0,
 	      hasKnob: true
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Pan.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.orientation = this.settings.orientation;
-	
+
 	    this.mode = this.settings.mode;
-	
+
 	    this.hasKnob = this.settings.hasKnob;
-	
+
 	    // this.step should eventually be get/set
 	    // updating it will update the _value step model
 	    this.step = this.settings.step; // float
-	
+
 	    this._value = new Step(this.settings.scale[0], this.settings.scale[1], this.settings.step, this.settings.value);
-	
+
 	    this.init();
-	
+
 	    this.position = new Interaction.Handle(this.mode, this.orientation, [0, this.width], [this.height, 0]);
 	    this.position.value = this._value.normalized;
-	
+
 	    this.value = this._value.value;
-	
+
 	    this.emit("change", this.value);
 	  }
-	
+
 	  _inherits(Pan, _Interface);
-	
+
 	  _createClass(Pan, {
 	    buildInterface: {
 	      value: function buildInterface() {
-	
+
 	        this.bar = svg.create("rect");
 	        this.knob = svg.create("circle");
-	
+
 	        this.element.appendChild(this.bar);
 	        this.element.appendChild(this.knob);
 	      }
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        if (this.position) {
 	          this.position.resize([0, this.width], [this.height, 0]);
 	        }
-	
+
 	        if (this.width < this.height) {
 	          this.orientation = "vertical";
 	        } else {
 	          this.orientation = "horizontal";
 	        }
-	
+
 	        var x = undefined,
 	            y = undefined,
 	            w = undefined,
@@ -7071,7 +7072,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          level: 0,
 	          r: 0
 	        };
-	
+
 	        if (this.orientation === "vertical") {
 	          this.thickness = this.width / 2;
 	          x = this.width / 2;
@@ -7093,7 +7094,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          barOffset = "translate(0," + this.thickness * -1 / 2 + ")";
 	          cornerRadius = h / 2;
 	        }
-	
+
 	        this.bar.setAttribute("x", x);
 	        this.bar.setAttribute("y", y);
 	        this.bar.setAttribute("transform", barOffset);
@@ -7101,7 +7102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.bar.setAttribute("ry", cornerRadius);
 	        this.bar.setAttribute("width", w);
 	        this.bar.setAttribute("height", h);
-	
+
 	        if (this.orientation === "vertical") {
 	          this.knob.setAttribute("cx", x);
 	          this.knob.setAttribute("cy", this.knobData.level);
@@ -7114,10 +7115,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    colorInterface: {
 	      value: function colorInterface() {
-	
+
 	        this.bar.setAttribute("fill", this.colors.fill);
 	        this.knob.setAttribute("fill", this.colors.accent);
-	
+
 	        if (!this.hasKnob) {
 	          this.knob.setAttribute("fill", "transparent");
 	        }
@@ -7129,7 +7130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.75;
 	        }
 	        this.knob.setAttribute("r", this.knobData.r);
-	
+
 	        if (this.orientation === "vertical") {
 	          this.knobData.level = this.knobData.r + this._value.normalized * (this.height - this.knobData.r * 2);
 	          this.knob.setAttribute("cy", this.height - this.knobData.level);
@@ -7150,9 +7151,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      value: function move() {
 	        if (this.clicked) {
 	          this.position.update(this.mouse);
-	
+
 	          this.value = this._value.updateNormal(this.position.value);
-	
+
 	          this.emit("change", {
 	            value: this.value,
 	            L: Math.pow(math.scale(this.value, -1, 1, 1, 0), 2),
@@ -7167,12 +7168,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    value: {
-	
+
 	      /**
 	      The position of crossfader, from -1 (left) to 1 (right). Setting this value updates the interface and triggers the output event.
 	      @type {number}
 	      */
-	
+
 	      get: function () {
 	        return this._value.value;
 	      },
@@ -7193,10 +7194,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Pan;
 	})(Interface);
-	
+
 	module.exports = Pan;
 
 /***/ }),
@@ -7204,67 +7205,67 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var math = __webpack_require__(5);
 	var svg = __webpack_require__(4);
 	var Interface = __webpack_require__(6);
-	
+
 	var Point = function Point(point, envelope) {
-	
+
 	  this.x = point.x;
 	  this.y = point.y;
-	
+
 	  this.xMin = point.xMin || 0;
 	  this.xMax = point.xMax || 1;
 	  this.yMin = point.yMin || 0;
 	  this.yMax = point.yMax || 1;
-	
+
 	  this.envelope = envelope;
-	
+
 	  this.element = svg.create("circle");
 	  this.element.setAttribute("fill", this.envelope.colors.accent);
-	
+
 	  this.envelope.element.appendChild(this.element);
-	
+
 	  this.resize = function () {
 	    var r = ~ ~(Math.min(this.envelope.width, this.envelope.height) / 50) + 2;
 	    this.element.setAttribute("r", r);
 	  };
-	
+
 	  this.move = function (x, y) {
-	
+
 	    this.x = x || x === 0 ? x : this.x;
 	    this.y = y || y === 0 ? y : this.y;
-	
+
 	    if (this.envelope.nodes.indexOf(this) >= 0) {
-	
+
 	      var prevIndex = this.envelope.nodes.indexOf(this) - 1;
 	      var nextIndex = this.envelope.nodes.indexOf(this) + 1;
-	
+
 	      var prevNode = this.envelope.nodes[prevIndex];
 	      var nextNode = this.envelope.nodes[nextIndex];
-	
+
 	      var lowX = prevIndex >= 0 ? prevNode.x : 0;
 	      lowX = lowX < this.xMin ? this.xMin : lowX;
-	
+
 	      var highX = nextIndex < this.envelope.nodes.length ? nextNode.x : 1;
 	      highX = highX > this.xMax ? this.xMax : highX;
-	
+
 	      if (this.x < lowX) {
 	        this.x = lowX;
 	      }
 	      if (this.x > highX) {
 	        this.x = highX;
 	      }
-	
+
 	      if (this.y < this.yMin) {
 	        this.y = this.yMin;
 	      }
@@ -7272,28 +7273,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.y = this.yMax;
 	      }
 	    }
-	
+
 	    this.location = this.getCoordinates();
 	    this.element.setAttribute("cx", this.location.x);
 	    this.element.setAttribute("cy", this.location.y);
 	  };
-	
+
 	  this.getCoordinates = function () {
 	    return {
 	      x: this.x * this.envelope.width,
 	      y: (1 - this.y) * this.envelope.height
 	    };
 	  };
-	
+
 	  this.move(this.x, this.y, true);
 	  this.resize();
-	
+
 	  this.destroy = function () {
 	    this.envelope.element.removeChild(this.element);
 	    this.envelope.nodes.splice(this.envelope.nodes.indexOf(this), 1);
 	  };
 	};
-	
+
 	/**
 	* Envelope
 	*
@@ -7339,13 +7340,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	* })
 	*
 	*/
-	
+
 	var Envelope = (function (_Interface) {
 	  function Envelope() {
 	    _classCallCheck(this, Envelope);
-	
+
 	    var options = ["value"];
-	
+
 	    var defaults = {
 	      size: [300, 150],
 	      noNewPoints: false,
@@ -7363,59 +7364,59 @@ return /******/ (function(modules) { // webpackBootstrap
 	        y: 0.4
 	      }]
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Envelope.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.points = this.settings.points;
-	
+
 	    this.nodes = [];
-	
+
 	    this.selected = false;
-	
+
 	    this.init();
 	  }
-	
+
 	  _inherits(Envelope, _Interface);
-	
+
 	  _createClass(Envelope, {
 	    buildInterface: {
 	      value: function buildInterface() {
 	        var _this = this;
-	
+
 	        this.points.forEach(function (point) {
 	          var node = new Point(point, _this);
 	          _this.nodes.push(node);
 	        });
-	
+
 	        this.sortPoints();
-	
+
 	        this.line = svg.create("polyline");
 	        this.line.setAttribute("stroke-width", 2);
 	        this.line.setAttribute("fill", "none");
-	
+
 	        this.element.appendChild(this.line);
-	
+
 	        this.fill = svg.create("polyline");
 	        this.fill.setAttribute("fill-opacity", "0.2");
-	
+
 	        this.element.appendChild(this.fill);
 	      }
 	    },
 	    sizeInterface: {
 	      value: function sizeInterface() {
-	
+
 	        for (var i = 0; i < this.nodes.length; i++) {
 	          this.nodes[i].resize();
 	          this.nodes[i].move();
 	        }
-	
+
 	        this.render();
 	      }
 	    },
 	    colorInterface: {
 	      value: function colorInterface() {
 	        var _this = this;
-	
+
 	        this.element.style.backgroundColor = this.colors.fill;
 	        this.line.setAttribute("stroke", this.colors.accent);
 	        this.fill.setAttribute("fill", this.colors.accent);
@@ -7433,7 +7434,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    calculatePoints: {
 	      value: function calculatePoints() {
 	        var _this = this;
-	
+
 	        this.points = [];
 	        this.nodes.forEach(function (node) {
 	          _this.points.push({ x: node.x, y: node.y });
@@ -7442,29 +7443,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    calculatePath: {
 	      value: function calculatePath() {
-	
+
 	        //stroke data
 	        var data = "0 " + this.nodes[0].location.y + ", ";
-	
+
 	        // data should be re-ordered based on x location.
 	        // whatever function adds a node should add it at the right index
-	
+
 	        this.nodes.forEach(function (node) {
 	          //  let location = node.getCoordinates();
 	          data += node.location.x + " " + node.location.y + ", ";
 	        });
-	
+
 	        //  data += point.x*this.width+' '+ point.y*this.height+', ';
 	        data += this.width + " " + this.nodes[this.nodes.length - 1].location.y;
-	
+
 	        this.line.setAttribute("points", data);
-	
+
 	        // fill data
 	        // add bottom corners
-	
+
 	        data += ", " + this.width + " " + this.height + ", ";
 	        data += "0 " + this.height;
-	
+
 	        this.fill.setAttribute("points", data);
 	      }
 	    },
@@ -7473,10 +7474,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // find nearest node and set this.selected (index)
 	        this.hasMoved = false;
 	        this.selected = this.findNearestNode();
-	
+
 	        this.nodes[this.selected].move(this.mouse.x / this.width, 1 - this.mouse.y / this.height);
 	        this.scaleNode(this.selected);
-	
+
 	        // must do this b/c new node may have been created
 	        this.calculatePoints();
 	        this.emit("change", this.points);
@@ -7488,10 +7489,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.clicked) {
 	          this.mouse.x = math.clip(this.mouse.x, 0, this.width);
 	          this.hasMoved = true;
-	
+
 	          this.nodes[this.selected].move(this.mouse.x / this.width, 1 - this.mouse.y / this.height);
 	          this.scaleNode(this.selected);
-	
+
 	          this.calculatePoints();
 	          this.emit("change", this.points);
 	          this.render();
@@ -7500,15 +7501,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    release: {
 	      value: function release() {
-	
+
 	        if (!this.hasMoved) {
 	          this.nodes[this.selected].destroy();
 	        }
-	
+
 	        this.calculatePoints();
 	        this.emit("change", this.points);
 	        this.render();
-	
+
 	        // reset this.selected
 	        this.selected = null;
 	      }
@@ -7523,10 +7524,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var y = 1 - this.mouse.y / this.height;
 	        var nodes = this.nodes;
 	        for (var i = 0; i < nodes.length; i++) {
-	
+
 	          // calculate the distance from mouse to this node using pythagorean theorem
 	          var distance = Math.sqrt(Math.pow(nodes[i].x - x, 2) + Math.pow(nodes[i].y - y, 2));
-	
+
 	          // if this distance is less than the previous shortest distance, use this index
 	          if (distance < nearestDist) {
 	            nearestDist = distance;
@@ -7534,26 +7535,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	            before = x > nodes[i].x;
 	          }
 	        }
-	
+
 	        // if not very close to any node, create a node
 	        if (!this.settings.noNewPoints && nearestDist > 0.07) {
-	
+
 	          nearestIndex = this.getIndexFromX(this.mouse.x / this.width);
-	
+
 	          this.nodes.splice(nearestIndex, 0, new Point({
 	            x: this.mouse.x / this.width,
 	            y: 1 - this.mouse.y / this.height
 	          }, this));
 	          this.hasMoved = true;
 	        }
-	
+
 	        return nearestIndex;
 	      }
 	    },
 	    getIndexFromX: {
 	      value: function getIndexFromX(x) {
 	        var _this = this;
-	
+
 	        var index = 0;
 	        this.nodes.forEach(function (node, i) {
 	          if (_this.nodes[i].x <= x) {
@@ -7565,19 +7566,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    scaleNode: {
 	      value: function scaleNode(i) {
-	
+
 	        var clippedX = math.clip(this.nodes[i].x, 0, 1);
 	        var clippedY = math.clip(this.nodes[i].y, 0, 1);
-	
+
 	        this.nodes[i].move(clippedX, clippedY);
 	      }
 	    },
 	    sortPoints: {
-	
+
 	      /**
 	      Sort the this.points array from left-most point to right-most point. You should not regularly need to use this, however it may be useful if the points get unordered.
 	      */
-	
+
 	      value: function sortPoints() {
 	        this.nodes.sort(function (a, b) {
 	          return a.x > b.x;
@@ -7585,45 +7586,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    addPoint: {
-	
+
 	      /**
 	      Add a breakpoint on the envelope.
 	      @param x {number} x location of the point, normalized (0-1)
 	      @param y {number} y location of the point, normalized (0-1)
 	      */
-	
+
 	      value: function addPoint(x, y) {
 	        var index = this.nodes.length;
-	
+
 	        this.sortPoints();
-	
+
 	        for (var i = 0; i < this.nodes.length; i++) {
 	          if (x < this.nodes[i].x) {
 	            index = i;
 	            break;
 	          }
 	        }
-	
+
 	        this.nodes.splice(index, 0, new Point({
 	          x: x,
 	          y: y
 	        }, this));
-	
+
 	        this.scaleNode(index);
-	
+
 	        this.calculatePoints();
 	        this.emit("change", this.points);
-	
+
 	        this.render();
 	      }
 	    },
 	    scan: {
-	
+
 	      /**
 	      Find the level at a certain x location on the envelope.
 	      @param x {number} The x location to find the level of, normalized 0-1
 	      */
-	
+
 	      value: function scan(x) {
 	        // find surrounding points
 	        var nextIndex = this.getIndexFromX(x);
@@ -7643,14 +7644,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    movePoint: {
-	
+
 	      /**
 	      Move a breakpoint on the envelope.
 	      @param index {number} The index of the breakpoint to move
 	      @param x {number} New x location, normalized 0-1
 	      @param y {number} New y location, normalized 0-1
 	      */
-	
+
 	      value: function movePoint(index, x, y) {
 	        this.nodes[index].move(x, y);
 	        this.scaleNode(index);
@@ -7660,14 +7661,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    adjustPoint: {
-	
+
 	      /**
 	      Move a breakpoint on the envelope by a certain amount.
 	      @param index {number} The index of the breakpoint to move
 	      @param xOffset {number} X displacement, normalized 0-1
 	      @param yOffset {number} Y displacement, normalized 0-1
 	      */
-	
+
 	      value: function adjustPoint(index, xOffset, yOffset) {
 	        this.nodes[index].move(this.nodes[index].x + xOffset, this.nodes[index].y + yOffset);
 	        this.scaleNode(index);
@@ -7677,12 +7678,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    destroyPoint: {
-	
+
 	      /**
 	      Remove a breakpoint from the envelope.
 	      @param index {number} Index of the breakpoint to remove
 	      */
-	
+
 	      value: function destroyPoint(index) {
 	        this.nodes[index].destroy();
 	        this.calculatePoints();
@@ -7691,15 +7692,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    setPoints: {
-	
+
 	      /**
 	      Remove all existing breakpoints and add an entirely new set of breakpoints.
 	      @param allPoints {array} An array of objects with x/y properties (normalized 0-1). Each object in the array specifices the x/y location of a new breakpoint to be added.
 	      */
-	
+
 	      value: function setPoints(allPoints) {
 	        var _this = this;
-	
+
 	        while (this.nodes.length) {
 	          this.nodes[0].destroy();
 	        }
@@ -7712,10 +7713,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Envelope;
 	})(Interface);
-	
+
 	module.exports = Envelope;
 
 /***/ }),
@@ -7723,21 +7724,21 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var dom = __webpack_require__(7);
 	//let math = require('../util/math');
 	var Interface = __webpack_require__(6);
-	
+
 	var context = __webpack_require__(1).context;
-	
+
 	/**
 	 * Spectrogram
 	 *
@@ -7758,35 +7759,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * No events
 	 *
 	 */
-	
+
 	var Spectrogram = (function (_Interface) {
 	  function Spectrogram() {
 	    _classCallCheck(this, Spectrogram);
-	
+
 	    var options = ["scale", "value"];
-	
+
 	    var defaults = {
 	      size: [300, 150]
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Spectrogram.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.context = context(); // jshint ignore:line
-	
+
 	    this.analyser = this.context.createAnalyser();
 	    this.analyser.fftSize = 2048;
 	    this.bufferLength = this.analyser.frequencyBinCount;
 	    this.dataArray = new Uint8Array(this.bufferLength);
-	
+
 	    this.active = true;
-	
+
 	    this.source = false;
-	
+
 	    this.init();
 	  }
-	
+
 	  _inherits(Spectrogram, _Interface);
-	
+
 	  _createClass(Spectrogram, {
 	    buildFrame: {
 	      value: function buildFrame() {
@@ -7809,43 +7810,43 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.active) {
 	          requestAnimationFrame(this.render.bind(this));
 	        }
-	
+
 	        this.analyser.getByteFrequencyData(this.dataArray);
-	
+
 	        this.canvas.context.fillStyle = this.colors.fill;
 	        this.canvas.context.fillRect(0, 0, this.canvas.element.width, this.canvas.element.height);
-	
+
 	        if (this.source && this.dataArray) {
 	          //console.log(this.dataArray);
-	
+
 	          var barWidth = this.canvas.element.width / this.bufferLength;
 	          var barHeight = undefined;
 	          var x = 0;
-	
+
 	          var definition = this.canvas.element.width / 50;
-	
+
 	          for (var i = 0; i < this.bufferLength; i = i + definition) {
 	            barHeight = Math.max.apply(null, this.dataArray.subarray(i, i + definition));
 	            barHeight /= 255;
 	            barHeight *= this.canvas.element.height;
-	
+
 	            this.canvas.context.fillStyle = this.colors.accent;
 	            this.canvas.context.fillRect(x, this.canvas.element.height - barHeight, barWidth * definition, barHeight);
-	
+
 	            x += barWidth * definition;
 	          }
 	        }
 	      }
 	    },
 	    connect: {
-	
+
 	      /**
 	      Equivalent to "patching in" an audio node to visualize. NOTE: You cannot connect audio nodes across two different audio contexts. NexusUI runs its audio analysis on its own audio context, Nexus.context. If the audio node you are visualizing is created on a different audio context, you will need to tell NexusUI to use that context instead: i.e. Nexus.context = YourAudioContextName. For example, in ToneJS projects, the line would be: Nexus.context = Tone.context . We recommend that you write that line of code only once at the beginning of your project.
 	      @param node {AudioNode} The audio node to visualize
 	      @example Nexus.context = Tone.context // or another audio context you have created
 	      spectrogram.connect( Tone.Master );
 	      */
-	
+
 	      value: function connect(node) {
 	        if (this.source) {
 	          this.disconnect();
@@ -7856,11 +7857,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    disconnect: {
-	
+
 	      /**
 	      Stop visualizing the source node and disconnect it.
 	      */
-	
+
 	      value: function disconnect() {
 	        this.source.disconnect(this.analyser);
 	        this.source = null;
@@ -7878,10 +7879,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Spectrogram;
 	})(Interface);
-	
+
 	module.exports = Spectrogram;
 
 /***/ }),
@@ -7889,21 +7890,21 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var dom = __webpack_require__(7);
 	var math = __webpack_require__(5);
 	var Interface = __webpack_require__(6);
-	
+
 	var context = __webpack_require__(1).context;
-	
+
 	/**
 	 * Meter
 	 *
@@ -7924,27 +7925,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * No events
 	 *
 	 */
-	
+
 	var Meter = (function (_Interface) {
 	  function Meter() {
 	    _classCallCheck(this, Meter);
-	
+
 	    var options = ["scale", "value"];
-	
+
 	    var defaults = {
 	      size: [30, 100]
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Meter.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.context = context(); // jshint ignore:line
-	
+
 	    this.channels = 2;
-	
+
 	    this.splitter = this.context.createChannelSplitter(this.channels);
-	
+
 	    this.analysers = [];
-	
+
 	    for (var i = 0; i < this.channels; i++) {
 	      var analyser = this.context.createAnalyser();
 	      this.splitter.connect(analyser, i);
@@ -7954,7 +7955,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    this.bufferLength = this.analysers[0].frequencyBinCount;
 	    this.dataArray = new Float32Array(this.bufferLength);
-	
+
 	    /*
 	    // add linear gradient
 	    var grd = canvasCtx.createLinearGradient(0, 0, 0, canvas.height);
@@ -7965,20 +7966,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // dark blue
 	    grd.addColorStop(1, '#d18');
 	    canvasCtx.fillStyle = grd; */
-	
+
 	    this.active = true;
-	
+
 	    this.db = -Infinity;
-	
+
 	    this.init();
-	
+
 	    this.meterWidth = this.canvas.element.width / this.channels;
-	
+
 	    this.render();
 	  }
-	
+
 	  _inherits(Meter, _Interface);
-	
+
 	  _createClass(Meter, {
 	    buildFrame: {
 	      value: function buildFrame() {
@@ -8001,46 +8002,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.active) {
 	          requestAnimationFrame(this.render.bind(this));
 	        }
-	
+
 	        this.canvas.context.fillStyle = this.colors.fill;
 	        this.canvas.context.fillRect(0, 0, this.canvas.element.width, this.canvas.element.height);
-	
+
 	        for (var i = 0; i < this.analysers.length; i++) {
 	          if (this.source) {
 	            this.analysers[i].getFloatTimeDomainData(this.dataArray);
-	
+
 	            var rms = 0;
-	
+
 	            for (var _i = 0; _i < this.dataArray.length; _i++) {
 	              rms += this.dataArray[_i] * this.dataArray[_i];
 	            }
-	
+
 	            rms = Math.sqrt(rms / this.dataArray.length);
-	
+
 	            this.db = 20 * Math.log10(rms);
 	          } else if (this.db > -200 && this.db !== -Infinity) {
 	            this.db -= 1;
 	          } else {
 	            this.db = -Infinity;
 	          }
-	
+
 	          //console.log(db)
-	
+
 	          if (this.db > -70) {
 	            var linear = math.normalize(this.db, -70, 5);
 	            var exp = linear * linear;
 	            var y = math.scale(exp, 0, 1, this.element.height, 0);
-	
+
 	            this.canvas.context.fillStyle = this.colors.accent;
 	            this.canvas.context.fillRect(this.meterWidth * i, y, this.meterWidth, this.canvas.element.height - y);
-	
+
 	            //console.log("rendering...")
 	          }
 	        }
 	      }
 	    },
 	    connect: {
-	
+
 	      /**
 	      Equivalent to "patching in" an audio node to visualize. NOTE: You cannot connect audio nodes across two different audio contexts. NexusUI runs its audio analysis on its own audio context, Nexus.context. If the audio node you are visualizing is created on a different audio context, you will need to tell NexusUI to use that context instead: i.e. Nexus.context = YourAudioContextName. For example, in ToneJS projects, the line would be: Nexus.context = Tone.context . We recommend that you write that line of code only once at the beginning of your project.
 	      @param node {AudioNode} The audio node to visualize
@@ -8048,13 +8049,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      @example Nexus.context = Tone.context // or another audio context you have created
 	      meter.connect( Tone.Master, 2 );
 	      */
-	
+
 	      value: function connect(node, channels) {
 	        if (this.source) {
 	          this.disconnect();
 	        }
 	        //this.dummy.disconnect(this.splitter);
-	
+
 	        if (channels) {
 	          this.channels = channels;
 	        } else if (node.channelCount) {
@@ -8063,19 +8064,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.channels = 2;
 	        }
 	        this.meterWidth = this.canvas.element.width / this.channels;
-	
+
 	        this.source = node;
 	        this.source.connect(this.splitter);
-	
+
 	        //  this.render();
 	      }
 	    },
 	    disconnect: {
-	
+
 	      /**
 	      Stop visualizing the source node and disconnect it.
 	      */
-	
+
 	      value: function disconnect() {
 	        this.source.disconnect(this.splitter);
 	        this.source = false;
@@ -8095,10 +8096,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Meter;
 	})(Interface);
-	
+
 	module.exports = Meter;
 
 /***/ }),
@@ -8106,20 +8107,20 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc && desc.writable) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
+
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var dom = __webpack_require__(7);
 	var Interface = __webpack_require__(6);
-	
+
 	var context = __webpack_require__(1).context;
-	
+
 	/**
 	 * Oscilloscope
 	 *
@@ -8140,38 +8141,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * No events
 	 *
 	 */
-	
+
 	var Oscilloscope = (function (_Interface) {
 	  function Oscilloscope() {
 	    _classCallCheck(this, Oscilloscope);
-	
+
 	    var options = ["scale", "value"];
-	
+
 	    var defaults = {
 	      size: [300, 150]
 	    };
-	
+
 	    _get(Object.getPrototypeOf(Oscilloscope.prototype), "constructor", this).call(this, arguments, options, defaults);
-	
+
 	    this.context = context(); // jshint ignore:line
-	
+
 	    this.analyser = this.context.createAnalyser();
 	    this.analyser.fftSize = 2048;
 	    this.bufferLength = this.analyser.frequencyBinCount;
 	    this.dataArray = new Uint8Array(this.bufferLength);
 	    this.analyser.getByteTimeDomainData(this.dataArray);
-	
+
 	    this.active = true;
-	
+
 	    this.source = false;
-	
+
 	    this.init();
-	
+
 	    this.render();
 	  }
-	
+
 	  _inherits(Oscilloscope, _Interface);
-	
+
 	  _createClass(Oscilloscope, {
 	    buildFrame: {
 	      value: function buildFrame() {
@@ -8194,67 +8195,67 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.active) {
 	          requestAnimationFrame(this.render.bind(this));
 	        }
-	
+
 	        this.analyser.getByteTimeDomainData(this.dataArray);
-	
+
 	        this.canvas.context.fillStyle = this.colors.fill;
 	        this.canvas.context.fillRect(0, 0, this.canvas.element.width, this.canvas.element.height);
-	
+
 	        this.canvas.context.lineWidth = ~ ~(this.height / 100 + 2);
 	        this.canvas.context.strokeStyle = this.colors.accent;
-	
+
 	        this.canvas.context.beginPath();
-	
+
 	        if (this.source) {
 	          var sliceWidth = this.canvas.element.width * 1 / this.bufferLength;
 	          var x = 0;
-	
+
 	          for (var i = 0; i < this.bufferLength; i++) {
 	            var v = this.dataArray[i] / 128;
 	            var y = v * this.canvas.element.height / 2;
-	
+
 	            if (i === 0) {
 	              this.canvas.context.moveTo(x, y);
 	            } else {
 	              this.canvas.context.lineTo(x, y);
 	            }
-	
+
 	            x += sliceWidth;
 	          }
 	        } else {
 	          this.canvas.context.moveTo(0, this.canvas.element.height / 2);
 	          this.canvas.context.lineTo(this.canvas.element.width, this.canvas.element.height / 2);
 	        }
-	
+
 	        this.canvas.context.stroke();
 	      }
 	    },
 	    connect: {
-	
+
 	      /**
 	      Equivalent to "patching in" an audio node to visualize. NOTE: You cannot connect audio nodes across two different audio contexts. NexusUI runs its audio analysis on its own audio context, Nexus.context. If the audio node you are visualizing is created on a different audio context, you will need to tell NexusUI to use that context instead: i.e. Nexus.context = YourAudioContextName. For example, in ToneJS projects, the line would be: Nexus.context = Tone.context . We recommend that you write that line of code only once at the beginning of your project.
 	      @param node {AudioNode} The audio node to visualize
 	      @example Nexus.context = Tone.context // or another audio context you have created
 	      oscilloscope.connect( Tone.Master );
 	      */
-	
+
 	      value: function connect(node) {
 	        if (this.source) {
 	          this.disconnect();
 	        }
-	
+
 	        this.source = node;
 	        this.source.connect(this.analyser);
-	
+
 	        this.render();
 	      }
 	    },
 	    disconnect: {
-	
+
 	      /**
 	      Stop visualizing the source node and disconnect it.
 	      */
-	
+
 	      value: function disconnect() {
 	        if (this.source) {
 	          this.source.disconnect(this.analyser);
@@ -8274,10 +8275,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Oscilloscope;
 	})(Interface);
-	
+
 	module.exports = Oscilloscope;
 
 /***/ }),
@@ -8285,25 +8286,25 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-	
+
 	var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { "default": obj }; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	/*
 	Main concept:
 	synth = new Nexus.Rack('elementID');
-	
+
 	Transform all elements inside the div
 	synth.elementID will hold the first slider interface
-	
+
 	2) In future, potentially writing a rack that is re-usable?
 	Could also take JSON
-	
+
 	new Nexus.Rack('#target',{
 	  pre: () => {
 	    create some divs here, or some audio code
@@ -8329,24 +8330,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // some audio init code goes here...
 	  }
 	});
-	
+
 	*/
-	
+
 	var transform = _interopRequireWildcard(__webpack_require__(39));
-	
+
 	var dom = _interopRequire(__webpack_require__(7));
-	
+
 	var colors = __webpack_require__(1).colors;
-	
+
 	var Rack = (function () {
 	  function Rack(target, settings) {
 	    _classCallCheck(this, Rack);
-	
+
 	    this.meta = {};
 	    this.meta.target = target;
 	    this.meta.parent = dom.parseElement(target); // should be a generic function for parsing a 'target' argument that checks for string/DOM/jQUERY
 	    this.meta.colors = {};
-	
+
 	    if (settings) {
 	      this.meta.attribute = settings.attribute || "nexus-ui";
 	      this.meta.title = settings.name || false;
@@ -8356,7 +8357,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.meta.title = false;
 	      this.meta.open = false;
 	    }
-	
+
 	    var defaultColors = colors(); // jshint ignore:line
 	    this.meta.colors.accent = defaultColors.accent;
 	    this.meta.colors.fill = defaultColors.fill;
@@ -8367,26 +8368,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.buildInterface();
 	    this.colorInterface();
 	  }
-	
+
 	  _createClass(Rack, {
 	    buildInterface: {
 	      value: function buildInterface() {
 	        var _this = this;
-	
+
 	        this.meta.parent.style.boxSizing = "border-box";
 	        this.meta.parent.style.userSelect = "none";
 	        this.meta.parent.style.mozUserSelect = "none";
 	        this.meta.parent.style.webkitUserSelect = "none";
-	
+
 	        this.meta.contents = document.createElement("div");
-	
+
 	        while (this.meta.parent.childNodes.length > 0) {
 	          this.meta.contents.appendChild(this.meta.parent.childNodes[0]);
 	        }
-	
+
 	        this.meta.contents.style.padding = "0px";
 	        this.meta.contents.style.boxSizing = "border-box";
-	
+
 	        if (this.meta.title) {
 	          this.meta.titleBar = document.createElement("div");
 	          this.meta.titleBar.innerHTML = this.meta.title;
@@ -8395,7 +8396,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.meta.titleBar.style.color = "#888";
 	          this.meta.titleBar.style.padding = "7px";
 	          this.meta.titleBar.style.fontSize = "12px";
-	
+
 	          this.meta.button = document.createElement("div");
 	          this.meta.button.style.position = "absolute";
 	          this.meta.button.style.top = "5px";
@@ -8404,9 +8405,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.meta.button.style.padding = "0px 5px 2px";
 	          this.meta.button.style.lineHeight = "12px";
 	          this.meta.button.style.fontSize = "15px";
-	
+
 	          this.meta.button.style.cursor = "pointer";
-	
+
 	          this.meta.button.addEventListener("mouseover", function () {
 	            _this.meta.button.style.backgroundColor = _this.meta.colors.mediumDark;
 	          });
@@ -8420,16 +8421,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	              _this.show();
 	            }
 	          });
-	
+
 	          this.meta.titleBar.appendChild(this.meta.button);
-	
+
 	          this.meta.parent.appendChild(this.meta.titleBar);
 	        }
 	        this.meta.parent.appendChild(this.meta.contents);
-	
+
 	        //  var width = this.meta.parent.style.width = getComputedStyle(this.meta.parent).getPropertyValue('width');
 	        //    this.meta.parent.style.width = width;
-	
+
 	        var ui = transform.section(this.meta.target, this.meta.attribute);
 	        for (var key in ui) {
 	          this[key] = ui[key];
@@ -8480,10 +8481,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Rack;
 	})();
-	
+
 	module.exports = Rack;
 
 /***/ }),
@@ -8491,18 +8492,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	"use strict";
-	
+
 	var dom = _interopRequire(__webpack_require__(7));
-	
+
 	var Interfaces = _interopRequire(__webpack_require__(2));
-	
+
 	var createInterfaceID = function (widget, interfaceIDs) {
 	  var type = widget.type;
 	  if (interfaceIDs[type]) {
@@ -8512,7 +8513,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  return type + interfaceIDs[type];
 	};
-	
+
 	var element = function (element, type, options) {
 	  options = options || {};
 	  for (var i = 0; i < element.attributes.length; i++) {
@@ -8528,17 +8529,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  widget.id = element.id;
 	  return widget;
 	};
-	
+
 	var section = function (parent, keyword) {
-	
+
 	  keyword = keyword || "nexus-ui";
-	
+
 	  var interfaceIDs = {};
-	
+
 	  var container = dom.parseElement(parent);
-	
+
 	  var ui = {};
-	
+
 	  var htmlElements = container.getElementsByTagName("*");
 	  var elements = [];
 	  for (var i = 0; i < htmlElements.length; i++) {
@@ -8563,10 +8564,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }
-	
+
 	  return ui;
 	};
-	
+
 	var add = function (type, parent, options) {
 	  var target = document.createElement("div");
 	  options = options || {};
@@ -8583,7 +8584,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  return element(target, type, options);
 	};
-	
+
 	exports.element = element;
 	exports.section = section;
 	exports.add = add;
@@ -8593,47 +8594,47 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	
+
 	var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	var math = _interopRequire(__webpack_require__(5));
-	
+
 	var Tune = (function () {
 	  function Tune() {
 	    _classCallCheck(this, Tune);
-	
+
 	    // the scale as ratios
 	    this.scale = [];
-	
+
 	    // i/o modes
 	    this.mode = {
 	      output: "frequency",
 	      input: "step"
 	    };
-	
+
 	    // ET major
 	    this.etmajor = [261.62558, 293.664764, 329.627563, 349.228241, 391.995422, 440, 493.883301, 523.25116];
-	
+
 	    // Root frequency.
 	    this.root = math.mtof(60); // * Math.pow(2,(60-69)/12);
-	
+
 	    // default is a major scale
 	    this.createScale(0, 2, 4, 5, 7, 9, 11);
 	  }
-	
+
 	  _createClass(Tune, {
 	    note: {
-	
+
 	      /* Return data in the mode you are in (freq, ratio, or midi) */
-	
+
 	      value: function note(input, octave) {
-	
+
 	        var newvalue = undefined;
-	
+
 	        if (this.mode.output === "frequency") {
 	          newvalue = this.frequency(input, octave);
 	        } else if (this.mode.output === "ratio") {
@@ -8643,86 +8644,86 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else {
 	          newvalue = this.frequency(input, octave);
 	        }
-	
+
 	        return newvalue;
 	      }
 	    },
 	    frequency: {
-	
+
 	      /* Return freq data */
-	
+
 	      value: function frequency(stepIn, octaveIn) {
-	
+
 	        if (this.mode.input === "midi" || this.mode.input === "MIDI") {
 	          this.stepIn += 60;
 	        }
-	
+
 	        // what octave is our input
 	        var octave = Math.floor(stepIn / this.scale.length);
-	
+
 	        if (octaveIn) {
 	          octave += octaveIn;
 	        }
-	
+
 	        // which scale degree (0 - scale length) is our input
 	        var scaleDegree = stepIn % this.scale.length;
-	
+
 	        while (scaleDegree < 0) {
 	          scaleDegree += this.scale.length;
 	        }
-	
+
 	        var ratio = this.scale[scaleDegree];
-	
+
 	        var freq = this.root * ratio;
-	
+
 	        freq = freq * Math.pow(2, octave);
-	
+
 	        // truncate irrational numbers
 	        freq = Math.floor(freq * 100000000000) / 100000000000;
-	
+
 	        return freq;
 	      }
 	    },
 	    ratio: {
-	
+
 	      /* Force return ratio data */
-	
+
 	      value: function ratio(stepIn, octaveIn) {
-	
+
 	        if (this.mode.input === "midi" || this.mode.input === "MIDI") {
 	          this.stepIn += 60;
 	        }
-	
+
 	        // what octave is our input
 	        var octave = Math.floor(stepIn / this.scale.length);
-	
+
 	        if (octaveIn) {
 	          octave += octaveIn;
 	        }
-	
+
 	        // which scale degree (0 - scale length) is our input
 	        var scaleDegree = stepIn % this.scale.length;
-	
+
 	        // what ratio is our input to our key
 	        var ratio = Math.pow(2, octave) * this.scale[scaleDegree];
-	
+
 	        ratio = Math.floor(ratio * 100000000000) / 100000000000;
-	
+
 	        return ratio;
 	      }
 	    },
 	    MIDI: {
-	
+
 	      /* Force return adjusted MIDI data */
-	
+
 	      value: function MIDI(stepIn, octaveIn) {
-	
+
 	        var newvalue = this.frequency(stepIn, octaveIn);
-	
+
 	        var n = 69 + 12 * Math.log(newvalue / 440) / Math.log(2);
-	
+
 	        n = Math.floor(n * 1000000000) / 1000000000;
-	
+
 	        return n;
 	      }
 	    },
@@ -8752,21 +8753,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    loadScale: {
-	
+
 	      /* Load a new scale */
-	
+
 	      value: function loadScale(name) {
-	
+
 	        /* load the scale */
 	        var freqs = this.scales[name].frequencies;
 	        this.loadScaleFromFrequencies(freqs);
 	      }
 	    },
 	    search: {
-	
+
 	      /* Search the names of tunings
 	      	 Returns an array of names of tunings */
-	
+
 	      value: function search(letters) {
 	        var possible = [];
 	        for (var key in this.scales) {
@@ -8778,9 +8779,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    chord: {
-	
+
 	      /* Return a collection of notes as an array */
-	
+
 	      value: function chord(midis) {
 	        var output = [];
 	        for (var i = 0; i < midis.length; i++) {
@@ -8790,10 +8791,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  });
-	
+
 	  return Tune;
 	})();
-	
+
 	module.exports = Tune;
 
 /***/ }),
@@ -8801,45 +8802,45 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports) {
 
 	"use strict";
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-	
+
 	//Disable jshint warning concerning trailing regular params
 	/*jshint -W138 */
-	
+
 	var Radio = (function () {
 	    //if non-existent buttons are switched, they are ignored
-	
+
 	    function Radio() {
 	        for (var _len = arguments.length, onVals = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	            onVals[_key - 1] = arguments[_key];
 	        }
-	
+
 	        var length = arguments[0] === undefined ? 3 : arguments[0];
-	
+
 	        _classCallCheck(this, Radio);
-	
+
 	        //each optional 'onVals' argument switches on that value in the Radio if it exists
 	        //In the example below, a 3-button radio is created, index 0 is switched on, index 1 is switched on then then attempted again producing an warning, and the final argument produces a warning because the index value does not exist.
 	        //Example:
 	        //`  radio = new Radio(3, 0, 1, 1, 3);
 	        //…  [1,1,0]
-	
+
 	        if (length < 0) {
 	            length = 1;
 	        }
-	
+
 	        this.length = length;
 	        this.onVals = onVals;
 	        this.array = new Array(length).fill(0);
-	
+
 	        if (onVals.length > 0) {
 	            this.on.apply(this, onVals);
 	        }
 	    }
-	
+
 	    _createClass(Radio, {
 	        select: {
 	            value: function select(value) {
@@ -8853,7 +8854,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                for (var _len = arguments.length, values = Array(_len), _key = 0; _key < _len; _key++) {
 	                    values[_key] = arguments[_key];
 	                }
-	
+
 	                //flips the specified values. if no value is specified, flips all buttons
 	                var a = this.array;
 	                if (values.length > 0) {
@@ -8877,7 +8878,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                for (var _len = arguments.length, values = Array(_len), _key = 0; _key < _len; _key++) {
 	                    values[_key] = arguments[_key];
 	                }
-	
+
 	                //switch on the specified values. if no value specified, flips on all buttons
 	                var a = this.array;
 	                if (values.length > 0) {
@@ -8902,7 +8903,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                for (var _len = arguments.length, values = Array(_len), _key = 0; _key < _len; _key++) {
 	                    values[_key] = arguments[_key];
 	                }
-	
+
 	                //switch off the specified values. if no value specified, flips off all buttons
 	                var a = this.array;
 	                if (values.length > 0) {
@@ -8916,10 +8917,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	    });
-	
+
 	    return Radio;
 	})();
-	
+
 	module.exports = Radio;
 
 /***/ }),
@@ -8927,7 +8928,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	var WAAClock = __webpack_require__(43)
-	
+
 	module.exports = WAAClock
 	if (typeof window !== 'undefined') window.WAAClock = WAAClock
 
@@ -8937,35 +8938,35 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var isBrowser = (typeof window !== 'undefined')
-	
+
 	var CLOCK_DEFAULTS = {
 	  toleranceLate: 0.10,
 	  toleranceEarly: 0.001
 	}
-	
+
 	// ==================== Event ==================== //
 	var Event = function(clock, deadline, func) {
 	  this.clock = clock
 	  this.func = func
 	  this._cleared = false // Flag used to clear an event inside callback
-	
+
 	  this.toleranceLate = clock.toleranceLate
 	  this.toleranceEarly = clock.toleranceEarly
 	  this._latestTime = null
 	  this._earliestTime = null
 	  this.deadline = null
 	  this.repeatTime = null
-	
+
 	  this.schedule(deadline)
 	}
-	
+
 	// Unschedules the event
 	Event.prototype.clear = function() {
 	  this.clock._removeEvent(this)
 	  this._cleared = true
 	  return this
 	}
-	
+
 	// Sets the event to repeat every `time` seconds.
 	Event.prototype.repeat = function(time) {
 	  if (time === 0)
@@ -8975,7 +8976,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.schedule(this.deadline + this.repeatTime)
 	  return this
 	}
-	
+
 	// Sets the time tolerance of the event.
 	// The event will be executed in the interval `[deadline - early, deadline + late]`
 	// If the clock fails to execute the event in time, the event will be dropped.
@@ -8991,10 +8992,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  return this
 	}
-	
+
 	// Returns true if the event is repeated, false otherwise
 	Event.prototype.isRepeated = function() { return this.repeatTime !== null }
-	
+
 	// Schedules the event to be ran before `deadline`.
 	// If the time is within the event tolerance, we handle the event immediately.
 	// If the event was already scheduled at a different time, it is rescheduled.
@@ -9002,21 +9003,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this._cleared = false
 	  this.deadline = deadline
 	  this._refreshEarlyLateDates()
-	
+
 	  if (this.clock.context.currentTime >= this._earliestTime) {
 	    this._execute()
-	  
+
 	  } else if (this.clock._hasEvent(this)) {
 	    this.clock._removeEvent(this)
 	    this.clock._insertEvent(this)
-	  
+
 	  } else this.clock._insertEvent(this)
 	}
-	
+
 	Event.prototype.timeStretch = function(tRef, ratio) {
 	  if (this.isRepeated())
 	    this.repeatTime = this.repeatTime * ratio
-	
+
 	  var deadline = tRef + ratio * (this.deadline - tRef)
 	  // If the deadline is too close or past, and the event has a repeat,
 	  // we calculate the next repeat possible in the stretched space.
@@ -9026,12 +9027,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  this.schedule(deadline)
 	}
-	
+
 	// Executes the event
 	Event.prototype._execute = function() {
 	  if (this.clock._started === false) return
 	  this.clock._removeEvent(this)
-	
+
 	  if (this.clock.context.currentTime < this._latestTime)
 	    this.func(this)
 	  else {
@@ -9041,15 +9042,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // In the case `schedule` is called inside `func`, we need to avoid
 	  // overrwriting with yet another `schedule`.
 	  if (!this.clock._hasEvent(this) && this.isRepeated() && !this._cleared)
-	    this.schedule(this.deadline + this.repeatTime) 
+	    this.schedule(this.deadline + this.repeatTime)
 	}
-	
+
 	// Updates cached times
 	Event.prototype._refreshEarlyLateDates = function() {
 	  this._latestTime = this.deadline + this.toleranceLate
 	  this._earliestTime = this.deadline - this.toleranceEarly
 	}
-	
+
 	// ==================== WAAClock ==================== //
 	var WAAClock = module.exports = function(context, opts) {
 	  var self = this
@@ -9061,32 +9062,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this._events = []
 	  this._started = false
 	}
-	
+
 	// ---------- Public API ---------- //
 	// Schedules `func` to run after `delay` seconds.
 	WAAClock.prototype.setTimeout = function(func, delay) {
 	  return this._createEvent(func, this._absTime(delay))
 	}
-	
+
 	// Schedules `func` to run before `deadline`.
 	WAAClock.prototype.callbackAtTime = function(func, deadline) {
 	  return this._createEvent(func, deadline)
 	}
-	
+
 	// Stretches `deadline` and `repeat` of all scheduled `events` by `ratio`, keeping
 	// their relative distance to `tRef`. In fact this is equivalent to changing the tempo.
 	WAAClock.prototype.timeStretch = function(tRef, events, ratio) {
 	  events.forEach(function(event) { event.timeStretch(tRef, ratio) })
 	  return events
 	}
-	
-	// Removes all scheduled events and starts the clock 
+
+	// Removes all scheduled events and starts the clock
 	WAAClock.prototype.start = function() {
 	  if (this._started === false) {
 	    var self = this
 	    this._started = true
 	    this._events = []
-	
+
 	    if (this.tickMethod === 'ScriptProcessorNode') {
 	      var bufferSize = 256
 	      // We have to keep a reference to the node to avoid garbage collection
@@ -9096,56 +9097,56 @@ return /******/ (function(modules) { // webpackBootstrap
 	        process.nextTick(function() { self._tick() })
 	      }
 	    } else if (this.tickMethod === 'manual') null // _tick is called manually
-	
+
 	    else throw new Error('invalid tickMethod ' + this.tickMethod)
 	  }
 	}
-	
+
 	// Stops the clock
 	WAAClock.prototype.stop = function() {
 	  if (this._started === true) {
 	    this._started = false
 	    this._clockNode.disconnect()
-	  }  
+	  }
 	}
-	
+
 	// ---------- Private ---------- //
-	
+
 	// This function is ran periodically, and at each tick it executes
 	// events for which `currentTime` is included in their tolerance interval.
 	WAAClock.prototype._tick = function() {
 	  var event = this._events.shift()
-	
+
 	  while(event && event._earliestTime <= this.context.currentTime) {
 	    event._execute()
 	    event = this._events.shift()
 	  }
-	
+
 	  // Put back the last event
 	  if(event) this._events.unshift(event)
 	}
-	
+
 	// Creates an event and insert it to the list
 	WAAClock.prototype._createEvent = function(func, deadline) {
 	  return new Event(this, deadline, func)
 	}
-	
+
 	// Inserts an event to the list
 	WAAClock.prototype._insertEvent = function(event) {
 	  this._events.splice(this._indexByTime(event._earliestTime), 0, event)
 	}
-	
+
 	// Removes an event from the list
 	WAAClock.prototype._removeEvent = function(event) {
 	  var ind = this._events.indexOf(event)
 	  if (ind !== -1) this._events.splice(ind, 1)
 	}
-	
+
 	// Returns true if `event` is in queue, false otherwise
 	WAAClock.prototype._hasEvent = function(event) {
 	 return this._events.indexOf(event) !== -1
 	}
-	
+
 	// Returns the index of the first event whose deadline is >= to `deadline`
 	WAAClock.prototype._indexByTime = function(deadline) {
 	  // performs a binary search
@@ -9160,13 +9161,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  return low
 	}
-	
+
 	// Converts from relative time to absolute time
 	WAAClock.prototype._absTime = function(relTime) {
 	  return relTime + this.context.currentTime
 	}
-	
-	// Converts from absolute time to relative time 
+
+	// Converts from absolute time to relative time
 	WAAClock.prototype._relTime = function(absTime) {
 	  return absTime - this.context.currentTime
 	}
@@ -9178,15 +9179,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// shim for using process in browser
 	var process = module.exports = {};
-	
+
 	// cached from whatever global is present so that test runners that stub it
 	// don't break things.  But we need to wrap it in a try catch in case it is
 	// wrapped in strict mode code which doesn't define any globals.  It's inside a
 	// function because try/catches deoptimize in certain engines.
-	
+
 	var cachedSetTimeout;
 	var cachedClearTimeout;
-	
+
 	function defaultSetTimout() {
 	    throw new Error('setTimeout has not been defined');
 	}
@@ -9235,8 +9236,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return cachedSetTimeout.call(this, fun, 0);
 	        }
 	    }
-	
-	
+
+
 	}
 	function runClearTimeout(marker) {
 	    if (cachedClearTimeout === clearTimeout) {
@@ -9261,15 +9262,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return cachedClearTimeout.call(this, marker);
 	        }
 	    }
-	
-	
-	
+
+
+
 	}
 	var queue = [];
 	var draining = false;
 	var currentQueue;
 	var queueIndex = -1;
-	
+
 	function cleanUpNextTick() {
 	    if (!draining || !currentQueue) {
 	        return;
@@ -9284,14 +9285,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        drainQueue();
 	    }
 	}
-	
+
 	function drainQueue() {
 	    if (draining) {
 	        return;
 	    }
 	    var timeout = runTimeout(cleanUpNextTick);
 	    draining = true;
-	
+
 	    var len = queue.length;
 	    while(len) {
 	        currentQueue = queue;
@@ -9308,7 +9309,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    draining = false;
 	    runClearTimeout(timeout);
 	}
-	
+
 	process.nextTick = function (fun) {
 	    var args = new Array(arguments.length - 1);
 	    if (arguments.length > 1) {
@@ -9321,7 +9322,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        runTimeout(drainQueue);
 	    }
 	};
-	
+
 	// v8 likes predictible objects
 	function Item(fun, array) {
 	    this.fun = fun;
@@ -9336,9 +9337,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	process.argv = [];
 	process.version = ''; // empty string to avoid regexp issues
 	process.versions = {};
-	
+
 	function noop() {}
-	
+
 	process.on = noop;
 	process.addListener = noop;
 	process.once = noop;
@@ -9348,13 +9349,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	process.emit = noop;
 	process.prependListener = noop;
 	process.prependOnceListener = noop;
-	
+
 	process.listeners = function (name) { return [] }
-	
+
 	process.binding = function (name) {
 	    throw new Error('process.binding is not supported');
 	};
-	
+
 	process.cwd = function () { return '/' };
 	process.chdir = function (dir) {
 	    throw new Error('process.chdir is not supported');

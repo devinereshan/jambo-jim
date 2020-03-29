@@ -74,7 +74,7 @@ function createSequencer() {
     });
     sequencer.colorize('accent', "#f0f");
     sequencer.colorize('fill', "#000");
-    sequencer.colorize('mediumLight', "#0ff");
+    // sequencer.colorize('mediumLight', "#0ff");
 
     return sequencer;
 }
