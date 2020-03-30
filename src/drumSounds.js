@@ -57,10 +57,12 @@ export class Sound {
         this.duration = '16n';
         this.time = '+0.001';
 
-        this.velocity = soundDefaults[type].velocity;
+
         if (initialSettings) {
-            this.defaults = initialSettings;
+            this.velocity = initialSettings.velocity;
+            this.defaults = initialSettings.defaults;
         } else {
+            this.velocity = soundDefaults[type].velocity;
             this.defaults = soundDefaults[type].defaults;
         }
 

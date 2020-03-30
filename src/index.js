@@ -33,12 +33,12 @@ function init() {
     const hihat = new Sound('hihat');
     const hihatTwo = new Sound('hihat',
         {
-            velocity: 0.7,
+            velocity: 0.3,
             defaults: {
                 frequency : 1500 ,
                 envelope : {
-                    attack : 0.001 ,
-                    decay : 0.2 ,
+                    attack : 0 ,
+                    decay : 0.1 ,
                     release : 0.1
                 } ,
                 harmonicity : 3 ,
@@ -336,9 +336,9 @@ function createAndConnectPadControls(synths) {
 
     const hihatTwoControls = [
         createNexusSlider('hihat-two-attack', 0.001, 0.5, 0.001, 0.001),
-        createNexusSlider('hihat-two-decay', 0.1, 1.5, 0.1, 0.2),
+        createNexusSlider('hihat-two-decay', 0.1, 1.5, 0.1, 0.1),
         createNexusSlider('hihat-two-release', 0.1, 1.5, 0.1, 0.1),
-        createNexusSlider('hihat-two-velocity', 0, 1, 0.1, 0.7)
+        createNexusSlider('hihat-two-velocity', 0, 1, 0.1, 0.3)
     ]
 
 
