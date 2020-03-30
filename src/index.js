@@ -58,7 +58,7 @@ function init() {
 
     const synthNames = ['kick', 'snare', 'hihatOne', 'hihatTwo'];
 
-    createPads();
+    createPads(synths);
 
     createControlContainers();
 
@@ -145,11 +145,36 @@ function createSequencerControls() {
 }
 
 
-function createPads() {
+function createPads(synths) {
     const kickPad = createPad('#kick-pad', 'Kick');
     const snarePad = createPad('#snare-pad', 'Snare');
     const hihatOnePad = createPad('#hihat-one-pad', 'HH 1');
     const hihatTwoPad = createPad('#hihat-two-pad', 'HH 2');
+
+    kickPad.on('change', (v) => {
+        if (v) {
+            synths['kick'].play();
+        }
+    });
+
+    snarePad.on('change', (v) => {
+        if (v) {
+            synths['snare'].play();
+        }
+    });
+
+    hihatOnePad.on('change', (v) => {
+        if (v) {
+            synths['hihatOne'].play();
+        }
+    });
+
+    hihatTwoPad.on('change', (v) => {
+        if (v) {
+            synths['hihatTwo'].play();
+        }
+    });
+
 }
 
 function createPad(id, text) {
