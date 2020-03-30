@@ -447,7 +447,8 @@ class Animator {
 
         let x = 0;
 
-        for (let i = 0; i < this.bufferLength; i += 8) {
+        // Start at 8 because the lowest frequencies are inaudible anyway
+        for (let i = 8; i < this.bufferLength; i += 8) {
 
             // divide by two to leave some headroom, so the visual ceiling isn't as sharp
             barHeight = this.dataArray[i] * heightRatio / 2;
