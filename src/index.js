@@ -3,6 +3,14 @@ import { Sound } from './drumSounds';
 import * as Nexus from './lib/NexusUI';
 import StartAudioContext from 'startaudiocontext';
 
+const black = '#202124';
+const darkGrey = '#3c4042';
+const lightGrey = '#606368';
+const white = '#fafafa';
+const lightPink = '#ffb2ff';
+const pink = '#ea80fc';
+const darkPink = '#b64fc8';
+
 
 window.addEventListener('load', () => {
     const splashScreen = document.getElementById('splash-screen');
@@ -68,13 +76,13 @@ function init() {
 
 function createSequencer() {
     const sequencer = new Nexus.Sequencer('#step-sequencer', {
-        'size': [768, 144],
-        'rows': 3,
+        'size': [768, 192],
+        'rows': 4,
         'columns': 16
     });
-    sequencer.colorize('accent', "#f0f");
-    sequencer.colorize('fill', "#000");
-    // sequencer.colorize('mediumLight', "#0ff");
+
+    sequencer.colorize('accent', pink)
+    sequencer.colorize('fill', darkGrey);
 
     return sequencer;
 }
@@ -82,12 +90,15 @@ function createSequencer() {
 
 function createSequencerControls() {
     const masterVolume = new Nexus.Slider('#master-volume', {
-        'size': [25,100],
+        'size': [25,148],
         'min': -40,
         'max': 0,
         'step': 0.1,
         'value': -10
     });
+
+    masterVolume.colorize('accent', pink);
+    masterVolume.colorize('fill', lightGrey);
 
     masterVolume.on('change', (v) => {
         Tone.Master.volume.value = v;
@@ -101,8 +112,17 @@ function createSequencerControls() {
         'value': 120
     });
 
+    bpmSlider.colorize('accent', pink);
+    bpmSlider.colorize('fill', lightGrey);
+
     const bpmNumber = new Nexus.Number('#bpm-number');
     bpmNumber.link(bpmSlider);
+
+    bpmNumber.colorize('accent', pink);
+    bpmNumber.colorize('fill', lightGrey);
+    bpmNumber.colorize('dark', white);
+
+
 
     bpmSlider.on('change', (v) => {
         Tone.Transport.bpm.value = v;
@@ -112,6 +132,8 @@ function createSequencerControls() {
         'size': [96, 36],
         'alternateText': 'Stop'
     });
+
+    sequencerPlayButton.colorize('accent', pink);
 
     sequencerPlayButton.on('change', (play) => {
         if (play) {
@@ -124,25 +146,23 @@ function createSequencerControls() {
 
 
 function createPads() {
-    const kickPad = new Nexus.TextButton('#kick-pad', {
+    const kickPad = createPad('#kick-pad', 'Kick');
+    const snarePad = createPad('#snare-pad', 'Snare');
+    const hihatOnePad = createPad('#hihat-one-pad', 'HH 1');
+    const hihatTwoPad = createPad('#hihat-two-pad', 'HH 2');
+}
+
+function createPad(id, text) {
+    const pad = new Nexus.TextButton(id, {
         'size': [108,108],
-        'text': 'Kick'
+        'text': text
     });
 
-    const snarePad = new Nexus.TextButton('#snare-pad', {
-        'size': [108,108],
-        'text': 'Snare'
-    });
+    pad.colorize('accent', pink);
+    pad.colorize('fill', darkGrey);
+    pad.colorize('dark', white);
 
-    const hihatClosedPad = new Nexus.TextButton('#hihat-one-pad', {
-        'size': [108,108],
-        'text': 'HH 1'
-    });
-
-    const hihatOpenPad = new Nexus.TextButton('#hihat-two-pad', {
-        'size': [108,108],
-        'text': 'HH 2'
-    });
+    return pad;
 }
 
 
@@ -155,6 +175,11 @@ function createControlContainers() {
 
 
       const padContainers = document.querySelectorAll('.pad-container');
+
+      // Explicitly set border here so style can be checked for tab toggle logic
+      padContainers.forEach((container) => {
+          container.style.border = 'none';
+      })
 
       // Tab toggle functionality
       const controlToggles = document.querySelectorAll('.pad-container label');
@@ -175,9 +200,9 @@ function createControlContainers() {
               // highlight the selected pad container and remove highlight from all others
               padContainers.forEach((container) => {
                   if (container === parentContainer) {
-                      container.style.background = container.style.background === 'lightblue' ? 'none' : 'lightblue';
+                      container.style.border = container.style.border === 'none' ? `2px solid ${lightGrey}` : 'none';
                   } else {
-                      container.style.background = 'none';
+                      container.style.border = 'none';
                   }
               });
           });
@@ -207,23 +232,39 @@ function createLoop(sequencer, synths, synthNames) {
 
 
 function createNexusSlider(id, min, max, step, value) {
-    return new Nexus.Slider(id, {
+    const slider = new Nexus.Slider(id, {
         'size': [25,100],
         'min': min,
         'max': max,
         'step': step,
         'value': value
     });
+
+    slider.colorize('accent', pink);
+    slider.colorize('fill', lightGrey);
+
+    return slider;
 }
 
 
 function createNexusSelect(id, options) {
-    return new Nexus.Select(id, {'options': options});
+    const select = new Nexus.Select(id, {'options': options});
+
+    select.colorize('fill', lightGrey);
+    select.colorize('dark', white);
+
+    return select;
 }
 
 
 function createSliderNumber(id) {
-    return new Nexus.Number(id);
+    const number = new Nexus.Number(id);
+
+    number.colorize('accent', pink);
+    number.colorize('fill', lightGrey);
+    number.colorize('dark', white);
+
+    return number;
 }
 
 
@@ -311,4 +352,5 @@ function createAndConnectPadControls(synths) {
     connectControlsToSynths(kickControls, synths);
     connectControlsToSynths(snareControls, synths);
     connectControlsToSynths(hihatOneControls, synths);
+    connectControlsToSynths(hihatTwoControls, synths);
 }
