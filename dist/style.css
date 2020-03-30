@@ -133,6 +133,20 @@ body {
     margin-bottom: 40px;
 }
 
+#beat-markers {
+    display: flex;
+    width: 876px;
+    padding-left: 60px;
+    padding-right: 48px;
+    margin-bottom: 3px;
+    height: 30px;
+}
+
+.beat-marker {
+    border-left: 3px solid var(--light-grey);
+    flex: 1;
+}
+
 #grid-container {
     display: flex;
 }
