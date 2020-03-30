@@ -1,5 +1,5 @@
 import * as Tone from 'tone';
-import { Sound } from './drumSounds';
+import { Sound, KeyboardSound } from './drumSounds';
 import * as Nexus from './lib/NexusUI';
 import StartAudioContext from 'startaudiocontext';
 
@@ -70,22 +70,44 @@ function init() {
 
     createAndConnectPadControls(synths);
 
+    // create keyboard synth
+    const keys = new KeyboardSound();
     // create keyboard
     const keyboard = new Nexus.Piano('#keyboard', {
         'size': [650,150],
         'lowNote': 12,
         'highNote': 36
     });
+
     keyboard.colorize('light', white); // white keys
     keyboard.colorize('dark', darkGrey); // black keys
-    keyboard.colorize('accent', pink); // highlight
+    // keyboard.colorize('accent', pink); // highlight
     keyboard.colorize('mediumLight', lightGrey); // borders
+
+    const keyboardVolume = new Nexus.Slider('#keyboard-volume', {
+        'size': [25,115],
+        'min': -40,
+        'max': 0,
+        'step': 0.1,
+        'value': -10
+    });
 
     // keyboard octave buttons
     const octaveButtons = new Nexus.RadioButton('#octave-radio-buttons', {
         'size': [150, 25],
         'numberOfButtons': 4,
         'active': 0
+    });
+
+    const keyboardNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+    keyboard.on('change', (v) => {
+        console.log(v);
+        let note = keyboardNotes[v.note % 12] + Math.floor(v.note / 12);
+        if (v.state) {
+            keys.start(note)
+        } else {
+            keys.stop(note);
+        }
     });
 
 
@@ -143,8 +165,6 @@ function createSequencerControls() {
     bpmNumber.colorize('accent', pink);
     bpmNumber.colorize('fill', lightGrey);
     bpmNumber.colorize('dark', white);
-
-
 
     bpmSlider.on('change', (v) => {
         Tone.Transport.bpm.value = v;

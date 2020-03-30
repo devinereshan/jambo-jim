@@ -159,7 +159,7 @@
                 <label>HH 2</label>
             </div>
             <div id="step-sequencer"></div>
-            <div id="volume-container">
+            <div class="volume-container">
                 <label>Vol</label>
                 <div id="master-volume"></div>
             </div>
@@ -181,7 +181,7 @@
     <div id="keyboard-container">
         <div id="keyboard-and-volume">
             <div id="keyboard"></div>
-            <div id="volume-container">
+            <div class="volume-container">
                 <label>Vol</label>
                 <div id="keyboard-volume"></div>
             </div>
@@ -189,20 +189,23 @@
         <div id="keyboard-controls">
             <label>C1</label>
             <div id="octave-radio-buttons"></div>
-            <label>Settings</label>
+            <label id="keyboard-settings-toggle">Settings</label>
         </div>
         <div id="keyboard-settings">
             <div class="label-and-control">
-                <div id="kick-attack-number"></div>
-                <div id="kick-attack" class="control-slider" synth="kick" settingtype="attack"></div>
+                <div id="keyboard-attack-number"></div>
+                <div id="keyboard-attack" class="control-slider" synth="keys" settingtype="attack"></div>
                 <label>Attack</label>
             </div>
             <div class="label-and-control">
-                <div id="hihat-two-release-number"></div>
-                <div id="hihat-two-release" class="control-slider" synth="hihatTwo" settingtype="release"></div>
+                <div id="keyboard-release-number"></div>
+                <div id="keyboard-release" class="control-slider" synth="keys" settingtype="release"></div>
                 <label>Release</label>
             </div>
-
+            <div class="label-and-control">
+                <div id="keybaord-wave" class="control-select" synth="keys" settingtype="wave"></div>
+                <label>Wave</label>
+            </div>
         </div>
     </div>
 

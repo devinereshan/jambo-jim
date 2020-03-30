@@ -173,14 +173,14 @@ body {
     width: 60px;
 }
 
-#volume-container {
+.volume-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
 
-#volume-container label {
+.volume-container label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -237,6 +237,43 @@ body {
     display: flex;
     width: 650px;
     justify-content: space-between;
+    margin-right: 48px;
+    padding: 5px;
+}
+
+#keyboard-and-volume .volume-container {
+    height: 150px !important;
+}
+
+#keyboard-settings {
+    width: 650px;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    margin-top: 10px;
+    margin-right: 48px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 2px solid var(--light-grey);
+    border-radius: 5px;
+}
+
+#keyboard-controls label {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#keyboard-settings-toggle {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#keyboard-settings-toggle:hover {
+    color: #cccccc;
+}
+
+#keyboard-settings-toggle:active {
+    color: var(--light-grey);
 }
 
 /* Frequency Bar Graph */

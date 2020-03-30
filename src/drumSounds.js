@@ -1,4 +1,4 @@
-import { MembraneSynth, NoiseSynth, MetalSynth } from 'tone';
+import { MembraneSynth, NoiseSynth, MetalSynth, Synth, Volume, Master } from 'tone';
 
 const soundDefaults = {
     kick: {
@@ -112,5 +112,42 @@ export class Sound {
                 this.note = value;
                 break;
         }
+    }
+}
+
+
+export class KeyboardSound {
+    constructor() {
+
+        this.octave = 1;
+
+        this.defaults = {
+            oscillator : {
+                type : 'triangle'
+            } ,
+            envelope : {
+                attack : 0.1 ,
+                decay : 0.1 ,
+                sustain : 1 ,
+                release : 1
+            }
+        }
+
+        this.volume = new Volume(0.7);
+        this.synth = new Synth(this.defaults);
+        this.synth.chain(this.volume, Master);
+
+        this.activeNotes = {
+
+        }
+    }
+
+    start(note) {
+        console.log(note);
+        this.synth.triggerAttack(note);
+    }
+
+    stop(note) {
+        this.synth.triggerRelease();
     }
 }
