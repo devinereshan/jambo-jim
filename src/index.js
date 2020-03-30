@@ -72,8 +72,8 @@ function init() {
 
     loop.start();
 
-    createFrequencyBarGraph();
-    draw();
+    const frequencyAnimator = new Animator();
+    frequencyAnimator.draw();
 }
 
 
@@ -383,67 +383,64 @@ function createAndConnectPadControls(synths) {
     connectControlsToSynths(hihatTwoControls, synths);
 }
 
-let analyser;
-let bufferLength;
-let dataArray;
-let canvas;
-let canvasCtx;
-let dpi;
 
-function createFrequencyBarGraph() {
-    analyser = Tone.context.createAnalyser();
-    Tone.Master.connect(analyser);
-    bufferLength = analyser.frequencyBinCount;
-    console.log(bufferLength);
-    dataArray = new Uint8Array(bufferLength);
+class Animator {
+    constructor() {
+        this.analyser = Tone.context.createAnalyser();
+        Tone.Master.connect(this.analyser);
 
-    dpi = window.devicePixelRatio;
+        this.bufferLength = this.analyser.frequencyBinCount;
+        this.dataArray = new Uint8Array(this.bufferLength);
 
-    canvas = document.getElementById('frequency-canvas');
-    canvasCtx = canvas.getContext('2d');
-}
+        this.dpi = window.devicePixelRatio;
 
-function fixDpi() {
-    let styleHeight = +getComputedStyle(canvas).getPropertyValue('height').slice(0, -2);
+        this.canvas = document.getElementById('frequency-canvas');
+        this.canvasCtx = this.canvas.getContext('2d');
+        this.draw = this.draw.bind(this);
+    }
 
-    let styleWidth = +getComputedStyle(canvas).getPropertyValue('width').slice(0, -2);
+    fixDpi() {
+        let styleHeight = +getComputedStyle(this.canvas).getPropertyValue('height').slice(0, -2);
 
-    canvas.setAttribute('height', styleHeight * dpi);
-    canvas.setAttribute('width', styleWidth * dpi);
-}
+        let styleWidth = +getComputedStyle(this.canvas).getPropertyValue('width').slice(0, -2);
 
-function draw() {
-    requestAnimationFrame(draw);
+        this.canvas.setAttribute('height', styleHeight * this.dpi);
+        this.canvas.setAttribute('width', styleWidth * this.dpi);
+    }
 
-    analyser.getByteFrequencyData(dataArray);
+    draw() {
+        requestAnimationFrame(this.draw);
 
-    fixDpi();
+        this.analyser.getByteFrequencyData(this.dataArray);
 
-    let heightRatio = canvas.height / 128;
+        this.fixDpi();
 
-    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+        let heightRatio = this.canvas.height / 128;
 
-    // Only render 1/8th of the frequencies returned, so adjust bar width to fill gaps
-    // leave one pixel between each bar
-    let barWidth = (canvas.width / (bufferLength / 8)) - 1;
+        this.canvasCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    let barHeight;
-    let alpha;
+        // Only render 1/8th of the frequencies returned, so adjust bar width to fill gaps
+        // leave one pixel between each bar
+        let barWidth = (this.canvas.width / (this.bufferLength / 8)) - 1;
 
-    let x = 0;
+        let barHeight;
+        let alpha;
 
-    for (let i = 0; i < bufferLength; i += 8) {
+        let x = 0;
 
-        // divide by two to leave some headroom, so the visual ceiling isn't as sharp
-        barHeight = dataArray[i] * heightRatio / 2;
+        for (let i = 0; i < this.bufferLength; i += 8) {
 
-        // calculate alpha value relative to amplitude
-        alpha = (100 + dataArray[i]).toString(16);
+            // divide by two to leave some headroom, so the visual ceiling isn't as sharp
+            barHeight = this.dataArray[i] * heightRatio / 2;
 
-        canvasCtx.fillStyle = `${darkPink}${alpha}`;
-        canvasCtx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+            // calculate alpha value relative to amplitude
+            alpha = (100 + this.dataArray[i]).toString(16);
 
-        x += barWidth + 1;
+            this.canvasCtx.fillStyle = `${darkPink}${alpha}`;
+            this.canvasCtx.fillRect(x, this.canvas.height - barHeight, barWidth, barHeight);
+
+            x += barWidth + 1;
+        }
     }
 }
 
