@@ -71,6 +71,9 @@ function init() {
     createAndConnectPadControls(synths);
 
     loop.start();
+
+    createFrequencyBarGraph();
+    draw();
 }
 
 
@@ -379,3 +382,69 @@ function createAndConnectPadControls(synths) {
     connectControlsToSynths(hihatOneControls, synths);
     connectControlsToSynths(hihatTwoControls, synths);
 }
+
+let analyser;
+let bufferLength;
+let dataArray;
+let canvas;
+let canvasCtx;
+let dpi;
+
+function createFrequencyBarGraph() {
+    analyser = Tone.context.createAnalyser();
+    Tone.Master.connect(analyser);
+    bufferLength = analyser.frequencyBinCount;
+    console.log(bufferLength);
+    dataArray = new Uint8Array(bufferLength);
+
+    dpi = window.devicePixelRatio;
+
+    canvas = document.getElementById('frequency-canvas');
+    canvasCtx = canvas.getContext('2d');
+}
+
+function fixDpi() {
+    let styleHeight = +getComputedStyle(canvas).getPropertyValue('height').slice(0, -2);
+
+    let styleWidth = +getComputedStyle(canvas).getPropertyValue('width').slice(0, -2);
+
+    canvas.setAttribute('height', styleHeight * dpi);
+    canvas.setAttribute('width', styleWidth * dpi);
+}
+
+
+function draw() {
+    requestAnimationFrame(draw);
+
+    analyser.getByteFrequencyData(dataArray);
+
+    fixDpi();
+
+    let heightRatio = canvas.height / 128;
+
+    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Only render 1/8th of the frequencies returned, so adjust bar width to fill gaps
+    // leave one pixel between each bar
+    let barWidth = (canvas.width / (bufferLength / 8)) - 1;
+
+    let barHeight;
+    let alpha;
+
+    let x = 0;
+
+    for (let i = 0; i < bufferLength; i += 8) {
+
+        // divide by two to leave some headroom, so the visual ceiling isn't as sharp
+        barHeight = dataArray[i] * heightRatio / 2;
+
+        // calculate alpha value relative to amplitude
+        alpha = (100 + dataArray[i]).toString(16);
+
+        canvasCtx.fillStyle = `${darkPink}${alpha}`;
+        canvasCtx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+        x += barWidth + 1;
+    }
+}
+
