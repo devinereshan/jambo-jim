@@ -195,46 +195,46 @@ function createPad(id, text) {
 
 
 function createControlContainers() {
-      // Hide all pad settings initially
-      const controlContainers = document.querySelectorAll('.control-container');
-      controlContainers.forEach((container) => {
-          container.style.display = 'none';
-      });
+    // Hide all pad settings initially
+    const controlContainers = document.querySelectorAll('.control-container');
+    controlContainers.forEach((container) => {
+        container.style.display = 'none';
+    });
 
 
-      const padContainers = document.querySelectorAll('.pad-container');
+    const padContainers = document.querySelectorAll('.pad-container');
 
-      // Explicitly set border here so style can be checked for tab toggle logic
-      padContainers.forEach((container) => {
-          container.style.border = 'none';
-      })
+    // Explicitly set border here so style can be checked for tab toggle logic
+    padContainers.forEach((container) => {
+        container.style.border = 'none';
+    })
 
-      // Tab toggle functionality
-      const controlToggles = document.querySelectorAll('.pad-container label');
-      controlToggles.forEach((toggle) => {
-          toggle.addEventListener('click', () => {
-              let controlToToggle = toggle.attributes.controls.value;
-              let parentContainer = toggle.parentElement;
+    // Tab toggle functionality
+    const controlToggles = document.querySelectorAll('.pad-container label');
+    controlToggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            let controlToToggle = toggle.attributes.controls.value;
+            let parentContainer = toggle.parentElement;
 
-              // open the corresponding container and close all others
-              controlContainers.forEach((container) => {
-                  if (container.id === controlToToggle) {
-                      container.style.display = container.style.display === 'none' ? 'flex' : 'none';
-                  } else {
-                      container.style.display = 'none';
-                  }
-              });
+            // open the corresponding container and close all others
+            controlContainers.forEach((container) => {
+                if (container.id === controlToToggle) {
+                    container.style.display = container.style.display === 'none' ? 'flex' : 'none';
+                } else {
+                    container.style.display = 'none';
+                }
+            });
 
-              // highlight the selected pad container and remove highlight from all others
-              padContainers.forEach((container) => {
-                  if (container === parentContainer) {
-                      container.style.border = container.style.border === 'none' ? `2px solid ${lightGrey}` : 'none';
-                  } else {
-                      container.style.border = 'none';
-                  }
-              });
-          });
-      });
+            // highlight the selected pad container and remove highlight from all others
+            padContainers.forEach((container) => {
+                if (container === parentContainer) {
+                    container.style.border = container.style.border === 'none' ? `2px solid ${lightGrey}` : 'none';
+                } else {
+                    container.style.border = 'none';
+                }
+            });
+        });
+    });
 }
 
 
@@ -411,7 +411,6 @@ function fixDpi() {
     canvas.setAttribute('height', styleHeight * dpi);
     canvas.setAttribute('width', styleWidth * dpi);
 }
-
 
 function draw() {
     requestAnimationFrame(draw);
