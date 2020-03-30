@@ -70,6 +70,25 @@ function init() {
 
     createAndConnectPadControls(synths);
 
+    // create keyboard
+    const keyboard = new Nexus.Piano('#keyboard', {
+        'size': [650,150],
+        'lowNote': 12,
+        'highNote': 36
+    });
+    keyboard.colorize('light', white); // white keys
+    keyboard.colorize('dark', darkGrey); // black keys
+    keyboard.colorize('accent', pink); // highlight
+    keyboard.colorize('mediumLight', lightGrey); // borders
+
+    // keyboard octave buttons
+    const octaveButtons = new Nexus.RadioButton('#octave-radio-buttons', {
+        'size': [150, 25],
+        'numberOfButtons': 4,
+        'active': 0
+    });
+
+
     loop.start();
 
     const frequencyAnimator = new Animator();
