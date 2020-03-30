@@ -220,6 +220,10 @@ body {
     margin-bottom: 100px;
 }
 
+#keyboard-and-volume {
+    display: flex;
+}
+
 #keyboard {
     margin-bottom: 10px;
 }
@@ -240,7 +244,7 @@ body {
     position: fixed;
     bottom: 0px;
     width: 100%;
-    min-height: 300px;
+    height: 300px;
     z-index: -1;
 }
 

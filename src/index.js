@@ -440,7 +440,8 @@ class Animator {
 
         // Only render 1/8th of the frequencies returned, so adjust bar width to fill gaps
         // leave one pixel between each bar
-        let barWidth = (this.canvas.width / (this.bufferLength / 8)) - 1;
+        // subtract 8 from bufferLength because we're not rendering the first 8 buffer values
+        let barWidth = (this.canvas.width / ((this.bufferLength - 8) / 8)) - 1;
 
         let barHeight;
         let alpha;
