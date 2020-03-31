@@ -480,7 +480,10 @@ class Animator {
             barHeight = this.dataArray[i] * heightRatio / 2;
 
             // calculate alpha value relative to amplitude
-            alpha = (100 + this.dataArray[i]).toString(16);
+
+            // alpha = (100 + this.dataArray[i]).toString(16);
+            alpha = 100 + this.dataArray[i];
+            alpha = alpha <= 255 ? alpha.toString(16) : "ff";
 
             this.canvasCtx.fillStyle = `${darkPink}${alpha}`;
             this.canvasCtx.fillRect(x, this.canvas.height - barHeight, barWidth, barHeight);

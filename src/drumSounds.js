@@ -150,10 +150,8 @@ export class KeyboardSound {
     }
 
     start(note, octave) {
-        // console.log(octave)
         octave += this.octave;
         note += octave;
-        // console.log(note);
         this.synth.triggerAttack(note);
     }
 
