@@ -100,34 +100,52 @@ function init() {
     const octaveButtons = new Nexus.RadioButton('#octave-radio-buttons', {
         'size': [150, 25],
         'numberOfButtons': 4,
-        'active': 0
+        'active': 1
     });
 
     const keyboardNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     keyboard.on('change', (v) => {
-        console.log(v);
         let note = keyboardNotes[v.note % 12];
         let octave = Math.floor(v.note / 12);
         if (v.state) {
             keys.start(note, octave)
         } else {
-            keys.stop(note, octave);
+            keys.deleteNote(note, octave);
         }
     });
 
-    const compKeyTriggers = ['a', 'w', 's', 'e', 'd', 'f', 't', 'g', 'y', 'h', 'u', 'j', 'k', 'o', 'l', 'p', ';'];
+    const compKeyTriggers = [
+        {letterKey: 'a', isPressed: false},
+        {letterKey: 'w', isPressed: false},
+        {letterKey: 's', isPressed: false},
+        {letterKey: 'e', isPressed: false},
+        {letterKey: 'd', isPressed: false},
+        {letterKey: 'f', isPressed: false},
+        {letterKey: 't', isPressed: false},
+        {letterKey: 'g', isPressed: false},
+        {letterKey: 'y', isPressed: false},
+        {letterKey: 'h', isPressed: false},
+        {letterKey: 'u', isPressed: false},
+        {letterKey: 'j', isPressed: false},
+        {letterKey: 'k', isPressed: false},
+        {letterKey: 'o', isPressed: false},
+        {letterKey: 'l', isPressed: false},
+        {letterKey: 'p', isPressed: false},
+        {letterKey: ';', isPressed: false},
+    ];
 
     compKeyTriggers.forEach((key, index) => {
         window.addEventListener('keydown', (e) => {
-            if (e.key.toLowerCase() === compKeyTriggers[index]) {
+            if (e.key.toLowerCase() === compKeyTriggers[index].letterKey && !compKeyTriggers[index].isPressed) {
                 keyboard.toggleIndex(index, true);
+                compKeyTriggers[index].isPressed = true;
             }
         });
 
         window.addEventListener('keyup', (e) => {
-            if (e.key.toLowerCase() === compKeyTriggers[index]) {
-                console.log(`${e.key.toLowerCase()} up`)
+            if (e.key.toLowerCase() === compKeyTriggers[index].letterKey && compKeyTriggers[index].isPressed) {
                 keyboard.toggleIndex(index, false);
+                compKeyTriggers[index].isPressed = false;
             }
         });
     })

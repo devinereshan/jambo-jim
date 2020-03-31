@@ -122,7 +122,7 @@ export class Sound {
 export class KeyboardSound {
     constructor() {
 
-        this.octave = 1;
+        this.octave = 3;
 
         this.defaults = {
             oscillator : {
@@ -140,9 +140,8 @@ export class KeyboardSound {
         this.synth = new Synth(this.defaults);
         this.synth.connect(this.volume);
 
-        this.activeNotes = {
-
-        }
+        this.activeNoteCount = 0;
+        this.activeNotes = {};
     }
 
     getVolume() {
@@ -153,9 +152,20 @@ export class KeyboardSound {
         octave += this.octave;
         note += octave;
         this.synth.triggerAttack(note);
+        this.activeNotes[this.activeNoteCount] = note;
+        this.activeNoteCount += 1;
     }
 
-    stop(note, octave) {
-        this.synth.triggerRelease();
+    deleteNote(note, octave) {
+        octave += this.octave;
+        note += octave;
+        let isCurrentNote = this.activeNotes[this.activeNoteCount - 1] === note;
+        delete this.activeNotes[note];
+        this.activeNoteCount -= 1;
+        if (this.activeNoteCount === 0) {
+            this.synth.triggerRelease();
+        } else if (isCurrentNote) {
+            this.synth.setNote(this.activeNotes[this.activeNoteCount - 1]);
+        }
     }
 }
