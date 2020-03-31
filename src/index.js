@@ -79,8 +79,8 @@ function init() {
     // create keyboard
     let keyboard = new Nexus.Piano('#keyboard', {
         'size': [650,150],
-        'lowNote': 12,
-        'highNote': 36
+        'lowNote': 0,
+        'highNote': 24
     });
 
     keyboard.colorize('light', white); // white keys
@@ -105,6 +105,7 @@ function init() {
 
     const keyboardNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     keyboard.on('change', (v) => {
+        console.log(v);
         let note = keyboardNotes[v.note % 12];
         let octave = Math.floor(v.note / 12);
         if (v.state) {
@@ -113,6 +114,23 @@ function init() {
             keys.stop(note, octave);
         }
     });
+
+    const compKeyTriggers = ['a', 'w', 's', 'e', 'd', 'f', 't', 'g', 'y', 'h', 'u', 'j', 'k', 'o', 'l', 'p', ';'];
+
+    compKeyTriggers.forEach((key, index) => {
+        window.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === compKeyTriggers[index]) {
+                keyboard.toggleIndex(index, true);
+            }
+        });
+
+        window.addEventListener('keyup', (e) => {
+            if (e.key.toLowerCase() === compKeyTriggers[index]) {
+                console.log(`${e.key.toLowerCase()} up`)
+                keyboard.toggleIndex(index, false);
+            }
+        });
+    })
 
 
 
@@ -480,8 +498,6 @@ class Animator {
             barHeight = this.dataArray[i] * heightRatio / 2;
 
             // calculate alpha value relative to amplitude
-
-            // alpha = (100 + this.dataArray[i]).toString(16);
             alpha = 100 + this.dataArray[i];
             alpha = alpha <= 255 ? alpha.toString(16) : "ff";
 
