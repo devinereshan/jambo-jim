@@ -51,12 +51,13 @@ const soundDefaults = {
 }
 
 export class Sound {
-    constructor(type, initialSettings) {
+    constructor(type, volumeNode, initialSettings) {
         this.type = type;
 
         this.duration = '16n';
         this.time = '+0.001';
 
+        // this.volume = volumeNode;
 
         if (initialSettings) {
             this.velocity = initialSettings.velocity;
@@ -68,12 +69,14 @@ export class Sound {
 
         if (type === 'kick') {
             this.note = soundDefaults.kick.note;
-            this.synth = new MembraneSynth(this.defaults).toMaster();
+            this.synth = new MembraneSynth(this.defaults);
         } else if (type === 'snare') {
-            this.synth = new NoiseSynth(this.defaults).toMaster();
+            this.synth = new NoiseSynth(this.defaults);
         } else if (type === 'hihat') {
-            this.synth = new MetalSynth(this.defaults).toMaster();
+            this.synth = new MetalSynth(this.defaults);
         }
+
+        this.synth.connect(volumeNode);
     }
 
     play() {
@@ -123,7 +126,7 @@ export class KeyboardSound {
 
         this.defaults = {
             oscillator : {
-                type : 'triangle'
+                type : 'square'
             } ,
             envelope : {
                 attack : 0.1 ,
@@ -133,21 +136,28 @@ export class KeyboardSound {
             }
         }
 
-        this.volume = new Volume(0.7);
+        this.volume = new Volume(-30);
         this.synth = new Synth(this.defaults);
-        this.synth.chain(this.volume, Master);
+        this.synth.connect(this.volume);
 
         this.activeNotes = {
 
         }
     }
 
-    start(note) {
-        console.log(note);
+    getVolume() {
+        return this.volume;
+    }
+
+    start(note, octave) {
+        // console.log(octave)
+        octave += this.octave;
+        note += octave;
+        // console.log(note);
         this.synth.triggerAttack(note);
     }
 
-    stop(note) {
+    stop(note, octave) {
         this.synth.triggerRelease();
     }
 }

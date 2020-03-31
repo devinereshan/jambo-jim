@@ -26,12 +26,13 @@ window.addEventListener('load', () => {
 });
 
 function init() {
-    Tone.Master.volume.value = -10;
+    Tone.Master.volume.value = 0;
 
-    const kick = new Sound('kick');
-    const snare = new Sound('snare');
-    const hihat = new Sound('hihat');
-    const hihatTwo = new Sound('hihat',
+    const sequencerVolume = new Tone.Volume(-10).toMaster();
+    const kick = new Sound('kick', sequencerVolume);
+    const snare = new Sound('snare', sequencerVolume);
+    const hihat = new Sound('hihat', sequencerVolume);
+    const hihatTwo = new Sound('hihat', sequencerVolume,
         {
             velocity: 0.3,
             defaults: {
@@ -49,6 +50,7 @@ function init() {
         }
     );
 
+
     const synths = {
         'kick' : kick,
         'snare' : snare,
@@ -64,7 +66,7 @@ function init() {
 
     const sequencer = createSequencer();
 
-    createSequencerControls();
+    createSequencerControls(sequencerVolume);
 
     const loop = createLoop(sequencer, synths, synthNames);
 
@@ -72,8 +74,10 @@ function init() {
 
     // create keyboard synth
     const keys = new KeyboardSound();
+    keys.getVolume().connect(Tone.Master);
+
     // create keyboard
-    const keyboard = new Nexus.Piano('#keyboard', {
+    let keyboard = new Nexus.Piano('#keyboard', {
         'size': [650,150],
         'lowNote': 12,
         'highNote': 36
@@ -101,14 +105,15 @@ function init() {
 
     const keyboardNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     keyboard.on('change', (v) => {
-        console.log(v);
-        let note = keyboardNotes[v.note % 12] + Math.floor(v.note / 12);
+        let note = keyboardNotes[v.note % 12];
+        let octave = Math.floor(v.note / 12);
         if (v.state) {
-            keys.start(note)
+            keys.start(note, octave)
         } else {
-            keys.stop(note);
+            keys.stop(note, octave);
         }
     });
+
 
 
     loop.start();
@@ -132,7 +137,7 @@ function createSequencer() {
 }
 
 
-function createSequencerControls() {
+function createSequencerControls(sequencerVolume) {
     const masterVolume = new Nexus.Slider('#master-volume', {
         'size': [25,148],
         'min': -40,
@@ -145,7 +150,7 @@ function createSequencerControls() {
     masterVolume.colorize('fill', lightGrey);
 
     masterVolume.on('change', (v) => {
-        Tone.Master.volume.value = v;
+        sequencerVolume.volume.value = v;
     });
 
     const bpmSlider = new Nexus.Slider('#bpm-slider', {
