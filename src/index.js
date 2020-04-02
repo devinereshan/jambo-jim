@@ -224,6 +224,14 @@ function createKeyboard() {
     const keyboardOscillatorSelect = new Nexus.Select('keyboard-oscillator-type', {
         options: ['standard', 'am', 'fm', 'fat']
     });
+
+    keyboardWaveSelect.on('change', (v) => {
+        keys.setWave(v.value, keyboardOscillatorSelect.value);
+    });
+
+    keyboardOscillatorSelect.on('change', (v) => {
+        keys.setWave(keyboardWaveSelect.value, v.value);
+    });
 }
 
 function createSequencer() {

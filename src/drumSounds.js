@@ -190,4 +190,12 @@ export class KeyboardSound {
     setPortamento(value) {
         this.synth.portamento = value;
     }
+
+    setWave(wave, oscillatorType) {
+        if (oscillatorType === 'standard') {
+            this.synth.oscillator.type = wave;
+        } else {
+            this.synth.oscillator.type = (oscillatorType + wave);
+        }
+    }
 }
