@@ -102,7 +102,7 @@ function createKeyboard() {
         'min': -60,
         'max': 0,
         'step': 0.1,
-        'value': -10
+        'value': -30
     });
 
     keyboardVolume.on('change', (v) => {
@@ -173,33 +173,48 @@ function createKeyboard() {
 
     const keyboardAttackSlider = new Nexus.Slider('#keyboard-attack', {
         'size': [25,100],
-        'min': 0.1,
+        'min': 0.01,
         'max': 1,
         'step': 0.01,
         'value': 0.1
+    });
+
+    keyboardAttackSlider.on('change', (v) => {
+        keys.setEnvelopeValue('attack', v);
     });
 
 
     const keyboardReleaseSlider = new Nexus.Slider('keyboard-release', {
         'size': [25,100],
-        'min': 0.1,
-        'max': 1,
+        'min': 0.01,
+        'max': 4,
         'step': 0.01,
-        'value': 0.1
+        'value': 1
+    });
+
+    keyboardReleaseSlider.on('change', (v) => {
+        keys.setEnvelopeValue('release', v);
     });
 
 
     const keyboardPortamentoSlider = new Nexus.Slider('keyboard-portamento', {
         'size': [25,100],
-        'min': 0.1,
+        'min': 0.01,
         'max': 1,
         'step': 0.01,
         'value': 0.1
     });
 
+    keyboardPortamentoSlider.on('change', (v) => {
+        keys.setPortamento(v);
+    });
+
     const keyboardAttackNumber = new Nexus.Number('keyboard-attack-number');
+    keyboardAttackNumber.link(keyboardAttackSlider);
     const keyboardReleaseNumber = new Nexus.Number('keyboard-release-number');
+    keyboardReleaseNumber.link(keyboardReleaseSlider);
     const keyboardPortamentoNumber = new Nexus.Number('keyboard-portamento-number');
+    keyboardPortamentoNumber.link(keyboardPortamentoSlider);
 
     const keyboardWaveSelect = new Nexus.Select('keyboard-wave',
     {

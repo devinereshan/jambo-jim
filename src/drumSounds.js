@@ -129,7 +129,7 @@ export class KeyboardSound {
                 type : 'square'
             } ,
             envelope : {
-                attack : 0.1 ,
+                attack : 0.01 ,
                 decay : 0.1 ,
                 sustain : 1 ,
                 release : 1
@@ -139,6 +139,8 @@ export class KeyboardSound {
         this.volume = new Volume(-30);
         this.synth = new Synth(this.defaults);
         this.synth.connect(this.volume);
+
+        this.synth.portamento = 0.1;
 
         this.activeNoteCount = 0;
         this.activeNotes = {};
@@ -183,5 +185,9 @@ export class KeyboardSound {
 
     setEnvelopeValue(type, value) {
         this.synth.envelope[type] = value;
+    }
+
+    setPortamento(value) {
+        this.synth.portamento = value;
     }
 }
