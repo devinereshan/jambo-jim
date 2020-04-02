@@ -1,5 +1,6 @@
 :root {
     --black: #202124;
+    --black-alpha: #20212488;
     --dark-grey: #3c4042;
     --light-grey: #606368;
     --white: #fafafa;
@@ -65,7 +66,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: 'none';
+    background: var(--black-alpha);
 
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -102,6 +103,7 @@ body {
     padding-bottom: 20px;
     border: 2px solid var(--light-grey);
     border-radius: 5px;
+    background: var(--black-alpha);
 }
 
 
@@ -140,6 +142,8 @@ body {
     width: 876px;
     margin: auto;
     margin-bottom: 40px;
+    background: var(--black-alpha);
+    padding-bottom: 20px;
 }
 
 #beat-markers {
@@ -256,6 +260,7 @@ body {
     padding-bottom: 20px;
     border: 2px solid var(--light-grey);
     border-radius: 5px;
+    background: var(--black-alpha);
 }
 
 #keyboard-controls label {

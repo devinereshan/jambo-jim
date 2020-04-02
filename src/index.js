@@ -72,6 +72,102 @@ function init() {
 
     createAndConnectPadControls(synths);
 
+    createKeyboard();
+    // // create keyboard synth
+    // const keys = new KeyboardSound();
+    // keys.getVolume().connect(Tone.Master);
+
+    // // create keyboard
+    // let keyboard = new Nexus.Piano('#keyboard', {
+    //     'size': [650,150],
+    //     'lowNote': 0,
+    //     'highNote': 24
+    // });
+
+    // keyboard.colorize('light', white); // white keys
+    // keyboard.colorize('dark', darkGrey); // black keys
+    // // keyboard.colorize('accent', pink); // highlight
+    // keyboard.colorize('mediumLight', lightGrey); // borders
+
+    // const keyboardVolume = new Nexus.Slider('#keyboard-volume', {
+    //     'size': [25,115],
+    //     'min': -40,
+    //     'max': 0,
+    //     'step': 0.1,
+    //     'value': -10
+    // });
+
+    // // keyboard octave buttons
+    // const octaveButtons = new Nexus.RadioButton('#octave-radio-buttons', {
+    //     'size': [150, 25],
+    //     'numberOfButtons': 4,
+    //     'active': 1
+    // });
+
+    // const keyboardNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+    // keyboard.on('change', (v) => {
+    //     let note = keyboardNotes[v.note % 12];
+    //     let octave = Math.floor(v.note / 12);
+    //     if (v.state) {
+    //         keys.start(note, octave)
+    //     } else {
+    //         keys.deleteNote(note, octave);
+    //     }
+    // });
+
+    // const compKeyTriggers = [
+    //     {letterKey: 'a', isPressed: false},
+    //     {letterKey: 'w', isPressed: false},
+    //     {letterKey: 's', isPressed: false},
+    //     {letterKey: 'e', isPressed: false},
+    //     {letterKey: 'd', isPressed: false},
+    //     {letterKey: 'f', isPressed: false},
+    //     {letterKey: 't', isPressed: false},
+    //     {letterKey: 'g', isPressed: false},
+    //     {letterKey: 'y', isPressed: false},
+    //     {letterKey: 'h', isPressed: false},
+    //     {letterKey: 'u', isPressed: false},
+    //     {letterKey: 'j', isPressed: false},
+    //     {letterKey: 'k', isPressed: false},
+    //     {letterKey: 'o', isPressed: false},
+    //     {letterKey: 'l', isPressed: false},
+    //     {letterKey: 'p', isPressed: false},
+    //     {letterKey: ';', isPressed: false},
+    // ];
+
+    // compKeyTriggers.forEach((key, index) => {
+    //     window.addEventListener('keydown', (e) => {
+    //         if (e.key.toLowerCase() === compKeyTriggers[index].letterKey && !compKeyTriggers[index].isPressed) {
+    //             keyboard.toggleIndex(index, true);
+    //             compKeyTriggers[index].isPressed = true;
+    //         }
+    //     });
+
+    //     window.addEventListener('keyup', (e) => {
+    //         if (e.key.toLowerCase() === compKeyTriggers[index].letterKey && compKeyTriggers[index].isPressed) {
+    //             keyboard.toggleIndex(index, false);
+    //             compKeyTriggers[index].isPressed = false;
+    //         }
+    //     });
+    // });
+
+    // const keyboardAttackSlider = new Nexus.Slider('#keyboard-attack', {
+    //     'size': [25,100],
+    //     'min': 0.1,
+    //     'max': 1,
+    //     'step': 0.01,
+    //     'value': 0.1
+    // });
+
+
+
+    loop.start();
+
+    const frequencyAnimator = new Animator();
+    frequencyAnimator.draw();
+}
+
+function createKeyboard() {
     // create keyboard synth
     const keys = new KeyboardSound();
     keys.getVolume().connect(Tone.Master);
@@ -148,16 +244,47 @@ function init() {
                 compKeyTriggers[index].isPressed = false;
             }
         });
-    })
+    });
+
+    const keyboardAttackSlider = new Nexus.Slider('#keyboard-attack', {
+        'size': [25,100],
+        'min': 0.1,
+        'max': 1,
+        'step': 0.01,
+        'value': 0.1
+    });
 
 
+    const keyboardReleaseSlider = new Nexus.Slider('keyboard-release', {
+        'size': [25,100],
+        'min': 0.1,
+        'max': 1,
+        'step': 0.01,
+        'value': 0.1
+    });
 
-    loop.start();
 
-    const frequencyAnimator = new Animator();
-    frequencyAnimator.draw();
+    const keyboardPortamentoSlider = new Nexus.Slider('keyboard-portamento', {
+        'size': [25,100],
+        'min': 0.1,
+        'max': 1,
+        'step': 0.01,
+        'value': 0.1
+    });
+
+    const keyboardAttackNumber = new Nexus.Number('keyboard-attack-number');
+    const keyboardReleaseNumber = new Nexus.Number('keyboard-release-number');
+    const keyboardPortamentoNumber = new Nexus.Number('keyboard-portamento-number');
+
+    const keyboardWaveSelect = new Nexus.Select('keyboard-wave',
+    {
+        options: ['sine', 'triangle', 'sawtooth', 'square']
+    });
+
+    const keyboardOscillatorSelect = new Nexus.Select('keyboard-oscillator-type', {
+        options: ['standard', 'am', 'fm', 'fat']
+    });
 }
-
 
 function createSequencer() {
     const sequencer = new Nexus.Sequencer('#step-sequencer', {
