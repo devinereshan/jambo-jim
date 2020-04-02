@@ -124,6 +124,19 @@ function createKeyboard() {
 
     });
 
+
+    const keyboardSettings = document.getElementById('keyboard-settings');
+    keyboardSettings.style.display = 'none';
+
+    const keyboardSettingsToggle = document.getElementById('keyboard-settings-toggle');
+    keyboardSettingsToggle.addEventListener('click', () => {
+        if (keyboardSettings.style.display === 'none') {
+            keyboardSettings.style.display = 'flex';
+        } else {
+            keyboardSettings.style.display = 'none';
+        }
+    });
+
     const keyboardNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     keyboard.on('change', (v) => {
         let note = keyboardNotes[v.note % 12];
