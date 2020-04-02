@@ -83,7 +83,7 @@ function init() {
 function createKeyboard() {
     // create keyboard synth
     const keys = new KeyboardSound();
-    keys.getVolume().connect(Tone.Master);
+    keys.getVolumeNode().connect(Tone.Master);
 
     // create keyboard
     let keyboard = new Nexus.Piano('#keyboard', {
@@ -99,10 +99,14 @@ function createKeyboard() {
 
     const keyboardVolume = new Nexus.Slider('#keyboard-volume', {
         'size': [25,115],
-        'min': -40,
+        'min': -60,
         'max': 0,
         'step': 0.1,
         'value': -10
+    });
+
+    keyboardVolume.on('change', (v) => {
+        keys.setVolume(v);
     });
 
     // keyboard octave buttons
@@ -110,6 +114,14 @@ function createKeyboard() {
         'size': [150, 25],
         'numberOfButtons': 4,
         'active': 1
+    });
+
+    const currentOctaveLabel = document.getElementById('current-octave-label');
+
+    octaveButtons.on('change', (v) =>{
+        keys.setOctave(v + 1);
+        currentOctaveLabel.textContent = 'C' + (v + 1);
+
     });
 
     const keyboardNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']

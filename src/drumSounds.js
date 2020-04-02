@@ -122,7 +122,7 @@ export class Sound {
 export class KeyboardSound {
     constructor() {
 
-        this.octave = 3;
+        this.octave = 2;
 
         this.defaults = {
             oscillator : {
@@ -144,8 +144,16 @@ export class KeyboardSound {
         this.activeNotes = {};
     }
 
-    getVolume() {
+    getVolumeNode() {
         return this.volume;
+    }
+
+    setVolume(value) {
+        if (value <= -60) {
+            this.volume.volume.value = -Infinity;
+        } else {
+            this.volume.volume.value = value;
+        }
     }
 
     start(note, octave) {
@@ -159,7 +167,7 @@ export class KeyboardSound {
     deleteNote(note, octave) {
         octave += this.octave;
         note += octave;
-        let isCurrentNote = this.activeNotes[this.activeNoteCount - 1] === note;
+        let isCurrentNote = this.activeNotes[this.activeNotes.length - 1] === note;
         delete this.activeNotes[note];
         this.activeNoteCount -= 1;
         if (this.activeNoteCount === 0) {
@@ -167,5 +175,13 @@ export class KeyboardSound {
         } else if (isCurrentNote) {
             this.synth.setNote(this.activeNotes[this.activeNoteCount - 1]);
         }
+    }
+
+    setOctave(octave) {
+        this.octave = octave;
+    }
+
+    setEnvelopeValue(type, value) {
+        this.synth.envelope[type] = value;
     }
 }
