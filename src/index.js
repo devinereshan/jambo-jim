@@ -231,7 +231,7 @@ function createKeyboard() {
 
     const keyboardWaveSelect = new Nexus.Select('keyboard-wave',
     {
-        options: ['sine', 'triangle', 'sawtooth', 'square']
+        options: ['square', 'triangle', 'sawtooth', 'sine']
     });
 
     const keyboardOscillatorSelect = new Nexus.Select('keyboard-oscillator-type', {
