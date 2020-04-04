@@ -142,9 +142,9 @@ function createKeyboard() {
         let note = keyboardNotes[v.note % 12];
         let octave = Math.floor(v.note / 12);
         if (v.state) {
-            keys.start(note, octave)
+            keys.startNote(note, octave)
         } else {
-            keys.deleteNote(note, octave);
+            keys.stopNote(note, octave);
         }
     });
 
