@@ -142,8 +142,74 @@ export class KeyboardSound {
 
         this.synth.portamento = 0.1;
 
-        this.activeNoteCount = 0;
-        this.activeNotes = {};
+        this.notes = {
+            'C1' : false,
+            'C#1' : false,
+            'D1' : false,
+            'D#1' : false,
+            'E1' : false,
+            'F1' : false,
+            'F#1' : false,
+            'G1' : false,
+            'G#1' : false,
+            'A1' : false,
+            'A#1' : false,
+            'B1' : false,
+
+            'C2' : false,
+            'C#2' : false,
+            'D2' : false,
+            'D#2' : false,
+            'E2' : false,
+            'F2' : false,
+            'F#2' : false,
+            'G2' : false,
+            'G#2' : false,
+            'A2' : false,
+            'A#2' : false,
+            'B2' : false,
+
+            'C3' : false,
+            'C#3' : false,
+            'D3' : false,
+            'D#3' : false,
+            'E3' : false,
+            'F3' : false,
+            'F#3' : false,
+            'G3' : false,
+            'G#3' : false,
+            'A3' : false,
+            'A#3' : false,
+            'B3' : false,
+
+            'C4' : false,
+            'C#4' : false,
+            'D4' : false,
+            'D#4' : false,
+            'E4' : false,
+            'F4' : false,
+            'F#4' : false,
+            'G4' : false,
+            'G#4' : false,
+            'A4' : false,
+            'A#4' : false,
+            'B4' : false,
+
+            'C5' : false,
+            'C#5' : false,
+            'D5' : false,
+            'D#5' : false,
+            'E5' : false,
+            'F5' : false,
+            'F#5' : false,
+            'G5' : false,
+            'G#5' : false,
+            'A5' : false,
+            'A#5' : false,
+            'B5' : false,
+
+            'C6' : false,
+        }
     }
 
     getVolumeNode() {
@@ -158,25 +224,18 @@ export class KeyboardSound {
         }
     }
 
-    start(note, octave) {
+    startNote(note, octave) {
         octave += this.octave;
         note += octave;
         this.synth.triggerAttack(note);
-        this.activeNotes[this.activeNoteCount] = note;
-        this.activeNoteCount += 1;
+        this.notes[note] = true;
     }
 
-    deleteNote(note, octave) {
+    stopNote(note, octave) {
         octave += this.octave;
         note += octave;
-        let isCurrentNote = this.activeNotes[this.activeNotes.length - 1] === note;
-        delete this.activeNotes[note];
-        this.activeNoteCount -= 1;
-        if (this.activeNoteCount === 0) {
-            this.synth.triggerRelease();
-        } else if (isCurrentNote) {
-            this.synth.setNote(this.activeNotes[this.activeNoteCount - 1]);
-        }
+        this.synth.triggerAttack(note);
+        this.notes[note] = false;
     }
 
     setOctave(octave) {
